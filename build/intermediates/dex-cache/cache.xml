@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/home/tracun/Android/Sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.2_a0d9dac0fa9eecb898063ef969ca577b4fbb25fd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/.android/build-cache/c9b6b5dd941b7c661e4f623365379113b0198724/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8a36d229011e75f0caef408e1adf0d3fd4d94e02">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2ca1d94e0bc18ba58d2f0e4175c04236407b726c/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/tracun/Android/Sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.2_a0d9dac0fa9eecb898063ef969ca577b4fbb25fd.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/.android/build-cache/56fe73c5f5574b98e9051982f2d98312c51f71e8/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1256c10604bb098490eab070d76754ac5ceab35c">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0931d70adeb5228421db0d3824aa0042cbd939fd/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/tracun/.android/build-cache/9f77d489544cc195d6b7abc07fa3bd5263d39c50/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="dd763e0269f2854f5828ae62dd968b80bff6a0db">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/debug/classes_88ded037f21c3433eadfc619e1e8a29e6f237f11.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/tracun/.android/build-cache/56fe73c5f5574b98e9051982f2d98312c51f71e8/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1256c10604bb098490eab070d76754ac5ceab35c">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/debug/classes_0931d70adeb5228421db0d3824aa0042cbd939fd.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/.android/build-cache/9f77d489544cc195d6b7abc07fa3bd5263d39c50/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="dd763e0269f2854f5828ae62dd968b80bff6a0db">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_88ded037f21c3433eadfc619e1e8a29e6f237f11/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/tracun/.android/build-cache/3bb1a6b722feec184ba578d070400020d61b5f77/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="787871951412550519b0222aba3c9df4cea49875">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/debug/classes_43fb3bac863d3e0a50a3ec453ba42e57e793335f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/tracun/.android/build-cache/6c25058900593934c087a4908c65638b880d16f1/output/jars/libs/internal_impl-24.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/debug/internal_impl-24.1.1_3c55814227d7676bd0d65834b6612b45370fae9a.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/.android/build-cache/3bb1a6b722feec184ba578d070400020d61b5f77/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="787871951412550519b0222aba3c9df4cea49875">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_43fb3bac863d3e0a50a3ec453ba42e57e793335f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/.android/build-cache/6c25058900593934c087a4908c65638b880d16f1/output/jars/libs/internal_impl-24.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.1.1_3c55814227d7676bd0d65834b6612b45370fae9a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/.android/build-cache/9bac11ee2a2bfd9116a8a24d2ec3856bbc321086/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c936c1bd42f0c018c18920c7bec619ef056b24f8">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ef3d42ca115a899d7d21a63f854ee93a59383cb3/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/tracun/.android/build-cache/d0a6e54c223627285f96b489a37e15b708b4659c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e195bd694d5389acfba27ff4fdfa64c4c65b2c05">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/debug/classes_5da25088cb5f079f14028969648fc3182566c9ea.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/.android/build-cache/caafe130d6b43db216763f624bc1eb765b398ee1/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="618485fef3ebe12127f7622abbc9b5b39057b5c2">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_798e900f5c7d57cf098a22880e642192d2d33202/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/.android/build-cache/6c25058900593934c087a4908c65638b880d16f1/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6d7d803871e3203465f71a163e7af104f807b446">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2b2bc9957d793ac8f2a57fe41c52991155957caf/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/tracun/.android/build-cache/caafe130d6b43db216763f624bc1eb765b398ee1/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="618485fef3ebe12127f7622abbc9b5b39057b5c2">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/debug/classes_798e900f5c7d57cf098a22880e642192d2d33202.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/.android/build-cache/c91d5a89fa4dc8fdab782618bebb4aca4f5f0a57/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b15f898c9047f9d612a63000126b485dd024eaac">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_343ed2f50d0ddfde174e64d87bcf63e2c336c3cf/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/tracun/.android/build-cache/180bb22e3fb69cae6efed42e0c3ad4f387f958de/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/debug/classes_ec95dfccce10d27ec3c8d87e40fde78274fcbef7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/tracun/.android/build-cache/c91d5a89fa4dc8fdab782618bebb4aca4f5f0a57/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b15f898c9047f9d612a63000126b485dd024eaac">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/debug/classes_343ed2f50d0ddfde174e64d87bcf63e2c336c3cf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/tracun/.android/build-cache/6c25058900593934c087a4908c65638b880d16f1/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6d7d803871e3203465f71a163e7af104f807b446">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/debug/classes_2b2bc9957d793ac8f2a57fe41c52991155957caf.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/.android/build-cache/180bb22e3fb69cae6efed42e0c3ad4f387f958de/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ec95dfccce10d27ec3c8d87e40fde78274fcbef7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/.android/build-cache/fd33ade1d0dfbbbe41da1de694a8904dd74d1945/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="147edbec6bcea71fd675ecc63cae3319637ec2b4">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_93ed787cccf3542c3b81f38634b9ee8401e49f5a/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/tracun/.android/build-cache/fd33ade1d0dfbbbe41da1de694a8904dd74d1945/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="147edbec6bcea71fd675ecc63cae3319637ec2b4">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/debug/classes_93ed787cccf3542c3b81f38634b9ee8401e49f5a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/tracun/.android/build-cache/c9b6b5dd941b7c661e4f623365379113b0198724/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8a36d229011e75f0caef408e1adf0d3fd4d94e02">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/debug/classes_2ca1d94e0bc18ba58d2f0e4175c04236407b726c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/tracun/.android/build-cache/862315120aa82bb75e58deddf5d7c6121d2b317f/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d463d8eec1e6c1feef2cec6675ccb47e37c12ee1">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/debug/classes_b0708d87cb1fd8a3b713822406533c9c5365bb7c.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/.android/build-cache/862315120aa82bb75e58deddf5d7c6121d2b317f/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d463d8eec1e6c1feef2cec6675ccb47e37c12ee1">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b0708d87cb1fd8a3b713822406533c9c5365bb7c/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/tracun/.android/build-cache/d1f7940fa50cdd941f4df72affb0bbd8f9866cef/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3dee4ce5844d39d843d503fb8fe04e51e5bfffac">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/debug/classes_03c8c8195f0e61f89703fbb0cd85ec68d7647547.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/.android/build-cache/d1f7940fa50cdd941f4df72affb0bbd8f9866cef/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3dee4ce5844d39d843d503fb8fe04e51e5bfffac">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_03c8c8195f0e61f89703fbb0cd85ec68d7647547/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_32d75cfb41ba0c8c5106f9da7435fd42474d57d7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="2e26c62499ea69575bfd9801569eb06a50f84cef">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_10ed9d981fe7cf798a8961ba81f733a7ca3a9b64/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/.android/build-cache/d0a6e54c223627285f96b489a37e15b708b4659c/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e195bd694d5389acfba27ff4fdfa64c4c65b2c05">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5da25088cb5f079f14028969648fc3182566c9ea/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/tracun/.android/build-cache/9bac11ee2a2bfd9116a8a24d2ec3856bbc321086/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c936c1bd42f0c018c18920c7bec619ef056b24f8">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/debug/classes_ef3d42ca115a899d7d21a63f854ee93a59383cb3.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/24.1.1/support-annotations-24.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3af19f153122737b372622fa6c81dd11a1c6b999">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.1.1_5a1c8b0fb0a26f208ff094c1ded6d0aa7c651f80/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/tracun/.android/build-cache/e40f4720577ed67ac424d01b7ee778a1a54b4fea/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f62e763609f65e47dc6c498760a4accf02776788">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/debug/classes_344b1f0a49d1564d8d4cacd8149b1ad150288462.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/.android/build-cache/e40f4720577ed67ac424d01b7ee778a1a54b4fea/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f62e763609f65e47dc6c498760a4accf02776788">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_344b1f0a49d1564d8d4cacd8149b1ad150288462/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/tracun/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/24.1.1/support-annotations-24.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3af19f153122737b372622fa6c81dd11a1c6b999">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/debug/support-annotations-24.1.1_5a1c8b0fb0a26f208ff094c1ded6d0aa7c651f80.jar" />
+    </item>
+
+</items>

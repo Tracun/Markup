@@ -1,0 +1,69 @@
+<!--<android.support.constraint.ConstraintLayout-->
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/activity_main"
+    tools:context="com.wb.tracun.markup.Main">
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btnFloating"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="42dp"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/btnAtualizaLista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/adView"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:onClick="carregaLista"
+        android:text="Atualizar lista"
+        android:visibility="visible"
+        tools:layout_editor_absoluteY="388dp"
+        tools:layout_editor_absoluteX="122dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnFloating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="exibeTelaCadastro"
+        android:visibility="visible"
+        ads:backgroundTint="@color/common_plus_signin_btn_text_light_disabled"
+        ads:elevation="7dp"
+        ads:fabSize="mini"
+        ads:rippleColor="?android:attr/textColorSecondaryInverseNoDisable"
+        ads:srcCompat="@android:drawable/ic_input_add"
+        tools:layout_editor_absoluteY="388dp"
+        tools:layout_editor_absoluteX="328dp"
+        android:layout_above="@+id/btnAtualizaLista"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="29dp" />
+
+    <!-- view for AdMob Banner Ad -->
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id"
+        tools:layout_editor_absoluteY="445dp"
+        tools:layout_editor_absoluteX="32dp" />
+
+
+</RelativeLayout>
+<!--</android.support.constraint.ConstraintLayout>-->
