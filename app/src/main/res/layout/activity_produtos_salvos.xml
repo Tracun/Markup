@@ -70,7 +70,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:enabled="false"
-                android:hint="Nome(name)"
+                android:hint="Nome"
                 android:inputType="textPersonName"
                 android:textAlignment="center" />
 
@@ -106,7 +106,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:enabled="false"
-                android:hint="Custo(cost)"
+                android:hint="R$ 0,00"
                 android:inputType="numberDecimal"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -372,7 +372,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:enabled="false"
-                android:hint="0"
+                android:hint="R$ 0,00"
                 android:inputType="numberDecimal"
                 android:textAlignment="center"
                 android:textSize="14sp" />
@@ -410,7 +410,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:enabled="false"
-                android:hint="0"
+                android:hint="R$ 0,00"
                 android:inputType="numberDecimal"
                 android:textAlignment="center"
                 android:textSize="14sp" />
