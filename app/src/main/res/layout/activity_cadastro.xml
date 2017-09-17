@@ -280,7 +280,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:onClick="calculaMarkUp"
-        android:text="Cadastrar" />
+        android:text="Cadastrar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"

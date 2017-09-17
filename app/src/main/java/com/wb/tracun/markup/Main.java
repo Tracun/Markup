@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -64,22 +65,37 @@ public class Main extends AppCompatActivity {
             }
         });
 
+        botaoCarregaProdutosSalvos = (Button) findViewById(R.id.btnAtualizaLista);
+
+        botaoCarregaProdutosSalvos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(Main.this, "Funcionei XD", Toast.LENGTH_SHORT).show();
+
+                carregaLista(view);
+
+            }
+        });
+
 
     }
 
+    Button botaoMsg;
+    Button botaoCarregaProdutosSalvos;
 
 
-    FloatingActionButton btnFloating;
 
-    void exibeTelaCadastro(View view){
-
-        //FloatingActionButton btnFloating;
-        btnFloating = (FloatingActionButton) findViewById(R.id.btnFloating);
-
-        Intent intencao = new Intent(this,Cadastro.class);
-        startActivity(intencao);
-
-    }
+//    void exibeTelaCadastro(View view){
+//
+////        FloatingActionButton btnFloating;
+////        btnFloating = (FloatingActionButton) findViewById(R.id.btnFloating);
+//        botaoMsg = (Button) findViewById(R.id.btnExibeMsg);
+//
+//        Intent intencao = new Intent(this,Cadastro.class);
+//        startActivity(intencao);
+//
+//    }
 
 //    void exibeTela(View view){
 //
@@ -107,6 +123,16 @@ public class Main extends AppCompatActivity {
         }else{
             Toast.makeText(this,"Nenhum produto cadastrado !",Toast.LENGTH_LONG);
         }
+
+    }
+
+    public void exibeTelaCadastro2(View view){
+
+        botaoMsg = (Button) findViewById(R.id.btnExibeMsg);
+        Toast.makeText(this, "Funcionei XD", Toast.LENGTH_LONG).show();
+
+        Intent intencao = new Intent(this,Cadastro.class);
+        startActivity(intencao);
 
     }
 

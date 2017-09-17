@@ -31,7 +31,7 @@ public class produtosSalvos extends AppCompatActivity {
         adView.loadAd(adRequest);
 
         // Toasts the test ad message on the screen. Remove this after defining your own ad unit ID.
-        Toast.makeText(this, TOAST_TEXT, Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, TOAST_TEXT, Toast.LENGTH_LONG).show();
 
         buscaDados();
 
