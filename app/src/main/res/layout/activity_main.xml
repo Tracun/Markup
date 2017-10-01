@@ -39,7 +39,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id"
+        ads:adUnitId="ca-app-pub-0943131909791545/2375075380"
         tools:layout_editor_absoluteY="445dp"
         tools:layout_editor_absoluteX="32dp" />
 
@@ -53,7 +53,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:onClick="exibeTelaCadastro2"
-        android:text="Cadastrar Produto"
+        android:text="Novo Produto"
         android:visibility="visible" />
 
 

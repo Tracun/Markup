@@ -129,7 +129,7 @@ public class Main extends AppCompatActivity {
     public void exibeTelaCadastro2(View view){
 
         botaoMsg = (Button) findViewById(R.id.btnExibeMsg);
-        Toast.makeText(this, "Funcionei XD", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "Funcionei XD", Toast.LENGTH_LONG).show();
 
         Intent intencao = new Intent(this,Cadastro.class);
         startActivity(intencao);

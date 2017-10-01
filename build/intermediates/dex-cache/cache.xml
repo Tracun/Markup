@@ -120,6 +120,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/incremental-runtime-classes/paid/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/paid/debug/folders/1000/10000/instant-run_3d904dee13af2d380024a8a3b79ff8f8dd4dcd1d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/tracun/.android/build-cache/caafe130d6b43db216763f624bc1eb765b398ee1/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -268,8 +277,17 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="2e26c62499ea69575bfd9801569eb06a50f84cef">
+        sha1="bb15e16c1c9b854af0244f672bef04cd33c54989">
         <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_10ed9d981fe7cf798a8961ba81f733a7ca3a9b64/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/incremental-runtime-classes/free/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/free/debug/folders/1000/10000/instant-run_279d308c023f519e17469c2ce6abbac61e53858e/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -291,6 +309,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/incremental-classes/paid/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3913ff4dbd295a783cc4f63c3e9ed4e84545eee1">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/paid/debug/folders/1000/10000/instant-run-bootstrap_87667a6b39b1b8b6c9ba9092701222c8516e7680/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/tracun/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/24.1.1/support-annotations-24.1.1.jar"
         jumboMode="true"
         optimize="true"
@@ -306,6 +333,15 @@
         revision="25.0.0"
         sha1="f62e763609f65e47dc6c498760a4accf02776788">
         <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/debug/classes_344b1f0a49d1564d8d4cacd8149b1ad150288462.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/incremental-classes/free/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4dfed06bffefb899e3f7bb5c1ec5edc94f1020b0">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/free/debug/folders/1000/10000/instant-run-bootstrap_892f80fa2a464c22c2031b6e9e89d707caad8615/classes.dex" />
     </item>
     <item
         is-multidex="true"

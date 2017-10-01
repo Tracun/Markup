@@ -6,17 +6,19 @@ import com.google.android.gms.ads.AdView;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 public class produtosSalvos extends AppCompatActivity {
     // Remove the below line after defining your own ad unit ID.
-    private static final String TOAST_TEXT = "Test ads are being shown. "
-            + "To show live ads, replace the ad unit ID in res/values/strings.xml with your own ad unit ID.";
+//    private static final String TOAST_TEXT = "Test ads are being shown. "
+//            + "To show live ads, replace the ad unit ID in res/values/strings.xml with your own ad unit ID.";
 
 
     @Override
@@ -37,6 +39,8 @@ public class produtosSalvos extends AppCompatActivity {
 
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
+
+
     }
 
 
@@ -52,6 +56,7 @@ public class produtosSalvos extends AppCompatActivity {
     EditText txtID;
     EditText txtPrecoFora;
     EditText txtPrecoDentro;
+    RadioButton radioButton;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -78,6 +83,10 @@ public class produtosSalvos extends AppCompatActivity {
         txtID = (EditText) findViewById(R.id.txtId);
         txtPrecoFora = (EditText) findViewById(R.id.txtPrecoFora);
         txtPrecoDentro = (EditText) findViewById(R.id.txtPrecoDentro);
+        radioButton = (RadioButton) findViewById(R.id.radioButton2);
+
+//        radioButton.setC
+
 
     }
 
