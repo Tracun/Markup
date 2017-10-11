@@ -56,7 +56,6 @@ public class produtosSalvos extends AppCompatActivity {
     EditText txtID;
     EditText txtPrecoFora;
     EditText txtPrecoDentro;
-    RadioButton radioButton;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -83,9 +82,7 @@ public class produtosSalvos extends AppCompatActivity {
         txtID = (EditText) findViewById(R.id.txtId);
         txtPrecoFora = (EditText) findViewById(R.id.txtPrecoFora);
         txtPrecoDentro = (EditText) findViewById(R.id.txtPrecoDentro);
-        radioButton = (RadioButton) findViewById(R.id.radioButton2);
 
-//        radioButton.setC
 
 
     }

@@ -72,39 +72,15 @@ public class Main extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(Main.this, "Funcionei XD", Toast.LENGTH_SHORT).show();
-
                 carregaLista(view);
 
             }
         });
 
-
     }
 
     Button botaoMsg;
     Button botaoCarregaProdutosSalvos;
-
-
-
-//    void exibeTelaCadastro(View view){
-//
-////        FloatingActionButton btnFloating;
-////        btnFloating = (FloatingActionButton) findViewById(R.id.btnFloating);
-//        botaoMsg = (Button) findViewById(R.id.btnExibeMsg);
-//
-//        Intent intencao = new Intent(this,Cadastro.class);
-//        startActivity(intencao);
-//
-//    }
-
-//    void exibeTela(View view){
-//
-//        button4 = (Button) findViewById(R.id.button4);
-//
-//        Intent intencao = new Intent(this,produtosSalvos.class);
-//        startActivity(intencao);
-//    }
 
     //Carrega os itens salvos na lista da tela Principal
     void carregaLista(View view){
@@ -116,11 +92,15 @@ public class Main extends AppCompatActivity {
         GerenciaBD gerenciaBD = new GerenciaBD(this);
 
         ArrayList lista;
+        Toast.makeText(this,"Nenhum produto cadastrado !",Toast.LENGTH_LONG);
 
         if(gerenciaBD.buscaString() != null){
+
             lista = gerenciaBD.buscaString();
+
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,lista);
             list.setAdapter(adapter);
+
         }else{
             Toast.makeText(this,"Nenhum produto cadastrado !",Toast.LENGTH_LONG);
         }

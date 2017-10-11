@@ -25,7 +25,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:onClick="carregaLista2"
+        android:onClick="carregaLista"
         android:text="Atualizar lista"
         android:visibility="visible"
         tools:layout_editor_absoluteX="122dp"

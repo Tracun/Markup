@@ -313,7 +313,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="3913ff4dbd295a783cc4f63c3e9ed4e84545eee1">
+        sha1="a3af27a53302363d08167e4be5f0ee3f4d4f153a">
         <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/paid/debug/folders/1000/10000/instant-run-bootstrap_87667a6b39b1b8b6c9ba9092701222c8516e7680/classes.dex" />
     </item>
     <item
