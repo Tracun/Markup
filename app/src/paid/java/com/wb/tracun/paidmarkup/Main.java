@@ -82,6 +82,10 @@ public class Main extends AppCompatActivity {
     Button botaoMsg;
     Button botaoCarregaProdutosSalvos;
 
+    public void onBackPressed() {
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
+
     //Carrega os itens salvos na lista da tela Principal
     void carregaLista(View view){
 

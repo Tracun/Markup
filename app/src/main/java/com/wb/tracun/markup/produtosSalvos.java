@@ -40,9 +40,7 @@ public class produtosSalvos extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-
     }
-
 
     EditText txtNome;
     EditText txtCusto;

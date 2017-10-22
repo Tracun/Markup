@@ -71,6 +71,7 @@ public class Cadastro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 VS.setVisibility(View.INVISIBLE);
+                setEnable();
             }
 
         });
@@ -126,68 +127,68 @@ public class Cadastro extends AppCompatActivity {
 
     public void calculaMarkUp(View view) {
 
-        if(txtEncargo.getText().toString().equals("") || txtComissao.getText().toString().equals("") || txtCustoIndireto.getText().toString().equals("") || txtImp2.getText().toString().equals("") || txtImp1.getText().toString().equals("") || txtOutro.getText().toString().equals("")){
-
-            txtEncargo.setText("0");
-            txtComissao.setText("0");
-            txtCustoIndireto.setText("0");
-            txtImp1.setText("0");
-            txtImp2.setText("0");
-            txtOutro.setText("0");
-
-        }
-
-        if(txtNome.getText().toString().equals("")){
+        if (txtNome.getText().toString().equals("")) {
 
             txtNome.setError("Campo vazio !");
 
-        }else if(txtCusto.getText().toString().equals("")){
+        } else if (txtCusto.getText().toString().equals("")) {
 
             txtCusto.setError("Campo vazio !");
 
-        }else if(txtLucro.getText().toString().equals("")){
+        } else if (txtLucro.getText().toString().equals("")) {
 
             txtLucro.setError("Campo vazio !");
 
-        }else if(txtEncargo.getText().toString().equals("")){
+        } else {
+
+            setZeroOnEmpty();
+
+            if (txtEncargo.getText().toString().equals("")) {
 
 //            txtEncargo.setError("Campo vazio !");
-            txtEncargo.setText("0");
+                txtEncargo.setText("0");
 
-        }else if(txtComissao.getText().toString().equals("")){
+            } else if (txtComissao.getText().toString().equals("")) {
 
 //            txtComissao.setError("Campo vazio !");
-            txtComissao.setText("0");
+                txtComissao.setText("0");
 
-        }else if(txtCustoIndireto.getText().toString().equals("")){
+            } else if (txtCustoIndireto.getText().toString().equals("")) {
 
 //            txtCustoIndireto.setError("Campo vazio !");
-            txtCustoIndireto.setText("0");
+                txtCustoIndireto.setText("0");
 
-        }else if(txtImp2.getText().toString().equals("")){
+            } else if (txtImp2.getText().toString().equals("")) {
 
-            //txtImp2.setError("Campo vazio !");
-            txtImp2.setText("0");
+                //txtImp2.setError("Campo vazio !");
+                txtImp2.setText("0");
 
-        }else if(txtImp1.getText().toString().equals("")){
+            } else if (txtImp1.getText().toString().equals("")) {
 
-            //txtImp1.setError("Campo vazio !");
-            txtImp1.setText("0");
+                //txtImp1.setError("Campo vazio !");
+                txtImp1.setText("0");
 
-        }else if(txtOutro.getText().toString().equals("")){
+            } else if (txtOutro.getText().toString().equals("")) {
 
 //            txtOutro.setError("Campo vazio !");
-            txtOutro.setText("0");
-        }else{
+                txtOutro.setText("0");
+            }
 
             criarProduto();
 
-            //Chama um ViewSwitcher
             txtPrecoDentro.setText("R$ " + ConversorMoeda.formataMoeda(produto.getPrecoDentro()));
             txtPrecoFora.setText("R$ " + ConversorMoeda.formataMoeda(produto.getPrecoFora()));
+            //Chama um ViewSwitcher
             VS.setVisibility(View.VISIBLE);
 
+            //Desativa os EditText
+            setDisable();
+            txtPrecoDentro.setEnabled(false);
+            txtPrecoFora.setEnabled(false);
+
         }
+
+
     }
 
     public void criarProduto(){
@@ -217,6 +218,65 @@ public class Cadastro extends AppCompatActivity {
             produto.setPrecoDentro(precoDentro);
         }
 
+    }
+
+    public void setZeroOnEmpty(){
+
+        if(txtEncargo.getText().toString().equals("")){
+
+            txtEncargo.setText("0");
+        }
+
+        if(txtComissao.getText().toString().equals("")){
+
+            txtComissao.setText("0");
+        }
+
+        if(txtCustoIndireto.getText().toString().equals("")){
+
+            txtCustoIndireto.setText("0");
+        }
+
+        if(txtImp1.getText().toString().equals("")){
+
+            txtImp1.setText("0");
+        }
+
+        if(txtImp2.getText().toString().equals("")){
+
+            txtImp2.setText("0");
+        }
+
+        if(txtOutro.getText().equals("")){
+            txtOutro.setText("0");
+        }
+
+    }
+
+    public void setEnable(){
+
+        txtNome.setEnabled(true);
+        txtCusto.setEnabled(true);
+        txtLucro.setEnabled(true);
+        txtEncargo.setEnabled(true);
+        txtComissao.setEnabled(true);
+        txtCustoIndireto.setEnabled(true);
+        txtImp1.setEnabled(true);
+        txtImp2.setEnabled(true);
+        txtOutro.setEnabled(true);
+    }
+
+    public void setDisable(){
+
+        txtNome.setEnabled(false);
+        txtCusto.setEnabled(false);
+        txtLucro.setEnabled(false);
+        txtEncargo.setEnabled(false);
+        txtComissao.setEnabled(false);
+        txtCustoIndireto.setEnabled(false);
+        txtImp1.setEnabled(false);
+        txtImp2.setEnabled(false);
+        txtOutro.setEnabled(false);
     }
 
     public void salvarProduto(){

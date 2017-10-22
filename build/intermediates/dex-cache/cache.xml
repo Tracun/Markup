@@ -313,7 +313,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="a3af27a53302363d08167e4be5f0ee3f4d4f153a">
+        sha1="4790438f959a685ce61c9f51a3197f735c8c132f">
         <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/paid/debug/folders/1000/10000/instant-run-bootstrap_87667a6b39b1b8b6c9ba9092701222c8516e7680/classes.dex" />
     </item>
     <item
@@ -340,7 +340,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="219c5b63b32ee7749004dfeff801ce97fc888c99">
+        sha1="e4344168e427081a7adbe81501619228d36cee87">
         <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/free/debug/folders/1000/10000/instant-run-bootstrap_892f80fa2a464c22c2031b6e9e89d707caad8615/classes.dex" />
     </item>
     <item

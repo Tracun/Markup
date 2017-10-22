@@ -76,7 +76,7 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
-    <string name="title_activity_main2">Menu</string>
+    <string name="title_activity_main2">Markup Free</string>
 
     <string name="hello_world">Hello world!</string>
     <!-- -
@@ -88,7 +88,7 @@
     <string name="title_activity_produtos_salvos2">produtosSalvos</string>
     <string name="title_activity_teste_ad">TesteAd</string>
 
-    <string name="title_activity_splash">Splash</string>
+    <string name="title_activity_splash">Markup</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

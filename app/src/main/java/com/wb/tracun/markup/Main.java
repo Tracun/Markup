@@ -51,16 +51,16 @@ public class Main extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                // ListView Clicked item index
-                int posicaoItem = position;
+            // ListView Clicked item index
+            int posicaoItem = position;
 
-                // ListView Clicked item value
-                String itemValue = (String) list.getItemAtPosition(position);
+            // ListView Clicked item value
+            String itemValue = (String) list.getItemAtPosition(position);
 
-                exibeTelaProdutoDetalhado(view,posicaoItem);
+            exibeTelaProdutoDetalhado(view,posicaoItem);
 
-                //Show Alert
-                Toast.makeText(getApplicationContext(), "Position :" + posicaoItem + "  ListItem : " + itemValue, Toast.LENGTH_LONG).show();
+            //Show Alert
+            Toast.makeText(getApplicationContext(), "Position :" + posicaoItem + "  ListItem : " + itemValue, Toast.LENGTH_LONG).show();
 
             }
         });
@@ -70,17 +70,18 @@ public class Main extends AppCompatActivity {
         botaoCarregaProdutosSalvos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                carregaLista(view);
-
+            carregaLista(view);
             }
         });
-
 
     }
 
     Button botaoMsg;
     Button botaoCarregaProdutosSalvos;
+
+    public void onBackPressed() {
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
 
     //Carrega os itens salvos na lista da tela Principal
     void carregaLista(View view){
