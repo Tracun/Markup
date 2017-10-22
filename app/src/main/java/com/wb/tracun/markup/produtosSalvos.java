@@ -83,8 +83,6 @@ public class produtosSalvos extends AppCompatActivity {
         txtPrecoFora = (EditText) findViewById(R.id.txtPrecoFora);
         txtPrecoDentro = (EditText) findViewById(R.id.txtPrecoDentro);
 
-
-
     }
 
     public void buscaDados(){
@@ -120,12 +118,6 @@ public class produtosSalvos extends AppCompatActivity {
 
             }while(cursor.moveToNext());
         }
-
-
-    }
-
-    public void carregaDados(){
-
 
     }
 

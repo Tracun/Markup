@@ -5,291 +5,292 @@
     android:layout_height="match_parent"
     tools:context="com.wb.tracun.markup.Cadastro">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/txtNome"
-                android:layout_alignBottom="@+id/txtNome"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:text="Nome:" />
-
-            <EditText
-                android:id="@+id/txtNome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/txtId"
-                android:layout_toEndOf="@+id/textView2"
-                android:layout_toRightOf="@+id/textView2"
-                android:ems="10"
-                android:hint="produto"
-                android:inputType="text|textPersonName"
-                android:textAlignment="center" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/txtCusto"
-                android:layout_alignBottom="@+id/txtCusto"
-                android:layout_toLeftOf="@+id/txtCusto"
-                android:layout_toStartOf="@+id/txtCusto"
-                android:text="Custo:" />
-
-            <EditText
-                android:id="@+id/txtCusto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/txtNome"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignStart="@+id/txtNome"
-                android:layout_below="@+id/txtNome"
-                android:ems="10"
-                android:hint="R$"
-                android:inputType="numberDecimal"
-                android:textAlignment="center" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/txtLucro"
-                android:layout_alignBottom="@+id/txtLucro"
-                android:layout_toLeftOf="@+id/txtLucro"
-                android:layout_toStartOf="@+id/txtLucro"
-                android:text="Lucro:" />
-
-            <EditText
-                android:id="@+id/txtLucro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/txtCusto"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignStart="@+id/txtCusto"
-                android:layout_below="@+id/txtCusto"
-                android:ems="10"
-                android:hint="%"
-                android:inputType="numberDecimal"
-                android:textAlignment="center" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/txtEncargo"
-                android:layout_alignBottom="@+id/txtEncargo"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:text="Encargo:" />
-
-            <EditText
-                android:id="@+id/txtEncargo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/txtLucro"
-                android:layout_toEndOf="@+id/textView5"
-                android:layout_toRightOf="@+id/textView5"
-                android:ems="10"
-                android:hint="%"
-                android:inputType="numberDecimal"
-                android:textAlignment="center" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/txtCustoIndireto"
-                android:layout_alignBottom="@+id/txtCustoIndireto"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:text="Custo Indireto:" />
-
-            <EditText
-                android:id="@+id/txtCustoIndireto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/txtEncargo"
-                android:layout_toEndOf="@+id/textView6"
-                android:layout_toRightOf="@+id/textView6"
-                android:ems="10"
-                android:hint="%"
-                android:inputType="numberDecimal"
-                android:textAlignment="center" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/txtComissao"
-                android:layout_alignBottom="@+id/txtComissao"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:text="Comissão:" />
-
-            <EditText
-                android:id="@+id/txtComissao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/txtCustoIndireto"
-                android:ems="10"
-                android:hint="%"
-                android:inputType="numberDecimal"
-                android:textAlignment="center" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/txtImp1"
-                android:layout_alignBottom="@+id/txtImp1"
-                android:layout_alignLeft="@+id/textView3"
-                android:layout_alignStart="@+id/textView3"
-                android:text="Imposto 1:" />
-
-            <EditText
-                android:id="@+id/txtImp1"
-                android:layout_width="50px"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txtComissao"
-                android:layout_toEndOf="@+id/textView9"
-                android:layout_toRightOf="@+id/textView9"
-                android:ems="10"
-                android:hint="%"
-                android:inputType="numberDecimal"
-                android:textAlignment="center" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/textView9"
-                android:layout_toEndOf="@+id/txtImp1"
-                android:layout_toRightOf="@+id/txtImp1"
-                android:text="Imposto 2:" />
-
-            <EditText
-                android:id="@+id/txtImp2"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/txtImp1"
-                android:layout_alignBottom="@+id/txtImp1"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_toEndOf="@+id/textView10"
-                android:layout_toRightOf="@+id/textView10"
-                android:ems="10"
-                android:hint="%"
-                android:inputType="numberDecimal"
-                android:textAlignment="center" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/txtOutro"
-                android:layout_alignBottom="@+id/txtOutro"
-                android:layout_toEndOf="@+id/txtOutro"
-                android:layout_toLeftOf="@+id/txtOutro"
-                android:layout_toRightOf="@+id/txtOutro"
-                android:text="outros:" />
-
-            <EditText
-                android:id="@+id/txtOutro"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/txtImp1"
-                android:layout_alignLeft="@+id/txtImp1"
-                android:layout_alignRight="@+id/txtImp1"
-                android:layout_alignStart="@+id/txtImp1"
-                android:layout_below="@+id/txtImp1"
-                android:ems="10"
-                android:hint="%"
-                android:inputType="numberDecimal"
-                android:textAlignment="center" />
-
-        </TableRow>
-
-    </TableLayout>
-
-    <Button
-        android:id="@+id/btnCadastrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/adView"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:onClick="calculaMarkUp"
-        android:text="Cadastrar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_weight="1"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-0943131909791545/2375075380" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/adView">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutPrincipal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            ads:layout_collapseParallaxMultiplier="1.0">
+
+
+            <TextView
+                android:id="@+id/textViewProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Produto"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <EditText
+                    android:id="@+id/txtNome"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/txtId"
+                    android:layout_toEndOf="@+id/textView2"
+                    android:layout_toRightOf="@+id/textView2"
+                    android:ems="10"
+                    android:hint="Nome"
+                    android:inputType="text|textPersonName"
+                    android:selectAllOnFocus="false" />
+
+                <EditText
+                    android:id="@+id/txtCusto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/txtNome"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignStart="@+id/txtNome"
+                    android:layout_below="@+id/txtNome"
+                    android:ems="10"
+                    android:hint="Custo R$"
+                    android:inputType="numberDecimal" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textViewMargens"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Margens"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <EditText
+                    android:id="@+id/txtLucro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/txtCusto"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignStart="@+id/txtCusto"
+                    android:layout_below="@+id/txtCusto"
+                    android:ems="10"
+                    android:hint="Lucro %"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/txtCustoIndireto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/txtEncargo"
+                    android:layout_toEndOf="@+id/textView6"
+                    android:layout_toRightOf="@+id/textView6"
+                    android:ems="10"
+                    android:hint="Custo indireto %"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/txtEncargo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/txtLucro"
+                    android:layout_toEndOf="@+id/textView5"
+                    android:layout_toRightOf="@+id/textView5"
+                    android:ems="10"
+                    android:hint="Encargos %"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/txtComissao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/txtCustoIndireto"
+                    android:ems="10"
+                    android:hint="Comissão %"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/txtImp1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtComissao"
+                    android:layout_toEndOf="@+id/textView9"
+                    android:layout_toRightOf="@+id/textView9"
+                    android:ems="10"
+                    android:hint="Imposto %"
+                    android:inputType="numberDecimal" />
+
+
+                <EditText
+                    android:id="@+id/txtImp2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Imposto 2 %"
+                    android:inputType="numberDecimal" />
+
+                <EditText
+                    android:id="@+id/txtOutro"
+                    style="@style/Widget.AppCompat.AutoCompleteTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/txtImp1"
+                    android:layout_alignLeft="@+id/txtImp1"
+                    android:layout_alignRight="@+id/txtImp1"
+                    android:layout_alignStart="@+id/txtImp1"
+                    android:layout_below="@+id/txtImp1"
+                    android:ems="10"
+                    android:hint="outros %"
+                    android:inputType="numberDecimal" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <Button
+                        android:id="@+id/btnCadastrar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/adView"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentStart="true"
+                        android:onClick="calculaMarkUp"
+                        android:text="Calcular" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ViewSwitcher
+        android:id="@+id/VS"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/adView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorPrimary"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Preço sugerido de venda"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtPulaLinha"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text='Preço de  venda "dentro": '
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/txtPrecoDentro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="R$ 0,00"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                android:id="@+id/txtPulaLinha2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text='Preço de  venda "fora": '
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/txtPrecoFora"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="R$ 0,00"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnSalvar"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Salvar" />
+
+                <Button
+                    android:id="@+id/btnVoltar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Voltar" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ViewSwitcher>
 
 </RelativeLayout>

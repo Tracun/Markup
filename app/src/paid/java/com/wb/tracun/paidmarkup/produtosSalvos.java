@@ -118,12 +118,5 @@ public class produtosSalvos extends AppCompatActivity {
             }while(cursor.moveToNext());
         }
 
-
     }
-
-    public void carregaDados(){
-
-
-    }
-
 }
