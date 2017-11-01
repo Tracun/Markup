@@ -9,8 +9,8 @@ android {
         applicationId "com.wb.tracun.markup"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -18,7 +18,7 @@ android {
         paid {
             applicationId "com.wb.tracun.paidmarkup"
             versionCode 1
-            versionName "1.0.0"
+            versionName "1.0.1"
         }
         free {
         }
@@ -43,4 +43,5 @@ dependencies {
     compile 'com.google.android.gms:play-services-ads:9.4.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+
 }
