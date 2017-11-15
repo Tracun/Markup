@@ -18,8 +18,9 @@ public class Produto {
     private float custoIndireto;
     private double precoFora;
     private double precoDentro;
+    private String uriImg;
 
-    public Produto(int id, String nome, double custo, float encargo, float comissao, float lucro, float outros, float imp1, float imp2, float imp3, /*float imp4, float imp5,*/ float custoIndireto, double precoFora, double precoDentro) {
+    public Produto(int id, String nome, double custo, float encargo, float comissao, float lucro, float outros, float imp1, float imp2, float imp3, float custoIndireto, double precoFora, double precoDentro, String uriImg) {
         this.id = id;
         this.nome = nome;
         this.custo = custo;
@@ -32,6 +33,7 @@ public class Produto {
         this.custoIndireto = custoIndireto;
         this.precoFora = precoFora;
         this.precoDentro = precoDentro;
+        this.uriImg = uriImg;
     }
 
     public Produto() {
@@ -132,9 +134,15 @@ public class Produto {
     public void setPrecoDentro(double precoDentro) {
         this.precoDentro = precoDentro;
     }
-    
-    
-    
+
+    public String getUriImg() {
+        return uriImg;
+    }
+
+    public void setUriImg(String uriImg) {
+        this.uriImg = uriImg;
+    }
+
     public String imprimir(){
         return "Nome Produto: " + this.nome + "  Custo: " + this.custo + "\nLucro: " + this.lucro + "\nEncargo: " + this.encargo + "\nComissão: " + this.comissao + "\nOutros: " + this.outros + "\nImpostos: " + this.imp1 + ", " + this.imp2;
     }

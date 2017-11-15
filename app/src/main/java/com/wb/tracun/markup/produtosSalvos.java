@@ -5,35 +5,38 @@ import com.google.android.gms.ads.AdView;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
 public class produtosSalvos extends AppCompatActivity {
-    // Remove the below line after defining your own ad unit ID.
-//    private static final String TOAST_TEXT = "Test ads are being shown. "
-//            + "To show live ads, replace the ad unit ID in res/values/strings.xml with your own ad unit ID.";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_produtos_salvos);
 
-        // Load an ad into the AdMob banner view.
-        AdView adView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template").build();
-        adView.loadAd(adRequest);
+        try {
+            // Load an ad into the AdMob banner view.
+            AdView adView = (AdView) findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder()
+                    .setRequestAgent("android_studio:ad_template").build();
+            adView.loadAd(adRequest);
 
-        // Toasts the test ad message on the screen. Remove this after defining your own ad unit ID.
-//        Toast.makeText(this, TOAST_TEXT, Toast.LENGTH_LONG).show();
+        }catch (Exception e){
+            System.out.println("Erro: " + e.getMessage());
+        }
 
         buscaDados();
 
@@ -54,6 +57,7 @@ public class produtosSalvos extends AppCompatActivity {
     EditText txtID;
     EditText txtPrecoFora;
     EditText txtPrecoDentro;
+    ImageView imgProduct;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -80,6 +84,7 @@ public class produtosSalvos extends AppCompatActivity {
         txtID = (EditText) findViewById(R.id.txtId);
         txtPrecoFora = (EditText) findViewById(R.id.txtPrecoFora);
         txtPrecoDentro = (EditText) findViewById(R.id.txtPrecoDentro);
+        imgProduct = (ImageView) findViewById(R.id.imgProduct);
 
     }
 
@@ -113,10 +118,16 @@ public class produtosSalvos extends AppCompatActivity {
                 txtCustoIndireto.setText(String.valueOf(cursor.getLong(9)) + "%");
                 txtPrecoFora.setText("R$ " + ConversorMoeda.formataMoeda(cursor.getDouble(10)));
                 txtPrecoDentro.setText("R$ " + ConversorMoeda.formataMoeda(cursor.getDouble(11)));
+                Bitmap bitmap = BitmapFactory.decodeFile(String.valueOf(cursor.getString(12)));
+
+                if(bitmap != null){
+                    imgProduct.setImageBitmap(bitmap);
+                }else{
+
+                }
 
             }while(cursor.moveToNext());
         }
-
+        cursor.close();
     }
-
 }

@@ -4,22 +4,27 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 public class Cadastro extends AppCompatActivity {
-    // Remove the below line after defining your own ad unit ID.
-    private static final String TOAST_TEXT = "Test ads are being shown. "
-            + "To show live ads, replace the ad unit ID in res/values/strings.xml with your own ad unit ID.";
 
     private static final String TOAST_PERCENTAGE_EXCEEDED = "A soma das porcentagem não pode exceder 100%";
+    public static final int IMAGEM_INTERNA = 3;
     private ViewSwitcher VS;
     Button salvar;
     Button voltar;
@@ -34,15 +39,16 @@ public class Cadastro extends AppCompatActivity {
         //Inicializa os edit's text
         iniciaEditText();
 
-        // Load an ad into the AdMob banner view.
-        AdView adView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template").build();
-        adView.loadAd(adRequest);
+        try {
+            // Load an ad into the AdMob banner view.
+            AdView adView = (AdView) findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder()
+                    .setRequestAgent("android_studio:ad_template").build();
+            adView.loadAd(adRequest);
 
-        // Toasts the test ad message on the screen. Remove this after defining your own ad unit ID.
-//        Toast.makeText(this, TOAST_TEXT, Toast.LENGTH_LONG).show();
-
+        }catch (Exception e){
+            System.out.println("Erro: " + e.getMessage());
+        }
 
         VS = (ViewSwitcher) findViewById(R.id.VS);
         salvar = (Button) findViewById(R.id.btnSalvar);
@@ -80,6 +86,7 @@ public class Cadastro extends AppCompatActivity {
     EditText txtCustoIndireto;
     Button btnCadastrar;
     Produto produto;
+    ImageButton imgProduct;
 
     @Override
     public void onBackPressed() {
@@ -107,6 +114,7 @@ public class Cadastro extends AppCompatActivity {
         txtImp2 = (EditText) findViewById(R.id.txtImp2);
         txtCustoIndireto = (EditText) findViewById(R.id.txtCustoIndireto);
         btnCadastrar = (Button) findViewById(R.id.btnCadastrar);
+        imgProduct = (ImageButton) findViewById(R.id.imgProduct);
 
     }
 
@@ -279,6 +287,45 @@ public class Cadastro extends AppCompatActivity {
         txtImp1.setText("");
         txtImp2.setText("");
         txtOutro.setText("");
+
+
+    }
+
+    void pegarImagem(View view){
+        Intent intencao = new Intent(Intent.ACTION_GET_CONTENT);
+        intencao.setType("image/*");
+        startActivityForResult(intencao, IMAGEM_INTERNA);
+
+    }
+
+    void salvarImagemBD(String path){
+        produto.setUriImg(path);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+
+        if(requestCode == IMAGEM_INTERNA){
+            if(resultCode == RESULT_OK){
+
+                Uri imagemSelecionada = intent.getData();
+                String[] colunas = {MediaStore.Images.Media.DATA};
+                Cursor cursor = getContentResolver().query(imagemSelecionada, colunas, null, null, null);
+                cursor.moveToFirst();
+
+                int indexColuna = cursor.getColumnIndex(colunas[0]);
+                String pathImg = cursor.getString(indexColuna);
+                salvarImagemBD(pathImg);
+                cursor.close();
+
+                Bitmap bitmap = BitmapFactory.decodeFile(pathImg);
+                imgProduct.setImageBitmap(bitmap);
+            }else {
+                Toast.makeText(this, "Erro", Toast.LENGTH_LONG);
+            }
+        }else{
+            Toast.makeText(this, "Erro", Toast.LENGTH_LONG);
+        }
 
     }
 

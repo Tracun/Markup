@@ -1,4 +1,3 @@
-<!--<android.support.constraint.ConstraintLayout-->
 <RelativeLayout
 
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -20,28 +19,14 @@
         android:id="@+id/btnAtualizaLista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/adView"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
         android:onClick="carregaLista"
         android:text="Atualizar lista"
         android:visibility="visible"
         tools:layout_editor_absoluteX="122dp"
-        tools:layout_editor_absoluteY="388dp" />
-
-    <!-- view for AdMob Banner Ad -->
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-0943131909791545/2375075380"
-        tools:layout_editor_absoluteY="445dp"
-        tools:layout_editor_absoluteX="32dp" />
+        tools:layout_editor_absoluteY="388dp"
+        android:layout_above="@+id/adView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/btnExibeMsg"
@@ -56,6 +41,15 @@
         android:text="Novo Produto"
         android:visibility="visible" />
 
+    <!-- view for AdMob Banner Ad -->
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adUnitId="ca-app-pub-0943131909791545/2375075380"
+        ads:adSize="SMART_BANNER"/>
+
 
 </RelativeLayout>
-<!--</android.support.constraint.ConstraintLayout>-->

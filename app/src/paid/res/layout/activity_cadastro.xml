@@ -217,7 +217,8 @@
             android:orientation="vertical"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:paddingTop="50dp">
+            android:paddingTop="50dp"
+            android:visibility="invisible">
 
             <TextView
                 android:id="@+id/textView12"
@@ -228,10 +229,26 @@
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="144dp">
+
+                <ImageButton
+                    android:id="@+id/imgProduct"
+                    android:layout_width="150dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:onClick="pegarImagem"
+                    android:scaleType="fitCenter"
+                    ads:srcCompat="@android:drawable/ic_menu_camera"
+                    tools:layout_editor_absoluteX="101dp"
+                    tools:layout_editor_absoluteY="9dp" />
+            </android.support.constraint.ConstraintLayout>
+
             <TextView
                 android:id="@+id/txtPulaLinha"
                 android:layout_width="match_parent"
-                android:layout_height="40dp" />
+                android:layout_height="20dp" />
 
             <TextView
                 android:id="@+id/textView18"
@@ -251,7 +268,7 @@
             <TextView
                 android:id="@+id/txtPulaLinha2"
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="10dp" />
 
             <TextView
                 android:id="@+id/textView20"

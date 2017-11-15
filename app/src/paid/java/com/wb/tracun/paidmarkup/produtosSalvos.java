@@ -8,12 +8,15 @@ import com.wb.tracun.markup.R;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class produtosSalvos extends AppCompatActivity {
@@ -42,7 +45,6 @@ public class produtosSalvos extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
-
     EditText txtNome;
     EditText txtCusto;
     EditText txtEncargo;
@@ -55,6 +57,7 @@ public class produtosSalvos extends AppCompatActivity {
     EditText txtID;
     EditText txtPrecoFora;
     EditText txtPrecoDentro;
+    ImageView imgProduct;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -81,6 +84,7 @@ public class produtosSalvos extends AppCompatActivity {
         txtID = (EditText) findViewById(R.id.txtId);
         txtPrecoFora = (EditText) findViewById(R.id.txtPrecoFora);
         txtPrecoDentro = (EditText) findViewById(R.id.txtPrecoDentro);
+        imgProduct = (ImageView) findViewById(R.id.imgProduct);
 
     }
 
@@ -114,9 +118,17 @@ public class produtosSalvos extends AppCompatActivity {
                 txtCustoIndireto.setText(String.valueOf(cursor.getLong(9)) + "%");
                 txtPrecoFora.setText("R$ " + ConversorMoeda.formataMoeda(cursor.getDouble(10)));
                 txtPrecoDentro.setText("R$ " + ConversorMoeda.formataMoeda(cursor.getDouble(11)));
+                Bitmap bitmap = BitmapFactory.decodeFile(String.valueOf(cursor.getString(12)));
+
+                if(bitmap != null){
+                    imgProduct.setImageBitmap(bitmap);
+                    imgProduct.sett
+                }else{
+
+                }
 
             }while(cursor.moveToNext());
         }
-
+        cursor.close();
     }
 }

@@ -26,23 +26,25 @@ public class GerenciaBD {
 
     void teste() {
 
-        Cursor cur = bd.rawQuery("SELECT COUNT(*) FROM produtos", null);
+        Cursor cursor = bd.rawQuery("SELECT COUNT(*) FROM produtos", null);
 
-        if (cur != null) {
-            cur.moveToFirst();
-            if (cur.getInt(0) == 0) {
+        if (cursor != null) {
+            cursor.moveToFirst();
+            if (cursor.getInt(0) == 0) {
                 System.out.println("Tabela zerada");
             } else {
 
-                while (cur.moveToNext()) {
+                while (cursor.moveToNext()) {
                     int i = 0;
-                    System.out.println("Possui dados: " + cur.getInt(i));
+                    System.out.println("Possui dados: " + cursor.getInt(i));
                     i++;
                 }
 
-                System.out.println("Possui dados: " + cur.getCount());
+                System.out.println("Possui dados: " + cursor.getCount());
             }
         }
+
+//        cursor.close();
     }
 
 
@@ -63,6 +65,7 @@ public class GerenciaBD {
         valores.put("custoIndireto", produto.getCustoIndireto());
         valores.put("precoFora", produto.getPrecoFora());
         valores.put("precoDentro", produto.getPrecoDentro());
+        valores.put("uriImg", produto.getUriImg());
 
         long resultado = bd.insert("produtos", null, valores);
 
@@ -73,13 +76,14 @@ public class GerenciaBD {
 
         bd.close();
 
+
         return msg;
 
     }
 
     public Cursor buscaDadoById(int id){
         Cursor cursor;
-    String[] campos =  {"_id", "nome","custo", "encargo", "comissao", "lucro", "outro", "imp1", "imp2", "custoIndireto", "precoFora", "precoDentro"};
+    String[] campos =  {"_id", "nome","custo", "encargo", "comissao", "lucro", "outro", "imp1", "imp2", "custoIndireto", "precoFora", "precoDentro", "uriImg"};
         String where = "_id" + "=" + id;
         cursor = bd.query("produtos",campos,where, null, null, null, null, null);
 
@@ -87,6 +91,7 @@ public class GerenciaBD {
             cursor.moveToFirst();
         }
         bd.close();
+//        cursor.close();
 
         return cursor;
     }
@@ -113,6 +118,8 @@ public class GerenciaBD {
             }while(cursor.moveToNext());
         }
 
+//        cursor.close();
+
         return array;
     }
 
@@ -130,6 +137,7 @@ public class GerenciaBD {
         valores.put("custoIndireto", produto.getCustoIndireto());
         valores.put("precoFora", produto.getPrecoFora());
         valores.put("precoDentro", produto.getPrecoDentro());
+        valores.put("uriImg", produto.getUriImg());
 
         bd.update("usuario",valores,"_id = ?", new String[]{""+produto.getId()});
         bd.close();

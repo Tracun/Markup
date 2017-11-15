@@ -196,7 +196,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="e4344168e427081a7adbe81501619228d36cee87">
+        sha1="5daa8e1503d549cbdbc2a341eb648a9cfb165447">
         <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/free/debug/folders/1000/10000/instant-run-bootstrap_892f80fa2a464c22c2031b6e9e89d707caad8615/classes.dex" />
     </item>
     <item
@@ -261,6 +261,15 @@
         revision="25.0.0"
         sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
         <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.1.1_3c55814227d7676bd0d65834b6612b45370fae9a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/incremental-runtime-classes/paid/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/paid/debug/folders/1000/10000/instant-run_3d904dee13af2d380024a8a3b79ff8f8dd4dcd1d/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -423,6 +432,15 @@
         revision="25.0.0"
         sha1="796f9229948e907471c5595fbe94655ccf03ff73">
         <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/pre-dexed/androidTest/paid/debug/classes_b38327519babe90c7a882e5c7db260814a7a781c.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/incremental-classes/paid/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3728ad854b855013a60364bb944591f9711ffec2">
+        <dex dex="/home/tracun/AndroidStudioProjects/Markup-master/app/build/intermediates/transforms/dex/paid/debug/folders/1000/10000/instant-run-bootstrap_87667a6b39b1b8b6c9ba9092701222c8516e7680/classes.dex" />
     </item>
     <item
         is-multidex="false"

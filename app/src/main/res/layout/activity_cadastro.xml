@@ -18,7 +18,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/adView">
+        android:layout_above="@+id/adView"
+        android:visibility="visible">
 
         <LinearLayout
             android:id="@+id/linearLayoutPrincipal"
@@ -214,7 +215,8 @@
             android:orientation="vertical"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:paddingTop="16dp">
+            android:paddingTop="16dp"
+            android:weightSum="1">
 
             <TextView
                 android:id="@+id/textView12"
@@ -225,10 +227,29 @@
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/imgProduct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:onClick="pegarImagem"
+                    android:scaleType="fitCenter"
+                    ads:srcCompat="@android:drawable/ic_menu_camera"
+                    tools:layout_editor_absoluteX="116dp"
+                    tools:layout_editor_absoluteY="3dp" />
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/txtPulaLinha"
                 android:layout_width="match_parent"
-                android:layout_height="40dp" />
+                android:layout_height="5dp" />
 
             <TextView
                 android:id="@+id/textView18"
@@ -241,16 +262,16 @@
                 android:id="@+id/txtPrecoDentro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="false"
                 android:ems="10"
                 android:enabled="false"
                 android:hint="R$ 0,00"
-                android:clickable="false"
                 android:inputType="numberDecimal" />
 
             <TextView
                 android:id="@+id/txtPulaLinha2"
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="5dp" />
 
             <TextView
                 android:id="@+id/textView20"
@@ -264,18 +285,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:enabled="false"
                 android:hint="R$ 0,00"
-                android:clickable="false"
                 android:inputType="numberDecimal" />
 
             <TextView
                 android:id="@+id/textView23"
                 android:layout_width="match_parent"
-                android:layout_height="15dp" />
+                android:layout_height="10dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="76dp"
                 android:orientation="horizontal">
 
                 <Button
