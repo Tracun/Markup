@@ -90,8 +90,14 @@ public class Cadastro extends AppCompatActivity {
             }
         });
 
-    }
+        imgProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pegarImagem();
+            }
+        });
 
+    }
 
     EditText txtNome;
     EditText txtCusto;
@@ -305,6 +311,23 @@ public class Cadastro extends AppCompatActivity {
         txtOutro.setText("");
 
     }
+
+    void pegarImagem(){
+
+        try {
+
+            Intent intencao = new Intent(Intent.ACTION_GET_CONTENT);
+            intencao.setType("image/*");
+            startActivityForResult(intencao, IMAGEM_INTERNA);
+
+        }catch (Exception e){
+
+            Toast.makeText(this, "Erro" + e.getMessage(), Toast.LENGTH_LONG).show();
+
+        }
+
+    }
+
 
     void salvarImagemBD(String path){
         produto.setUriImg(path);

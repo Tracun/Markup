@@ -73,6 +73,13 @@ public class Cadastro extends AppCompatActivity {
             }
         });
 
+        imgProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pegarImagem();
+            }
+        });
+
     }
 
     EditText txtNome;
@@ -288,13 +295,21 @@ public class Cadastro extends AppCompatActivity {
         txtImp2.setText("");
         txtOutro.setText("");
 
-
     }
 
-    void pegarImagem(View view){
-        Intent intencao = new Intent(Intent.ACTION_GET_CONTENT);
-        intencao.setType("image/*");
-        startActivityForResult(intencao, IMAGEM_INTERNA);
+    void pegarImagem(){
+
+        try {
+
+            Intent intencao = new Intent(Intent.ACTION_GET_CONTENT);
+            intencao.setType("image/*");
+            startActivityForResult(intencao, IMAGEM_INTERNA);
+
+        }catch (Exception e){
+
+            Toast.makeText(this, "Erro" + e.getMessage(), Toast.LENGTH_LONG).show();
+
+        }
 
     }
 
@@ -321,10 +336,10 @@ public class Cadastro extends AppCompatActivity {
                 Bitmap bitmap = BitmapFactory.decodeFile(pathImg);
                 imgProduct.setImageBitmap(bitmap);
             }else {
-                Toast.makeText(this, "Erro", Toast.LENGTH_LONG);
+                Toast.makeText(this, "Erro", Toast.LENGTH_LONG).show();
             }
         }else{
-            Toast.makeText(this, "Erro", Toast.LENGTH_LONG);
+            Toast.makeText(this, "Erro", Toast.LENGTH_LONG).show();
         }
 
     }

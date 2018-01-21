@@ -238,7 +238,6 @@
                     android:layout_height="150dp"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
-                    android:onClick="pegarImagem"
                     android:scaleType="fitCenter"
                     ads:srcCompat="@android:drawable/ic_menu_camera"
                     tools:layout_editor_absoluteX="116dp"

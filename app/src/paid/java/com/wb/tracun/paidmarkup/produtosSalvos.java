@@ -122,7 +122,6 @@ public class produtosSalvos extends AppCompatActivity {
 
                 if(bitmap != null){
                     imgProduct.setImageBitmap(bitmap);
-                    imgProduct.sett
                 }else{
 
                 }
