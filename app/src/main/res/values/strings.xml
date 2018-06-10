@@ -6,6 +6,30 @@
 
     <!-- Strings related to Settings -->
 
+    <string name="title_activity_Fab">Fabricacao</string>
+    <string name="title_activity_insumo">Insumos</string>
+    <string name="title_activity_rateio">Rateio</string>
+    <string name="title_cadastro_produto">Novo produto</string>
+    <string name="title_cadastro_base_dados">Base de dados</string>
+    <string name="title_help">Help</string>
+    <string name="title_activity_custo">Custo</string>
+    <string name="title_Produtos">Produto</string>
+    <string name="button_add">Adicionar</string>
+    <string name="button_prox">Próximo</string>
+    <string name="title_activity_unidades">UnidadesActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btnCadastrar">Cadastrar</string>
+    <string name="title_activity_produto">ProdutoActivity</string>
+    <string name="title_activity_teste">TesteActivity</string>
+
+    <!-- 
+		<string name="title_activity_splash">SplashActivity</string>
+		<string name="dummy_button">Dummy Button</string>
+		<string name="dummy_content">DUMMY\nCONTENT</string>
+	-->
 
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>
@@ -85,7 +109,7 @@
     <!- -->
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="title_activity_cadastro2">Cadastro</string>
-    <string name="title_activity_produtos_salvos2">produtosSalvos</string>
+    <string name="title_activity_produtos_salvos2">Produtos salvos</string>
     <string name="title_activity_teste_ad">TesteAd</string>
 
     <string name="title_activity_splash">Markup</string>

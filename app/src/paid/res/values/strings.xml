@@ -85,6 +85,6 @@
     <!- -->
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="title_activity_cadastro2">Cadastro</string>
-    <string name="title_activity_produtos_salvos2">produtosSalvos</string>
+    <string name="title_activity_produtos_salvos2">Produtos salvos</string>
     <string name="title_activity_teste_ad">TesteAd</string>
 </resources>

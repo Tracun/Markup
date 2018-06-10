@@ -11,35 +11,35 @@
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="401dp"
         android:layout_centerHorizontal="true"
         android:visibility="visible" />
 
-    <Button
-        android:id="@+id/btnAtualizaLista"
-        android:layout_width="wrap_content"
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="carregaLista"
-        android:text="Atualizar lista"
-        android:visibility="visible"
-        tools:layout_editor_absoluteX="122dp"
-        tools:layout_editor_absoluteY="388dp"
         android:layout_above="@+id/adView"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:id="@+id/btnExibeMsg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnAtualizaLista"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:onClick="exibeTelaCadastro2"
-        android:text="Novo Produto"
-        android:visibility="visible" />
+        android:background="?android:attr/windowBackground"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintLeft_toLeftOf="parent"
+        ads:layout_constraintRight_toRightOf="parent"
+        ads:menu="@menu/navigation" />
+
+    <!--<Button-->
+        <!--android:id="@+id/btnAtualizaLista"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:onClick="carregaLista"-->
+        <!--android:text="Atualizar lista"-->
+        <!--android:visibility="visible"-->
+        <!--tools:layout_editor_absoluteX="122dp"-->
+        <!--tools:layout_editor_absoluteY="388dp"-->
+        <!--android:layout_above="@+id/adView"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentEnd="true" />-->
 
     <!-- view for AdMob Banner Ad -->
     <com.google.android.gms.ads.AdView

@@ -3,11 +3,16 @@ package com.wb.tracun.markup;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.wb.tracun.markup.activity.CadastroBaseDadosActivity;
+import com.wb.tracun.markup.activity.CadastroProdutoActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,6 +23,33 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class Main extends AppCompatActivity {
+
+    Button btnBaseDados;
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.cadastro_produto:
+                    exibeTelaCadastro();
+                    return true;
+
+                case R.id.cadastro_base_dados:
+//                    telaCadastroBaseDados();
+                    Toast.makeText(getApplicationContext(), "Em breve XD", Toast.LENGTH_SHORT).show();
+                    telaCadastroBaseDados();
+                    return true;
+
+                case R.id.navigation_notifications:
+                    Toast.makeText(getApplicationContext(), "Em breve XD", Toast.LENGTH_SHORT).show();
+                    telaCadastroProduto();
+                    return true;
+            }
+            return false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +75,9 @@ public class Main extends AppCompatActivity {
         View view;
         carregaLista(findViewById(R.id.activity_main));
 
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
         //Capta qual a posição do item selecionado
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -64,14 +99,15 @@ public class Main extends AppCompatActivity {
             }
         });
 
-        botaoCarregaProdutosSalvos = (Button) findViewById(R.id.btnAtualizaLista);
-
-        botaoCarregaProdutosSalvos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            carregaLista(view);
-            }
-        });
+        //Botao esta oculto
+//        botaoCarregaProdutosSalvos = (Button) findViewById(R.id.btnAtualizaLista);
+//
+//        botaoCarregaProdutosSalvos.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//            carregaLista(view);
+//            }
+//        });
 
     }
 
@@ -107,14 +143,10 @@ public class Main extends AppCompatActivity {
 
     }
 
-    public void exibeTelaCadastro2(View view){
-
-        botaoMsg = (Button) findViewById(R.id.btnExibeMsg);
-//        Toast.makeText(this, "Funcionei XD", Toast.LENGTH_LONG).show();
+    public void exibeTelaCadastro(){
 
         Intent intencao = new Intent(this,Cadastro.class);
         startActivity(intencao);
-
     }
 
     //Chama a outra tela e passa como parametro a posicao
@@ -125,4 +157,14 @@ public class Main extends AppCompatActivity {
         startActivity(intencao);
     }
 
+    void telaCadastroBaseDados(){
+
+        Intent intencao  = new Intent(this, CadastroBaseDadosActivity.class);
+        startActivity(intencao);
+    }
+
+    void telaCadastroProduto(){
+        Intent intencao  = new Intent(this, CadastroProdutoActivity.class);
+        startActivity(intencao);
+    }
 }

@@ -18,8 +18,33 @@
             android:value="@integer/google_play_services_version" />
 
         <!--<activity -->
-            <!--android:name="Main"-->
-            <!--android:label="@string/title_activity_main2"/>-->
+        <!--android:name="Main"-->
+        <!--android:label="@string/title_activity_main2"/>-->
+
+        <activity
+            android:name=".activity.fragments.BaseDadosActivity"
+            android:label="@string/title_activity_unidades"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".activity.CadastroProdutoActivity" />
+        <activity android:name=".activity.CadastroBaseDadosActivity" />
+
+        <activity
+            android:name=".activity.SplashActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_splash"
+            android:parentActivityName=".Main"
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wb.tracun.markup.Main" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
@@ -42,11 +67,11 @@
             </intent-filter>
         </activity>
 
-         <activity
-         android:name=".Main"
-         android:label="@string/title_activity_main2">
+        <activity
+            android:name=".Main"
+            android:label="@string/title_activity_main2">
 
-         </activity>
+        </activity>
         <activity
             android:name=".Cadastro"
             android:label="@string/title_activity_cadastro2"

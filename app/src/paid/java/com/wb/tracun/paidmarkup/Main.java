@@ -2,11 +2,15 @@ package com.wb.tracun.paidmarkup;
 
 import com.wb.tracun.markup.GerenciaBD;
 import com.wb.tracun.markup.R;
+import com.wb.tracun.markup.activity.CadastroBaseDadosActivity;
 import com.wb.tracun.paidmarkup.Main.*;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,6 +26,28 @@ public class Main extends AppCompatActivity {
     private static final String TOAST_TEXT = "Test ads are being shown. "
             + "To show live ads, replace the ad unit ID in res/values/strings.xml with your own ad unit ID.";
 
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.cadastro_produto:
+                    exibeTelaCadastro();
+                    return true;
+
+                case R.id.cadastro_base_dados:
+//                    telaCadastroBaseDados();
+                    Toast.makeText(getApplicationContext(), "Em breve XD", Toast.LENGTH_SHORT).show();
+                    return true;
+
+                case R.id.navigation_notifications:
+                    Toast.makeText(getApplicationContext(), "Em breve XD", Toast.LENGTH_SHORT).show();
+                    return true;
+            }
+            return false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +71,9 @@ public class Main extends AppCompatActivity {
         View view;
         carregaLista(findViewById(R.id.activity_main));
 
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
         //Capta qual a posição do item selecionado
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -66,16 +95,17 @@ public class Main extends AppCompatActivity {
             }
         });
 
-        botaoCarregaProdutosSalvos = (Button) findViewById(R.id.btnAtualizaLista);
-
-        botaoCarregaProdutosSalvos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                carregaLista(view);
-
-            }
-        });
+        //Botao esta oculto
+//        botaoCarregaProdutosSalvos = (Button) findViewById(R.id.btnAtualizaLista);
+//
+//        botaoCarregaProdutosSalvos.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                carregaLista(view);
+//
+//            }
+//        });
 
     }
 
@@ -111,14 +141,16 @@ public class Main extends AppCompatActivity {
 
     }
 
-    public void exibeTelaCadastro2(View view){
-
-        botaoMsg = (Button) findViewById(R.id.btnExibeMsg);
-//        Toast.makeText(this, "Funcionei XD", Toast.LENGTH_LONG).show();
+    public void exibeTelaCadastro(){
 
         Intent intencao = new Intent(this,Cadastro.class);
         startActivity(intencao);
+    }
 
+    void telaCadastroBaseDados(){
+
+        Intent intencao  = new Intent(this, CadastroBaseDadosActivity.class);
+        startActivity(intencao);
     }
 
     //Chama a outra tela e passa como parametro a posicao
