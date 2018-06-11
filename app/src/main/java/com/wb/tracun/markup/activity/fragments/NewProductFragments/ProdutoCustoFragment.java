@@ -114,21 +114,66 @@ public class ProdutoCustoFragment extends Fragment {
 
     public void salvarInsumo(){
 
+        //PEGAR ID DO PRODUTO EM QUESTAO
         int idProduto = 1;
 
-        for (Insumo i:ProdutoInsumoFragment.listaInsumosProduto) {
+        for (Insumo i : ProdutoInsumoFragment.listaInsumosProduto) {
             Produtos_has_Insumos insumo = new Produtos_has_Insumos();
 
             insumo.setProdutos_idProdutos(idProduto);
             insumo.setInsumos_idInsumos(i.getId());
             insumo.setQuantInsumo(i.getQuantidade());
 
-            i.setId(idProduto);
-//            gerenciaBD.saveProdutos_has_Insumos();
+            gerenciaBD.saveProdutos_has_Insumos();
         }
-
     }
 
+    public void salvarProdutos_has_Despesas(){
+
+        //PEGAR ID DO PRODUTO EM QUESTAO
+        int idProduto = 1;
+
+        for (DespesaAdm d : ProdutoDespesaFragment.listaDespesasProduto) {
+            Produtos_has_Despesas despesa = new Produtos_has_Despesas();
+
+            despesa.setProdutos_idProdutos(idProduto);
+            despesa.setDespesas_idDespesas(d.getId());
+
+            gerenciaBD.saveProdutos_has_Despesas();
+        }
+    }
+
+    public void salvarProdutos_has_Rateio(){
+
+        //PEGAR ID DO PRODUTO EM QUESTAO
+        int idProduto = 1;
+
+        for (Rateio r : ProdutoRateioFragment.listaRateiosProduto) {
+            Produtos_has_Rateio rateio = new Produtos_has_Rateio();
+
+            rateio.setProdutos_idProdutos(idProduto);
+            rateio.setRateio_idRateio(r.getId());
+            rateio.setQuantProduzida(r.getQuantidade());
+
+            gerenciaBD.saveProdutos_has_Rateio();
+        }
+    }
+
+    public void salvarProdutos_has_MaoDeObra(){
+
+        //PEGAR ID DO PRODUTO EM QUESTAO
+        int idProduto = 1;
+
+        for (TempoFab t : ProdutoTempoFabFragment.listaTempoFabProduto) {
+            Produtos_has_MaoDeObra mo = new Produtos_has_MaoDeObra();
+
+            mo.setProdutos_idProdutos(idProduto);
+            mo.setMaoObra_idMaoObra(t.getId());
+            mo.setValorHora(t.getTempo());
+
+            gerenciaBD.saveProdutos_has_MaoDeObra();
+        }
+    }
 
     void plotPieChart(View view){
 
