@@ -12,10 +12,8 @@ import android.widget.Toast;
 
 import com.wb.tracun.markup.*;
 import com.wb.tracun.markup.DB.GerenciaBD;
-import com.wb.tracun.markup.model.DespesaAdm;
-import com.wb.tracun.markup.model.Insumo;
-import com.wb.tracun.markup.model.Produtos_has_Insumos;
-import com.wb.tracun.markup.model.Produtos_has_MaoDeObra;
+import com.wb.tracun.markup.model.*;
+import com.wb.tracun.markup.model.Produto;
 
 import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.charts.PieChart;
@@ -81,6 +79,7 @@ public class ProdutoCustoFragment extends Fragment {
         mValorDespesa = ProdutoDespesaFragment.calcularCustosDespesa();
         mValorTempoFab = ProdutoTempoFabFragment.calcularCustosTempoFab();
 
+        //Testando se há objeto no array
         Toast.makeText(view.getContext(), "INSUMO OBJECT size: " + ProdutoInsumoFragment.listaInsumosProduto.size(), Toast.LENGTH_LONG).show();
 
 //        Toast.makeText(view.getContext(), "SOMA INSUMO; " + mValorInsumos, Toast.LENGTH_LONG).show();
@@ -93,38 +92,42 @@ public class ProdutoCustoFragment extends Fragment {
 
     public static void salvarProduto(View v){
 
-//        DespesaAdm despesaAdm = new DespesaAdm();
-//        despesaAdm.setDescricao(txtNome.getText().toString());
-//        despesaAdm.setValor(Float.parseFloat(txtCusto.getText().toString()));
-//
-//        if(gerenciaBD.saveDespesa(despesaAdm) > 0){
-//            Toast.makeText(v.getContext(), "Cadastro realizado :)", Toast.LENGTH_SHORT).show();
-//            txtNome.setText("");
-//            txtCusto.setText("");
-//        }else{
-//            Toast.makeText(v.getContext(), "Falha ao realizar cadastro :(", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-//
-//        for (Insumo i:ProdutoInsumoFragment.listaInsumosProduto) {
-//
-//        }
+        com.wb.tracun.markup.model.Produto produto = new Produto();
 
+        //Criar os campos na tela de cadastro para completar os campos abaixo
+//        produto.setNome();
+//        produto.setCusto();
+
+        //Implementar metodo que realize o calculo do preco por fora e por dentro
+        calcularCustoProduto(v);
+        calcularPrecoVendaFora(v);
+        calcularPrecoVendaDentro(v);
+
+    }
+
+    private static float calcularPrecoVendaDentro(View v) {
+        return -1;
+    }
+
+    private static float calcularPrecoVendaFora(View v) {
+        return -1;
     }
 
     public void salvarInsumo(){
 
         //PEGAR ID DO PRODUTO EM QUESTAO
         int idProduto = 1;
+        Produtos_has_Insumos insumo = new Produtos_has_Insumos();
 
         for (Insumo i : ProdutoInsumoFragment.listaInsumosProduto) {
-            Produtos_has_Insumos insumo = new Produtos_has_Insumos();
 
             insumo.setProdutos_idProdutos(idProduto);
             insumo.setInsumos_idInsumos(i.getId());
             insumo.setQuantInsumo(i.getQuantidade());
+        }
 
-            gerenciaBD.saveProdutos_has_Insumos();
+        if(insumo != null){
+            gerenciaBD.saveProdutos_has_Insumos(insumo);
         }
     }
 
@@ -132,14 +135,16 @@ public class ProdutoCustoFragment extends Fragment {
 
         //PEGAR ID DO PRODUTO EM QUESTAO
         int idProduto = 1;
+        Produtos_has_Despesas despesa = new Produtos_has_Despesas();
 
         for (DespesaAdm d : ProdutoDespesaFragment.listaDespesasProduto) {
-            Produtos_has_Despesas despesa = new Produtos_has_Despesas();
 
             despesa.setProdutos_idProdutos(idProduto);
             despesa.setDespesas_idDespesas(d.getId());
+        }
 
-            gerenciaBD.saveProdutos_has_Despesas();
+        if(despesa != null){
+            gerenciaBD.saveProdutos_has_Despesas(despesa);
         }
     }
 
@@ -147,15 +152,17 @@ public class ProdutoCustoFragment extends Fragment {
 
         //PEGAR ID DO PRODUTO EM QUESTAO
         int idProduto = 1;
+        Produtos_has_Rateio rateio = new Produtos_has_Rateio();
 
         for (Rateio r : ProdutoRateioFragment.listaRateiosProduto) {
-            Produtos_has_Rateio rateio = new Produtos_has_Rateio();
 
             rateio.setProdutos_idProdutos(idProduto);
             rateio.setRateio_idRateio(r.getId());
             rateio.setQuantProduzida(r.getQuantidade());
+        }
 
-            gerenciaBD.saveProdutos_has_Rateio();
+        if(rateio != null){
+            gerenciaBD.saveProdutos_has_Rateio(rateio);
         }
     }
 
@@ -163,15 +170,17 @@ public class ProdutoCustoFragment extends Fragment {
 
         //PEGAR ID DO PRODUTO EM QUESTAO
         int idProduto = 1;
+        Produtos_has_MaoDeObra mo = new Produtos_has_MaoDeObra();
 
         for (TempoFab t : ProdutoTempoFabFragment.listaTempoFabProduto) {
-            Produtos_has_MaoDeObra mo = new Produtos_has_MaoDeObra();
 
             mo.setProdutos_idProdutos(idProduto);
-            mo.setMaoObra_idMaoObra(t.getId());
-            mo.setValorHora(t.getTempo());
+            mo.setMaoDeObra_idMaoDeObra(t.getId());
+            mo.setTempoNecessario(t.getTempo());
+        }
 
-            gerenciaBD.saveProdutos_has_MaoDeObra();
+        if(mo != null){
+            gerenciaBD.saveProdutos_has_MaoDeObra(mo);
         }
     }
 

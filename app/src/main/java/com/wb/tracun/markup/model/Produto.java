@@ -11,7 +11,8 @@ public class Produto implements Serializable{
 
     private String nome;
     private float custo;
-    private float precoVenda;
+    private float precoVendaFora;
+    private float precoVendaDentro;
 
     private ArrayList<Insumo> insumos;
     private ArrayList<TempoFab> TempoFab;
@@ -34,12 +35,20 @@ public class Produto implements Serializable{
         this.custo = custo;
     }
 
-    public float getPrecoVenda() {
-        return precoVenda;
+    public float getPrecoVendaFora() {
+        return precoVendaFora;
     }
 
-    public void setPrecoVenda(float precoVenda) {
-        this.precoVenda = precoVenda;
+    public void setPrecoVendaFora(float precoVendaFora) {
+        this.precoVendaFora = precoVendaFora;
+    }
+
+    public float getPrecoVendaDentro() {
+        return precoVendaDentro;
+    }
+
+    public void setPrecoVendaDentro(float precoVendaDentro) {
+        this.precoVendaDentro = precoVendaDentro;
     }
 
     public ArrayList<Insumo> getInsumos() {

@@ -41,8 +41,7 @@ public class BDCore extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
 
         deleteTables(db);
-        createTables(db);
-
+        createTables(db);=
     }
 
     void createTables(SQLiteDatabase db){

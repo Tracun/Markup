@@ -32,6 +32,7 @@ public class GerenciaBD implements IGerenciaBD {
         db = auxBD.getWritableDatabase();
     }
 
+    //Return a positive number if the result was the expected
     @Override
     public int saveUnidade(Unidade unidade) {
 
@@ -57,6 +58,7 @@ public class GerenciaBD implements IGerenciaBD {
         }
     }
 
+    //Return a positive number if the result was the expected
     @Override
     public int saveInsumo(Insumo insumo) {
 
@@ -84,6 +86,7 @@ public class GerenciaBD implements IGerenciaBD {
         }
     }
 
+    //Return a positive number if the result was the expected
     @Override
     public int saveRateio(Rateio rateio) {
 
@@ -111,6 +114,7 @@ public class GerenciaBD implements IGerenciaBD {
         }
     }
 
+    //Return a positive number if the result was the expected
     @Override
     public int saveDespesa(DespesaAdm despesaAdm) {
 
@@ -137,6 +141,7 @@ public class GerenciaBD implements IGerenciaBD {
         }
     }
 
+    //Return a positive number if the result was the expected
     @Override
     public int saveTempoFab(TempoFab tempoFab) {
         String msg;
@@ -162,6 +167,7 @@ public class GerenciaBD implements IGerenciaBD {
         }
     }
 
+    //Return a positive number if the result was the expected
     @Override
     public int saveProduto(Produto produto) {
         String msg;
@@ -186,6 +192,7 @@ public class GerenciaBD implements IGerenciaBD {
         }
     }
 
+    //Return a positive number if the result was the expected
     @Override
     public int saveProdutos_has_Rateio (Produtos_has_Rateio produtos_has_Rateio ) {
 
@@ -213,6 +220,7 @@ public class GerenciaBD implements IGerenciaBD {
         }
     }
 
+    //Return a positive number if the result was the expected
     @Override
     public int saveProdutos_has_Despesas (Produtos_has_Despesas produtos_has_Despesas  ) {
 
@@ -239,6 +247,7 @@ public class GerenciaBD implements IGerenciaBD {
         }
     }
 
+    //Return a positive number if the result was the expected
     @Override
     public int saveProdutos_has_Insumos (Produtos_has_Insumos produtos_has_Insumos) {
 
@@ -266,6 +275,7 @@ public class GerenciaBD implements IGerenciaBD {
         }
     }
 
+    //Return a positive number if the result was the expected
     @Override
     public int saveProdutos_has_MaoDeObra (Produtos_has_MaoDeObra produtos_has_MaoDeObra) {
 

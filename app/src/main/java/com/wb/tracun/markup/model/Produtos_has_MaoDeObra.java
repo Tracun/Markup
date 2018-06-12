@@ -6,7 +6,7 @@ public class Produtos_has_MaoDeObra implements IProdutos_has_MaoDeObra {
 
     private int produtos_idProdutos;
     private int maoDeObra_idMaoDeObra;
-    private int tempoNecessario;
+    private float tempoNecessario;
 
     public int getProdutos_idProdutos() {
         return produtos_idProdutos;
@@ -24,11 +24,11 @@ public class Produtos_has_MaoDeObra implements IProdutos_has_MaoDeObra {
         this.maoDeObra_idMaoDeObra = maoDeObra_idMaoDeObra;
     }
 
-    public int getTempoNecessario() {
+    public float getTempoNecessario() {
         return tempoNecessario;
     }
 
-    public void setTempoNecessario(int tempoNecessario) {
+    public void setTempoNecessario(float tempoNecessario) {
         this.tempoNecessario = tempoNecessario;
     }
 
