@@ -160,8 +160,9 @@ public class ProdutoInsumoFragment extends Fragment {
             gerenciaBD = new GerenciaBD(getActivity());
             Cursor cursor = gerenciaBD.buscaInsumos();
             listaInsumoListView = new ArrayList();
+            cursor.moveToFirst();
 
-            while(cursor.moveToNext()){
+            while(!cursor.isLast()){
 //                System.out.println("catchInsumo: Id: " + cursor.getString(0));
 //                System.out.println("catchInsumo: nome: " + cursor.getString(1));
 //                System.out.println("catchInsumo: Valor unit: R$ " + cursor.getString(2));
@@ -175,7 +176,22 @@ public class ProdutoInsumoFragment extends Fragment {
 
                 //Adiciona os insumos para recuperar depois
                 listaInsumosBD.add(insumoAux);
+
+                cursor.moveToNext();
+
             }
+
+            if(cursor.isLast()){
+                Insumo insumoAux = new Insumo();
+                insumoAux.setId(cursor.getInt(0));
+                insumoAux.setNome(cursor.getString(1));
+                insumoAux.setValorUnitario(cursor.getFloat(2));
+                insumoAux.setPosicaoUnid(cursor.getInt(3));
+
+                //Adiciona os insumos para recuperar depois
+                listaInsumosBD.add(insumoAux);
+            }
+
             //Adiciona os itens para o listView
             for (int i = 0; i < listaInsumosBD.size(); i++) {
                 listaInsumoListView.add(listaInsumosBD.get(i).getId() + " - " + listaInsumosBD.get(i).getNome() + " - " + listaInsumosBD.get(i).getValorUnitario());

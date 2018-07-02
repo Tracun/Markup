@@ -158,12 +158,26 @@ public class ProdutoTempoFabFragment extends Fragment {
             gerenciaBD = new GerenciaBD(getActivity());
             Cursor cursor = gerenciaBD.buscaTempoFab();
             listaTempoFabListView = new ArrayList();
+            cursor.moveToFirst();
 
-            while(cursor.moveToNext()){
+            while(!cursor.isLast()){
 //                System.out.println("catchDespesa: Id: " + cursor.getString(0));
 //                System.out.println("catchDespesa: Descricao: " + cursor.getString(1));
 //                System.out.println("catchDespesa: Valor hora: R$ " + cursor.getString(2));
 
+                tempoFab = new TempoFab();
+                tempoFab.setId(cursor.getInt(0));
+                tempoFab.setNome(cursor.getString(1));
+                tempoFab.setValorHora(cursor.getFloat(2));
+
+                //Adiciona os tempos de fabricacao na lista para somar os custos
+                listaTempoFabBD.add(tempoFab);
+
+                cursor.moveToNext();
+
+            }
+
+            if(cursor.isLast()){
                 tempoFab = new TempoFab();
                 tempoFab.setId(cursor.getInt(0));
                 tempoFab.setNome(cursor.getString(1));

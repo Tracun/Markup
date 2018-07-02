@@ -80,10 +80,18 @@ public class InsumoFragment extends Fragment {
             if(cursor != null){
                 ArrayList list = new ArrayList();
                 listIdUnid = new ArrayList();
+                cursor.moveToFirst();
 
-                while(cursor.moveToNext()){
-                    listIdUnid.add(cursor.getInt(0));//ERRO AO ADICIONAR OS 02 PRIMEIROS INDICES
+                while(!cursor.isLast()){
+                    listIdUnid.add(cursor.getInt(0));
                     list.add(cursor.getString(1));
+
+                    cursor.moveToNext();
+
+                    if(cursor.isLast()){
+                        listIdUnid.add(cursor.getInt(0));
+                        list.add(cursor.getString(1));
+                    }
                 }
 
                 ArrayAdapter adapterUnid = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_dropdown_item, list);

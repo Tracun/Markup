@@ -171,13 +171,29 @@ public class ProdutoRateioFragment extends Fragment {
             gerenciaBD = new GerenciaBD(getActivity());
             Cursor cursor = gerenciaBD.buscaRateio();
             listaRateioListView = new ArrayList();
+            cursor.moveToFirst();
 
-            while(cursor.moveToNext()){
+            while(!cursor.isLast()){
 //                System.out.println("catchRateio: Id: " + cursor.getString(0));
 //                System.out.println("catchRateio: Descricao: " + cursor.getString(1));
 //                System.out.println("catchRateio: Valor unit: R$ " + cursor.getString(2));
-//                System.out.println("catchRateio: idUnidade: " + cursor.getString(3));
+                System.out.println("catchRateio: idUnidade: " + cursor.getString(1));
 
+                rateio = new Rateio();
+                rateio.setId(cursor.getInt(0));
+                rateio.setPosicaoUnid(cursor.getInt(1));
+                rateio.setDescricao(cursor.getString(2));
+                rateio.setValorUnitario(cursor.getFloat(3));
+
+
+                //Adiciona os rateios para recuperar depois
+                listaRateioBD.add(rateio);
+
+                cursor.moveToNext();
+
+            }
+
+            if(cursor.isLast()){
                 rateio = new Rateio();
                 rateio.setId(cursor.getInt(0));
                 rateio.setDescricao(cursor.getString(1));
@@ -187,6 +203,7 @@ public class ProdutoRateioFragment extends Fragment {
                 //Adiciona os rateios para recuperar depois
                 listaRateioBD.add(rateio);
             }
+
             //Adiciona os itens para o listView
             for (int i = 0; i < listaRateioBD.size(); i++) {
                 listaRateioListView.add(listaRateioBD.get(i).getId() + " - " + listaRateioBD.get(i).getDescricao() + " - " + listaRateioBD.get(i).getValorUnitario());

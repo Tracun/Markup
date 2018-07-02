@@ -24,7 +24,8 @@
         <activity
             android:name=".activity.fragments.BaseDadosActivity"
             android:label="@string/title_activity_unidades"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"/>
 
         <activity android:name=".activity.CadastroProdutoActivity" />
         <activity android:name=".activity.CadastroBaseDadosActivity" />

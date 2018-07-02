@@ -33,6 +33,7 @@ public interface IGerenciaBD {
 
     Cursor buscaUnidadeById(int id);
     Cursor buscaInsumoById(int id);
+    int buscaUltimoProduto();
     Cursor buscaInsumos();
     Cursor buscaRateio();
     Cursor buscaDespesas();

@@ -19,7 +19,6 @@ public class Splash extends AppCompatActivity {
             }
         }, 1200);
 
-
     }
 
     public void mostrarLogin(){

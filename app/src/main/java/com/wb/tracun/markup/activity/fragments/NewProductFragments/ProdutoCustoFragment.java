@@ -1,15 +1,20 @@
 package com.wb.tracun.markup.activity.fragments.NewProductFragments;
 
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.wb.tracun.markup.*;
 import com.wb.tracun.markup.DB.GerenciaBD;
 import com.wb.tracun.markup.model.*;
@@ -24,14 +29,17 @@ import org.eazegraph.lib.models.PieModel;
 import org.eazegraph.lib.models.ValueLinePoint;
 import org.eazegraph.lib.models.ValueLineSeries;
 
+import java.util.ArrayList;
+
 public class ProdutoCustoFragment extends Fragment {
 
     EditText txtCusto;
+    EditText txtDescricao;
     Button btnCalcularCusto;
     BarChart mBarChart;
     PieChart mPieChart;
 
-    GerenciaBD gerenciaBD = new GerenciaBD(this.getContext());
+    GerenciaBD gerenciaBD;
 
     static float mValorInsumos = 0;
     static float mValorTempoFab = 0;
@@ -45,7 +53,6 @@ public class ProdutoCustoFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
     }
 
     @Override
@@ -56,9 +63,22 @@ public class ProdutoCustoFragment extends Fragment {
         txtCusto = (EditText) view.findViewById(R.id.txtCusto);
         btnCalcularCusto = (Button) view.findViewById(R.id.btnCalcularCusto);
 
+        gerenciaBD = new GerenciaBD(view.getContext());
+
         txtCusto.setText("R$ " + calcularCustoProduto(view));
 
         plotPieChart(view);
+
+//        try {
+//            // Load an ad into the AdMob banner view.
+//            AdView adView = (AdView) view.findViewById(R.id.adView);
+//            AdRequest adRequest = new AdRequest.Builder()
+//                    .setRequestAgent("android_studio:ad_template").build();
+//            adView.loadAd(adRequest);
+//
+//        }catch (Exception e){
+//            System.out.println("Erro: " + e.getMessage());
+//        }
 
         btnCalcularCusto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +86,15 @@ public class ProdutoCustoFragment extends Fragment {
                 txtCusto.setText("R$ " + calcularCustoProduto(view));
                 mPieChart.clearChart();
                 plotPieChart(view);
+
+                salvarProduto(view);
+
+                int idProduto = gerenciaBD.buscaUltimoProduto();
+
+                salvarProdutos_has_Despesas(idProduto);
+                salvarProdutos_has_MaoDeObra(idProduto);
+                salvarProdutos_has_Rateio(idProduto);
+                salvarProdutos_has_Insumo(idProduto);
             }
         });
 
@@ -79,9 +108,6 @@ public class ProdutoCustoFragment extends Fragment {
         mValorDespesa = ProdutoDespesaFragment.calcularCustosDespesa();
         mValorTempoFab = ProdutoTempoFabFragment.calcularCustosTempoFab();
 
-        //Testando se há objeto no array
-        Toast.makeText(view.getContext(), "INSUMO OBJECT size: " + ProdutoInsumoFragment.listaInsumosProduto.size(), Toast.LENGTH_LONG).show();
-
 //        Toast.makeText(view.getContext(), "SOMA INSUMO; " + mValorInsumos, Toast.LENGTH_LONG).show();
 //        Toast.makeText(view.getContext(), "SOMA RATEIO; " + mValorRateio, Toast.LENGTH_LONG).show();
 //        Toast.makeText(view.getContext(), "SOMA DESPESA; " + mValorDespesa, Toast.LENGTH_LONG).show();
@@ -90,13 +116,20 @@ public class ProdutoCustoFragment extends Fragment {
         return  (mValorInsumos + mValorRateio + mValorTempoFab);
     }
 
-    public static void salvarProduto(View v){
+    public void salvarProduto(View v){
 
         com.wb.tracun.markup.model.Produto produto = new Produto();
+        txtDescricao = (EditText) v.findViewById(R.id.txtDescricao);
 
         //Criar os campos na tela de cadastro para completar os campos abaixo
-//        produto.setNome();
-//        produto.setCusto();
+        produto.setNome(txtDescricao.getText().toString());
+        produto.setCusto(calcularCustoProduto(v));
+        produto.setPrecoVendaDentro(0);
+        produto.setPrecoVendaFora(0);
+
+        if(produto != null){
+            gerenciaBD.saveProduto(produto);
+        }
 
         //Implementar metodo que realize o calculo do preco por fora e por dentro
         calcularCustoProduto(v);
@@ -113,10 +146,8 @@ public class ProdutoCustoFragment extends Fragment {
         return -1;
     }
 
-    public void salvarInsumo(){
+    public void salvarProdutos_has_Insumo(int idProduto){
 
-        //PEGAR ID DO PRODUTO EM QUESTAO
-        int idProduto = 1;
         Produtos_has_Insumos insumo = new Produtos_has_Insumos();
 
         for (Insumo i : ProdutoInsumoFragment.listaInsumosProduto) {
@@ -124,52 +155,50 @@ public class ProdutoCustoFragment extends Fragment {
             insumo.setProdutos_idProdutos(idProduto);
             insumo.setInsumos_idInsumos(i.getId());
             insumo.setQuantInsumo(i.getQuantidade());
-        }
 
-        if(insumo != null){
-            gerenciaBD.saveProdutos_has_Insumos(insumo);
+            if(insumo != null){
+                gerenciaBD.saveProdutos_has_Insumos(insumo);
+                insumo = new Produtos_has_Insumos();
+            }
         }
     }
 
-    public void salvarProdutos_has_Despesas(){
+    public void salvarProdutos_has_Despesas(int idProduto){
 
-        //PEGAR ID DO PRODUTO EM QUESTAO
-        int idProduto = 1;
         Produtos_has_Despesas despesa = new Produtos_has_Despesas();
 
         for (DespesaAdm d : ProdutoDespesaFragment.listaDespesasProduto) {
 
             despesa.setProdutos_idProdutos(idProduto);
             despesa.setDespesas_idDespesas(d.getId());
-        }
 
-        if(despesa != null){
-            gerenciaBD.saveProdutos_has_Despesas(despesa);
+            if(despesa != null){
+                gerenciaBD.saveProdutos_has_Despesas(despesa);
+                despesa = new Produtos_has_Despesas();
+            }
         }
     }
 
-    public void salvarProdutos_has_Rateio(){
+    public void salvarProdutos_has_Rateio(int idProduto){
 
-        //PEGAR ID DO PRODUTO EM QUESTAO
-        int idProduto = 1;
         Produtos_has_Rateio rateio = new Produtos_has_Rateio();
 
         for (Rateio r : ProdutoRateioFragment.listaRateiosProduto) {
 
             rateio.setProdutos_idProdutos(idProduto);
             rateio.setRateio_idRateio(r.getId());
+            rateio.setRateio_unidades_idUnidades(r.getPosicaoUnid());
             rateio.setQuantProduzida(r.getQuantidade());
-        }
 
-        if(rateio != null){
-            gerenciaBD.saveProdutos_has_Rateio(rateio);
+            if(rateio != null){
+                gerenciaBD.saveProdutos_has_Rateio(rateio);
+                rateio = new Produtos_has_Rateio();
+            }
         }
     }
 
-    public void salvarProdutos_has_MaoDeObra(){
+    public void salvarProdutos_has_MaoDeObra(int idProduto){
 
-        //PEGAR ID DO PRODUTO EM QUESTAO
-        int idProduto = 1;
         Produtos_has_MaoDeObra mo = new Produtos_has_MaoDeObra();
 
         for (TempoFab t : ProdutoTempoFabFragment.listaTempoFabProduto) {
@@ -177,10 +206,11 @@ public class ProdutoCustoFragment extends Fragment {
             mo.setProdutos_idProdutos(idProduto);
             mo.setMaoDeObra_idMaoDeObra(t.getId());
             mo.setTempoNecessario(t.getTempo());
-        }
 
-        if(mo != null){
-            gerenciaBD.saveProdutos_has_MaoDeObra(mo);
+            if(mo != null){
+                gerenciaBD.saveProdutos_has_MaoDeObra(mo);
+                mo = new Produtos_has_MaoDeObra();
+            }
         }
     }
 

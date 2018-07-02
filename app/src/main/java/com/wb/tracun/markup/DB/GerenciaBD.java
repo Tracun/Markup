@@ -54,7 +54,7 @@ public class GerenciaBD implements IGerenciaBD {
             return -1;
 
         }finally {
-            db.close();
+//            db.close();
         }
     }
 
@@ -66,7 +66,7 @@ public class GerenciaBD implements IGerenciaBD {
         ContentValues valor = new ContentValues();
 
         valor.put("nome", insumo.getNome());
-        valor.put("idUnidade", insumo.getPosicaoUnid());
+        valor.put("unidades_idUnidades", insumo.getPosicaoUnid());
         valor.put("valorUnit", insumo.getValorUnitario());
 
         try{
@@ -82,7 +82,7 @@ public class GerenciaBD implements IGerenciaBD {
             return -1;
 
         }finally {
-            db.close();
+//            db.close();
         }
     }
 
@@ -95,7 +95,8 @@ public class GerenciaBD implements IGerenciaBD {
 
         valor.put("descricao", rateio.getDescricao());
         valor.put("valorUnit", rateio.getValorUnitario());
-        valor.put("idUnidade", rateio.getPosicaoUnid());
+        valor.put("unidades_idUnidades", rateio.getPosicaoUnid());
+        valor.put("quant", 1);
 
         try{
             long result = db.insert("Rateio", null, valor);
@@ -110,7 +111,7 @@ public class GerenciaBD implements IGerenciaBD {
             return -1;
 
         }finally {
-            db.close();
+//            db.close();
         }
     }
 
@@ -122,7 +123,7 @@ public class GerenciaBD implements IGerenciaBD {
         ContentValues valor = new ContentValues();
 
         valor.put("descricao", despesaAdm.getDescricao());
-        valor.put("valorUnit", despesaAdm.getValor());
+        valor.put("valor", despesaAdm.getValor());
 
         try{
             long result = db.insert("Despesas", null, valor);
@@ -137,7 +138,7 @@ public class GerenciaBD implements IGerenciaBD {
             return -1;
 
         }finally {
-            db.close();
+//            db.close();
         }
     }
 
@@ -163,7 +164,7 @@ public class GerenciaBD implements IGerenciaBD {
             return -1;
 
         }finally {
-            db.close();
+//            db.close();
         }
     }
 
@@ -174,21 +175,24 @@ public class GerenciaBD implements IGerenciaBD {
         ContentValues valor = new ContentValues();
 
         valor.put("nome", produto.getNome());
+        valor.put("custo", produto.getCusto());
+        valor.put("precoFora", produto.getPrecoVendaFora());
+        valor.put("precoDentro", produto.getPrecoVendaDentro());
 
         try{
-            long result = db.insert("Despesas", null, valor);
+            long result = db.insert("Produtos", null, valor);
 
             if(result != -1) return 1;
 
             return -1;
 
         }catch (Exception e){
-            System.out.println("Error: saveDespesa - " + e.getMessage());
+            System.out.println("Error: saveProduto - " + e.getMessage());
             e.printStackTrace();
             return -1;
 
         }finally {
-            db.close();
+//            db.close();
         }
     }
 
@@ -200,6 +204,7 @@ public class GerenciaBD implements IGerenciaBD {
         ContentValues valor = new ContentValues();
 
         valor.put("produtos_idProdutos ", produtos_has_Rateio.getProdutos_idProdutos());
+        valor.put("rateio_unidades_idUnidades", produtos_has_Rateio.getRateio_unidades_idUnidades());
         valor.put("rateio_idRateio", produtos_has_Rateio.getRateio_idRateio());
         valor.put("quantProduzida", produtos_has_Rateio.getQuantProduzida());
 
@@ -216,7 +221,7 @@ public class GerenciaBD implements IGerenciaBD {
             return -1;
 
         }finally {
-            db.close();
+//            db.close();
         }
     }
 
@@ -243,7 +248,7 @@ public class GerenciaBD implements IGerenciaBD {
             return -1;
 
         }finally {
-            db.close();
+//            db.close();
         }
     }
 
@@ -255,11 +260,12 @@ public class GerenciaBD implements IGerenciaBD {
         ContentValues valor = new ContentValues();
 
         valor.put("produtos_idProdutos", produtos_has_Insumos.getProdutos_idProdutos());
-        valor.put("produtos_has_Insumos", produtos_has_Insumos.getInsumos_idInsumos());
+        valor.put("insumos_idInsumos", produtos_has_Insumos.getInsumos_idInsumos());
+        valor.put("insumos_unidades_idUnidades", produtos_has_Insumos.getInsumos_unidades_idUnidades());
         valor.put("quantInsumo", produtos_has_Insumos.getQuantInsumo());
 
         try{
-            long result = db.insert("Produtos_has_Insumo", null, valor);
+            long result = db.insert("Produtos_has_Insumos", null, valor);
 
             if(result != -1) return 1;
 
@@ -271,7 +277,7 @@ public class GerenciaBD implements IGerenciaBD {
             return -1;
 
         }finally {
-            db.close();
+//            db.close();
         }
     }
 
@@ -299,7 +305,7 @@ public class GerenciaBD implements IGerenciaBD {
             return -1;
 
         }finally {
-            db.close();
+//            db.close();
         }
     }
 
@@ -309,7 +315,7 @@ public class GerenciaBD implements IGerenciaBD {
     public Cursor buscaUnidadeById(int id) {
         Cursor cursor;
 
-        String[] campos = {"_idUnidade", "descricao"};
+        String[] campos = {"idUnidade", "descricao"};
         String where = "_idUnidade" + "=" + id;
         cursor = db.query("Unidades", campos, where, null,
                         null, null, null, null);
@@ -319,7 +325,7 @@ public class GerenciaBD implements IGerenciaBD {
             return cursor;
         }
 
-        db.close();
+//        db.close();
 
         return null;
     }
@@ -328,8 +334,8 @@ public class GerenciaBD implements IGerenciaBD {
     public Cursor buscaInsumoById(int id) {
         Cursor cursor;
 
-        String[] campos = {"_idInsumo", "nome", "valorUnit", "idUnidade"};
-        String where = "_idInsumo" + "=" + id;
+        String[] campos = {"idInsumos", "nome", "valorUnit", "unidades_idUnidades"};
+        String where = "_idInsumos" + "=" + id;
         cursor = db.query("Insumos", campos, where, null,
                 null, null, null, null);
 
@@ -338,16 +344,36 @@ public class GerenciaBD implements IGerenciaBD {
             return cursor;
         }
 
-        db.close();
+//        db.close();
 
         return null;
+    }
+
+    @Override
+    public int buscaUltimoProduto() {
+        Cursor cursor;
+
+        String[] campos = {"=?"};
+        cursor = db.rawQuery("select max(idProdutos) from Produtos;", null);
+
+//        cursor = db.query("Produtos", campos, null, null,
+//                null, null, null, null);
+
+        if(cursor.getCount() != 0){
+            cursor.moveToFirst();
+            return cursor.getInt(0);
+        }
+
+//        db.close();
+
+        return -1;
     }
 
     @Override
     public Cursor buscaInsumos() {
         Cursor cursor;
 
-        String[] campos = {"_idInsumo", "nome", "valorUnit", "idUnidade"};
+        String[] campos = {"idInsumos", "nome", "valorUnit", "unidades_idUnidades"};
         cursor = db.query("Insumos", campos, null, null,
                 null, null, null, null);
 
@@ -356,7 +382,7 @@ public class GerenciaBD implements IGerenciaBD {
             return cursor;
         }
 
-        db.close();
+//        db.close();
 
         return null;
     }
@@ -365,7 +391,7 @@ public class GerenciaBD implements IGerenciaBD {
     public Cursor buscaRateio() {
         Cursor cursor;
 
-        String[] campos = {"_idRateio", "descricao", "valorUnit", "idUnidade"};
+        String[] campos = {"idRateio", "unidades_idUnidades", "descricao", "valorUnit"};
         cursor = db.query("Rateio", campos, null, null,
                 null, null, null, null);
 
@@ -374,7 +400,7 @@ public class GerenciaBD implements IGerenciaBD {
             return cursor;
         }
 
-        db.close();
+//        db.close();
 
         return null;
     }
@@ -383,7 +409,7 @@ public class GerenciaBD implements IGerenciaBD {
     public Cursor buscaDespesas() {
         Cursor cursor;
 
-        String[] campos = {"_idDespesa", "descricao", "valorUnit"};
+        String[] campos = {"idDespesas", "descricao", "valor"};
         cursor = db.query("Despesas", campos, null, null,
                 null, null, null, null);
 
@@ -392,7 +418,7 @@ public class GerenciaBD implements IGerenciaBD {
             return cursor;
         }
 
-        db.close();
+//        db.close();
 
         return null;
     }
@@ -401,7 +427,7 @@ public class GerenciaBD implements IGerenciaBD {
     public Cursor buscaTempoFab() {
         Cursor cursor;
 
-        String[] campos = {"_idMaoDeObra", "Descricao", "valorHora"};
+        String[] campos = {"idMaoDeObra", "Descricao", "valorHora"};
         cursor = db.query("MaoDeObra", campos, null, null,
                 null, null, null, null);
 
@@ -410,7 +436,7 @@ public class GerenciaBD implements IGerenciaBD {
             return cursor;
         }
 
-        db.close();
+//        db.close();
 
         return null;
     }
@@ -427,7 +453,7 @@ public class GerenciaBD implements IGerenciaBD {
             return cursor;
         }
 
-        db.close();
+//        db.close();
 
         return null;
     }
@@ -450,7 +476,7 @@ public class GerenciaBD implements IGerenciaBD {
             uni.setDescricao(listUnid.get(i));
             saveUnidade(uni);
         }
-        db.close();
+//        db.close();
     }
 
 }

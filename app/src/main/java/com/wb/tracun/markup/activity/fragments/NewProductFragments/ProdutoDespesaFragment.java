@@ -140,12 +140,26 @@ public class ProdutoDespesaFragment extends Fragment {
             gerenciaBD = new GerenciaBD(getActivity());
             Cursor cursor = gerenciaBD.buscaDespesas();
             listaDespesaListView = new ArrayList();
+            cursor.moveToFirst();
 
-            while(cursor.moveToNext()){
+            while(!cursor.isLast()){
                 System.out.println("catchDespesa: Id: " + cursor.getString(0));
                 System.out.println("catchDespesa: Descricao: " + cursor.getString(1));
                 System.out.println("catchDespesa: Valor hora: R$ " + cursor.getString(2));
 
+                despesaAdm = new DespesaAdm();
+                despesaAdm.setId(cursor.getInt(0));
+                despesaAdm.setDescricao(cursor.getString(1));
+                despesaAdm.setValor(cursor.getFloat(2));
+
+                //Adiciona as despesas na lista para somar os custos
+                listaDespesasBD.add(despesaAdm);
+
+                cursor.moveToNext();
+
+            }
+
+            if(cursor.isLast()){
                 despesaAdm = new DespesaAdm();
                 despesaAdm.setId(cursor.getInt(0));
                 despesaAdm.setDescricao(cursor.getString(1));
