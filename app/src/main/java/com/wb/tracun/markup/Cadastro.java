@@ -76,7 +76,7 @@ public class Cadastro extends AppCompatActivity {
         imgProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pegarImagem();
+                carregarImagem();
             }
         });
 
@@ -297,7 +297,7 @@ public class Cadastro extends AppCompatActivity {
 
     }
 
-    void pegarImagem(){
+    void carregarImagem(){
 
         try {
 
@@ -320,27 +320,37 @@ public class Cadastro extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent){
 
-        if(requestCode == IMAGEM_INTERNA){
-            if(resultCode == RESULT_OK){
+        try {
+            if(requestCode == IMAGEM_INTERNA){
+                if(resultCode == RESULT_OK){
 
-                Uri imagemSelecionada = intent.getData();
-                String[] colunas = {MediaStore.Images.Media.DATA};
-                Cursor cursor = getContentResolver().query(imagemSelecionada, colunas, null, null, null);
-                cursor.moveToFirst();
+                    Uri imagemSelecionada = intent.getData();
+                    String[] colunas = {MediaStore.Images.Media.DATA};
+                    Cursor cursor = getContentResolver().query(imagemSelecionada, colunas, null, null, null);
+                    cursor.moveToFirst();
 
-                int indexColuna = cursor.getColumnIndex(colunas[0]);
-                String pathImg = cursor.getString(indexColuna);
-                salvarImagemBD(pathImg);
-                cursor.close();
+                    int indexColuna = cursor.getColumnIndex(colunas[0]);
+                    String pathImg = cursor.getString(indexColuna);
+                    salvarImagemBD(pathImg);
+                    cursor.close();
 
-                Bitmap bitmap = BitmapFactory.decodeFile(pathImg);
-                imgProduct.setImageBitmap(bitmap);
-            }else {
+                    Bitmap bitmap = BitmapFactory.decodeFile(pathImg);
+                    imgProduct.setImageBitmap(bitmap);
+
+                    if (bitmap == null){
+                        Toast.makeText(this, "Erro ao salvar imagem, por favor, escolha uma imagem com menor tamanho e/ou resolução   :(", Toast.LENGTH_LONG).show();
+                    }
+                }else {
+                    Toast.makeText(this, "Erro", Toast.LENGTH_LONG).show();
+                }
+            }else{
                 Toast.makeText(this, "Erro", Toast.LENGTH_LONG).show();
             }
-        }else{
-            Toast.makeText(this, "Erro", Toast.LENGTH_LONG).show();
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
+
 
     }
 

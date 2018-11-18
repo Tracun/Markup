@@ -204,9 +204,9 @@
         android:id="@+id/VS"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
         android:visibility="invisible">
 
 
@@ -216,8 +216,8 @@
             android:background="?attr/colorPrimary"
             android:orientation="vertical"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp"
             android:paddingTop="50dp"
+            android:paddingRight="16dp"
             android:visibility="invisible">
 
             <TextView
@@ -229,20 +229,23 @@
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
-            <android.support.constraint.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="144dp">
+                android:layout_height="150dp"
+                android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/imgProduct"
-                    android:layout_width="150dp"
-                    android:layout_height="120dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
                     android:layout_weight="1"
+                    android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
                     ads:srcCompat="@android:drawable/ic_menu_camera"
-                    tools:layout_editor_absoluteX="101dp"
-                    tools:layout_editor_absoluteY="9dp" />
-            </android.support.constraint.ConstraintLayout>
+                    tools:layout_editor_absoluteX="116dp"
+                    tools:layout_editor_absoluteY="3dp" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/txtPulaLinha"

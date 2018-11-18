@@ -113,7 +113,7 @@ public class GerenciaBD {
                 id = String.valueOf(cursor.getLong(0));
                 nome = cursor.getString(1);
 
-                array.add(id + " " +nome);
+                array.add(id + " - " + nome);
 
             }while(cursor.moveToNext());
         }
@@ -144,11 +144,18 @@ public class GerenciaBD {
 
     }
 
-    public void deletar(Produto produto){
+    public int deletar(Produto produto){
 
-        bd.delete("produtos", "_id = "+ produto.getId(), null);
-        bd.close();
+        try {
+            bd.delete("produtos", "_id = ?", new String[]{""+produto.getId()});
+            bd.close();
+        }catch (Exception e){
+            bd.close();
+            e.printStackTrace();
+            return -1;
+        }
 
+        return 0;
     }
 
 
