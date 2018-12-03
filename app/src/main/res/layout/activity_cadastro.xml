@@ -45,7 +45,7 @@
                 android:paddingRight="16dp">
 
                 <EditText
-                    android:id="@+id/txtNome"
+                    android:id="@+id/txtNomeProduto"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -62,11 +62,11 @@
                     android:id="@+id/txtCusto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/txtNome"
+                    android:layout_alignLeft="@+id/txtNomeProduto"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignStart="@+id/txtNome"
-                    android:layout_below="@+id/txtNome"
+                    android:layout_alignStart="@+id/txtNomeProduto"
+                    android:layout_below="@+id/txtNomeProduto"
                     android:ems="10"
                     android:hint="Custo R$"
                     android:inputType="numberDecimal" />

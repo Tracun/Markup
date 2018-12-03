@@ -2,9 +2,11 @@ package com.wb.tracun.markup;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.wb.tracun.markup.Adapter.TabAdapterProduto;
 import com.wb.tracun.markup.activity.CadastroBaseDadosActivity;
 import com.wb.tracun.markup.activity.CadastroProdutoActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +14,10 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +31,7 @@ import java.util.ArrayList;
 public class Main extends AppCompatActivity {
 
     Button btnBaseDados;
+    public Context mContext = this;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -83,10 +90,6 @@ public class Main extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> arg0, final View v,
                                            final int index, long arg3) {
 
-
-//                Toast.makeText(v.getContext(), "Posicao: " + list.getItemAtPosition(index), Toast.LENGTH_LONG).show();
-
-
                 new AlertDialog.Builder(v.getContext())
                         .setTitle("Deletando produto")
                         .setMessage("Tem certeza que deseja deletar esse produto?")
@@ -94,14 +97,9 @@ public class Main extends AppCompatActivity {
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        Produto produto = new Produto();
 
                                         // ListView Clicked item value
-                                        String itemValue = (String) list.getItemAtPosition(index);
-
-                                        produto.setId(splitId(itemValue));
-
-                                        Toast.makeText(getBaseContext(), "Posicao: " + itemValue, Toast.LENGTH_LONG).show();
+                                        Produto produto = (Produto) list.getItemAtPosition(index);
 
                                         GerenciaBD gerenciaBD = new GerenciaBD(getBaseContext());
 
@@ -127,14 +125,9 @@ public class Main extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             // ListView Clicked item value
-            String itemValue = (String) list.getItemAtPosition(position);
+            Produto produto = (Produto) list.getItemAtPosition(position);
 
-            //retira o ID da String da lista
-            int idProduto = splitId(itemValue);
-            exibeTelaProdutoDetalhado(view,idProduto);
-
-            //Show Alert
-            Toast.makeText(getApplicationContext(), "Position :" + position + "  ListItem : " + itemValue, Toast.LENGTH_LONG).show();
+            exibeTelaProdutoDetalhado(view,produto);
 
             }
         });
@@ -154,9 +147,9 @@ public class Main extends AppCompatActivity {
     Button botaoMsg;
     Button botaoCarregaProdutosSalvos;
 
-//    public void onBackPressed() {
-//        android.os.Process.killProcess(android.os.Process.myPid());
-//    }
+    public void onBackPressed() {
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
 
     //Carrega os itens salvos na lista da tela Principal
     void carregaLista(View view){
@@ -173,12 +166,10 @@ public class Main extends AppCompatActivity {
 
         if(gerenciaBD.buscaString() != null){
 
-            lista = gerenciaBD.buscaString();
-
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,lista);
+            AdapterProdutosPersonalizado adapter = new AdapterProdutosPersonalizado(gerenciaBD.buscarTodos(), this);
             list.setAdapter(adapter);
         }else{
-//            Toast.makeText(this,"Nenhum produto cadastrado !",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Nenhum produto cadastrado !",Toast.LENGTH_LONG).show();
         }
 
     }
@@ -190,10 +181,10 @@ public class Main extends AppCompatActivity {
     }
 
     //Chama a outra tela e passa como parametro a posicao
-    public void exibeTelaProdutoDetalhado(View view, int idProduto){
+    public void exibeTelaProdutoDetalhado(View view, Produto produto){
 
         Intent intencao = new Intent(this,produtosSalvos.class);
-        intencao.putExtra("id", idProduto);
+        intencao.putExtra("produto", produto);
         startActivity(intencao);
     }
 
@@ -206,9 +197,5 @@ public class Main extends AppCompatActivity {
     void telaCadastroProduto(){
         Intent intencao  = new Intent(this, CadastroProdutoActivity.class);
         startActivity(intencao);
-    }
-
-    int splitId(String text){
-        return Integer.parseInt(text.split(" -")[0]);
     }
 }

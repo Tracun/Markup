@@ -17,19 +17,17 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <!--<activity -->
-        <!--android:name="Main"-->
-        <!--android:label="@string/title_activity_main2"/>-->
+        <!-- <activity -->
+        <!-- android:name="Main" -->
+        <!-- android:label="@string/title_activity_main2"/> -->
 
         <activity
             android:name=".activity.fragments.BaseDadosActivity"
             android:label="@string/title_activity_unidades"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"/>
-
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.CadastroProdutoActivity" />
         <activity android:name=".activity.CadastroBaseDadosActivity" />
-
         <activity
             android:name=".activity.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -46,33 +44,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
-
-        <activity
-            android:name=".Splash"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_splash"
-            android:parentActivityName=".Main"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.wb.tracun.markup.Main" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
         <activity
             android:name=".Main"
-            android:label="@string/title_activity_main2">
-
-        </activity>
+            android:label="@string/title_activity_main2"></activity>
         <activity
             android:name=".Cadastro"
             android:label="@string/title_activity_cadastro2"
@@ -89,7 +67,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wb.tracun.markup.Main" />
         </activity>
-
     </application>
 
 </manifest>

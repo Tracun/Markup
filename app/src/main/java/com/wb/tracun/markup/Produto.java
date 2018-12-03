@@ -1,10 +1,12 @@
 package com.wb.tracun.markup;
 
+import java.io.Serializable;
+
 /**
  * Created by Tracun on 10/01/2017.
  */
 
-public class Produto {
+public class Produto implements Serializable {
 
     private int id;
     private String nome;
