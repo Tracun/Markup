@@ -16,9 +16,9 @@ class TempoFabDAO {
     return key;
   }
 
-  Future update(TempoFab tempoFab) async {
+  Future<dynamic> update(TempoFab tempoFab) async {
     log("ATUALIZANDO TempoFab NO GENERIC");
-    await _genericModel.update(tempoFab.toMap());
+    return await _genericModel.update(tempoFab.toMap());
   }
 
   Future delete(int tempoFabId) async {

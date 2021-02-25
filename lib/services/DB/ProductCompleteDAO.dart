@@ -9,7 +9,7 @@ class ProductCompleteDAO implements ProductRepository {
 
   @override
   Future<int> insertProduct(ProductCom product) async {
-    log("INSERINDO NO GENERIC");
+    log("INSERINDO NO ProductCompleteDAO");
     var key = await _genericModel.insert(product.toMap());
     // Insere o id do produto criado e atualiza
     product.id = key;
@@ -18,9 +18,9 @@ class ProductCompleteDAO implements ProductRepository {
   }
 
   @override
-  Future updateProduct(ProductCom product) async {
-    log("ATUALIZANDO NO GENERIC");
-    await _genericModel.update(product.toMap());
+  Future<dynamic> updateProduct(ProductCom product) async {
+    log("ATUALIZANDO NO ProductCompleteDAO");
+    return await _genericModel.update(product.toMap());
   }
 
   @override
@@ -32,7 +32,7 @@ class ProductCompleteDAO implements ProductRepository {
   @override
   Future<List<ProductCom>> getAllProducts() async {
     final snapshots = await _genericModel.getAllProducts();
-    log("GENERIC - LENGHT: ${snapshots.length}");
+    log("ProductCompleteDAO - LENGHT: ${snapshots.length}");
     return snapshots;
   }
 

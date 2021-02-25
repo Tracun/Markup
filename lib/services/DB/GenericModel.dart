@@ -39,6 +39,7 @@ class GenericModel implements GenericRepository {
 
   @override
   Future update(dynamic objectMap) async {
+    log("UPDATE GENERIC");
     return await _store.record(objectMap['id']).update(_database, objectMap);
   }
 

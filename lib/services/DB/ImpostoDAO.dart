@@ -16,14 +16,15 @@ class ImpostoDAO {
     return key;
   }
 
-  Future update(Imposto imposto) async {
+  Future<dynamic> update(Imposto imposto) async {
     log("ATUALIZANDO Imposto NO GENERIC");
-    await _genericModel.update(imposto.toMap());
+    return await _genericModel.update(imposto.toMap());
   }
 
-  Future delete(int impostoId) async {
+  Future<dynamic> delete(int impostoId) async {
     var ret = await _genericModel.delete(impostoId);
     log('RETORNO DELETE Imposto GENERIC: $ret');
+    return ret;
   }
 
   Future<List<Imposto>> getAll() async {
