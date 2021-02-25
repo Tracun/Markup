@@ -2,12 +2,14 @@ import 'dart:developer';
 
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:path/path.dart';
 
 class AdmobWidget {
+
+  String idBloco = "ca-app-pub-0943131909791545/6552931294";
+
   AdmobBanner getBottomBanner() {
     return AdmobBanner(
-      adUnitId: "ca-app-pub-0943131909791545/6358352079",
+      adUnitId: idBloco,
       adSize: AdmobBannerSize.BANNER,
       listener: (AdmobAdEvent event, Map<String, dynamic> args) {
         handleEvent(event, args, 'Banner');
@@ -17,7 +19,7 @@ class AdmobWidget {
 
   AdmobBanner getBanner(AdmobBannerSize size) {
     return AdmobBanner(
-      adUnitId: "ca-app-pub-0943131909791545/6358352079",
+      adUnitId: idBloco,
       adSize: size,
       listener: (AdmobAdEvent event, Map<String, dynamic> args) {
         handleEvent(event, args, 'Banner');
@@ -27,7 +29,7 @@ class AdmobWidget {
 
   AdmobBanner getSmartBanner(BuildContext context) {
     return AdmobBanner(
-      adUnitId: "ca-app-pub-0943131909791545/6358352079",
+      adUnitId: idBloco,
       adSize: AdmobBannerSize.SMART_BANNER(context),
       listener: (AdmobAdEvent event, Map<String, dynamic> args) {
         handleEvent(event, args, 'Banner');
@@ -37,7 +39,7 @@ class AdmobWidget {
 
   AdmobBanner getMediumBanner() {
     return AdmobBanner(
-      adUnitId: "ca-app-pub-0943131909791545/6358352079",
+      adUnitId: idBloco,
       adSize: AdmobBannerSize.MEDIUM_RECTANGLE,
       listener: (AdmobAdEvent event, Map<String, dynamic> args) {
         handleEvent(event, args, 'Banner');
