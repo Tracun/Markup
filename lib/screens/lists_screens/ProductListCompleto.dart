@@ -1,18 +1,12 @@
-import 'dart:developer';
 import 'dart:io';
-import 'package:calcular_preco_venda/Repository/ProductRepository.dart';
 import 'package:calcular_preco_venda/bloc/ProductComBloc.dart';
 import 'package:calcular_preco_venda/services/DB/InsumoDAO.dart';
-import 'package:calcular_preco_venda/models/BasicProductModel.dart';
-import 'package:calcular_preco_venda/objects/Insumo.dart';
 import 'package:calcular_preco_venda/objects/ProductCom.dart';
-import 'package:calcular_preco_venda/services/DB/ProductCompleteDAO.dart';
 import 'package:calcular_preco_venda/utils/Message.dart';
 import 'package:calcular_preco_venda/utils/MyColors.dart';
 import 'package:calcular_preco_venda/utils/ScreenNavigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:get_it/get_it.dart';
 
 class ProductListCompleto extends StatefulWidget {
   createState() => _ProductListAdmState();
@@ -23,7 +17,6 @@ class _ProductListAdmState extends State<ProductListCompleto> {
   final String newProduct = "/newProduct";
   final String editProduct = "/editProduct";
 
-  ProductCompleteDAO _productDAO = ProductCompleteDAO();
   ProductCompleteBloc _productCompleteBloc = ProductCompleteBloc();
   InsumoDAO insumoDAO = InsumoDAO();
 

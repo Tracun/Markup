@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:calcular_preco_venda/bloc/ProductComBloc.dart';
 import 'package:calcular_preco_venda/objects/DespesaAdm.dart';
@@ -258,7 +259,11 @@ class _NewProductCompleteScreenState extends State<NewProductCompleteScreen>
       onPressed: () {
         if (!riKeys1.currentState.validate()) {
         } else {
-          insertProduct();
+          createProduct();
+          Future.delayed(Duration(seconds: 1, milliseconds: 200), () {
+            log("DEPOIS");
+            insertProduct();
+          });
         }
       },
     );
@@ -456,6 +461,10 @@ class _NewProductCompleteScreenState extends State<NewProductCompleteScreen>
   }
 
   void createProduct() {
+    setState(() {
+      _isInAsyncCall = true;
+    });
+
     product = new ProductCom(
         id: 0,
         despesaAdm: selectedDespesaAdmList,
@@ -499,11 +508,8 @@ class _NewProductCompleteScreenState extends State<NewProductCompleteScreen>
   }
 
   void insertProduct() async {
-    createProduct();
+    // createProduct();
 
-    setState(() {
-      _isInAsyncCall = true;
-    });
     try {
       var isCreate = await widget.productBloc.newProduct(product);
       if (isCreate > 0) {
@@ -575,6 +581,7 @@ class _NewProductCompleteScreenState extends State<NewProductCompleteScreen>
     lucroController.clear();
     custoIndiretoController.clear();
     comissaoController.clear();
+    lucroBrutoController.clear();
 
     selectedDespesaAdmList.clear();
     selectedImpostoList.clear();
