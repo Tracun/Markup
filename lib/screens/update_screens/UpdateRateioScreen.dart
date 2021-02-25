@@ -191,11 +191,12 @@ class _UpdateRateioState extends State<UpdateRateio> {
         await SharedPrefs().setDBChange(true);
         setState(() {
           _isInAsyncCall = false;
-          Messages().showAlertDialog(context, 'Rateio atualizado',
-              'Rateio ${descricaoController.text} atualizado com sucesso !');
-
-          descricaoController.clear();
-          valorUnitController.clear();
+          Messages().showOkDialog(context, 'Rateio atualizado',
+              'Rateio ${descricaoController.text} atualizado com sucesso !',
+              () {
+            Navigator.of(context).pop();
+            Navigator.pop(context);
+          });
         });
       } else {
         setState(() {

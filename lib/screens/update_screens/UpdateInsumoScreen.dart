@@ -193,12 +193,11 @@ class _UpdateInsumoScreenState extends State<UpdateInsumoScreen> {
       if (isUpdated != null) {
         setState(() {
           _isInAsyncCall = false;
-          Messages().showAlertDialog(context, 'Insumo atualizado',
-              'Insumo ${nameController.text} atualizado com sucesso !');
-
-          nameController.clear();
-          valorUnitController.clear();
-          // idUnidadeController.clear();
+          Messages().showOkDialog(context, 'Insumo atualizado',
+              'Insumo ${nameController.text} atualizado com sucesso !', () {
+            Navigator.of(context).pop();
+            Navigator.pop(context);
+          });
         });
       } else {
         setState(() {

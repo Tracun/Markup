@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:calcular_preco_venda/bloc/ImpostoBloc.dart';
 import 'package:calcular_preco_venda/utils/Buttom.dart';
 import 'package:calcular_preco_venda/utils/Conversion.dart';
@@ -172,11 +174,12 @@ class _UpdateImpostoScreenState extends State<UpdateImpostoScreen> {
       if (isUpdated != null) {
         setState(() {
           _isInAsyncCall = false;
-          Messages().showAlertDialog(context, 'Imposto atualizado',
-              'Imposto ${descricaoController.text} atualizado com sucesso !');
-
-          descricaoController.clear();
-          porcentagemController.clear();
+          Messages().showOkDialog(context, 'Imposto atualizado',
+              'Imposto ${descricaoController.text} atualizado com sucesso !',
+              () {
+            Navigator.of(context).pop();
+            Navigator.pop(context);
+          });
         });
       } else {
         setState(() {

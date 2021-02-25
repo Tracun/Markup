@@ -172,11 +172,12 @@ class _UpdateTempoFabScreenState extends State<UpdateTempoFabScreen> {
       if (isUpdated != null) {
         setState(() {
           _isInAsyncCall = false;
-          Messages().showAlertDialog(context, 'TempoFab atualizado',
-              'TempoFab ${descricaoController.text} atualizado com sucesso !');
-
-          descricaoController.clear();
-          valorHoraController.clear();
+          Messages().showOkDialog(context, 'TempoFab atualizado',
+              'TempoFab ${descricaoController.text} atualizado com sucesso !',
+              () {
+            Navigator.of(context).pop();
+            Navigator.pop(context);
+          });
         });
       } else {
         setState(() {

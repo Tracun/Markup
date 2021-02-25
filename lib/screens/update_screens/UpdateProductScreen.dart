@@ -522,23 +522,11 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
       if (isUpdated > 0) {
         setState(() {
           _isInAsyncCall = false;
-          Messages().showAlertDialog(context, 'Produto Atualizado',
-              'Produto ${nameController.text} Atualizado com sucesso !');
-
-          nameController.clear();
-          encargoController.clear();
-          precoForaController.clear();
-          precoDentroController.clear();
-          uriImgController.clear();
-          precoForaController.clear();
-          custoController.clear();
-          lucroController.clear();
-          imp2Controller.clear();
-          imp1Controller.clear();
-          custoIndiretoController.clear();
-          outrosController.clear();
-          comissaoController.clear();
-          _image = null;
+          Messages().showOkDialog(context, 'Produto Atualizado',
+              'Produto ${nameController.text} Atualizado com sucesso !', () {
+            Navigator.of(context).pop();
+            Navigator.pop(context);
+          });
         });
       } else {
         Messages().showAlertDialog(

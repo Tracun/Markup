@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:calcular_preco_venda/bloc/ProductComBloc.dart';
 import 'package:calcular_preco_venda/objects/DespesaAdm.dart';
@@ -253,15 +254,15 @@ class _UpdateProductCompleteScreenState
       ),
     );
 
-    final newProductButton = SimpleRoundButtonGrad(
+    final updateProductButton = SimpleRoundButtonGrad(
       colors: [MyColors().appBarColor(), MyColors().buttonColor()],
       textColor: Colors.white,
       splashColor: Colors.white,
-      buttonText: "Cadastrar",
+      buttonText: "Atualizar",
       onPressed: () {
         if (!riKeys1.currentState.validate()) {
         } else {
-          insertProduct();
+          updateProduct();
         }
       },
     );
@@ -423,7 +424,7 @@ class _UpdateProductCompleteScreenState
                               SizedBox(width: 10.0),
                               Expanded(
                                 child: SizedBox(
-                                  child: newProductButton,
+                                  child: updateProductButton,
                                 ),
                               ),
                             ],
@@ -460,13 +461,16 @@ class _UpdateProductCompleteScreenState
 
   void createProduct() {
     _updatedProduct = new ProductCom(
-        id: 0,
+        id: widget.product.id,
         despesaAdm: selectedDespesaAdmList,
         impostos: selectedImpostoList,
         insumos: selectedInsumoList,
         rateio: selectedRateioList,
         tempoFab: selectedTempoFabList,
         nome: nameController.text,
+        precoVendaMarkup:
+            _conversion.replaceCommaToDot(precoVendaController.text),
+        custoTotalCalculado: _conversion.replaceCommaToDot(custoTotalController.text),
         custo: _conversion.replaceCommaToDot(custoController.text),
         lucro: _conversion.replaceCommaToDot(lucroController.text),
         custoIndireto: custoIndiretoController.text.isEmpty
@@ -502,22 +506,25 @@ class _UpdateProductCompleteScreenState
     });
   }
 
-  void insertProduct() async {
+  void updateProduct() async {
     createProduct();
 
     setState(() {
       _isInAsyncCall = true;
     });
     try {
+      log("widget: ${widget.productBloc}");
       var isUpdated = await widget.productBloc.updateProduct(_updatedProduct);
-      if (isUpdated > 0) {
+      log("isUpdated: $isUpdated");
+      if (isUpdated != null) {
         await SharedPrefs().setDBChange(true);
         setState(() {
           _isInAsyncCall = false;
-          Messages().showAlertDialog(context, 'Produto atualizado',
-              'Produto ${nameController.text} atualizado com sucesso !');
-
-          emptyFields();
+          Messages().showOkDialog(context, 'Produto atualizado',
+              'Produto ${nameController.text} atualizado com sucesso !', () {
+            Navigator.of(context).pop();
+            Navigator.pop(context);
+          });
         });
       } else {
         Messages().showAlertDialog(
@@ -549,24 +556,6 @@ class _UpdateProductCompleteScreenState
           ),
         )) ??
         false;
-  }
-
-  void emptyFields() {
-    nameController.clear();
-    precoVendaController.clear();
-    uriImgController.clear();
-    custoController.clear();
-    custoTotalController.clear();
-    lucroController.clear();
-    custoIndiretoController.clear();
-    comissaoController.clear();
-
-    selectedDespesaAdmList.clear();
-    selectedImpostoList.clear();
-    selectedInsumoList.clear();
-    selectedRateioList.clear();
-    selectedTempoFabList.clear();
-    _image = null;
   }
 
   loadProduct() {

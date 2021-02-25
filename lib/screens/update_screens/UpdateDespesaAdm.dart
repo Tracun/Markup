@@ -172,11 +172,12 @@ class _UpdateDespesaAdmScreenState extends State<UpdateDespesaAdmScreen> {
       if (isUpdated != null) {
         setState(() {
           _isInAsyncCall = false;
-          Messages().showAlertDialog(context, 'DespesaAdm atualizado',
-              'Despesa Adm ${descricaoController.text} atualizado com sucesso !');
-
-          descricaoController.clear();
-          valorController.clear();
+          Messages().showOkDialog(context, 'DespesaAdm atualizado',
+              'Despesa Adm ${descricaoController.text} atualizado com sucesso !',
+              () {
+            Navigator.of(context).pop();
+            Navigator.pop(context);
+          });
         });
       } else {
         setState(() {
