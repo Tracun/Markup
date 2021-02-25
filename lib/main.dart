@@ -10,8 +10,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Initialize without device test ids.
-  Admob.initialize(testDeviceIds: ["ca-app-pub-0943131909791545~3866398254"]);
+  // Initialize without device test ids. 
+  // testDeviceIds: ["ca-app-pub-0943131909791545~3866398254"]
+  Admob.initialize();
   await Admob.requestTrackingAuthorization();
   await FirebaseAdMob.instance.initialize(appId: "ca-app-pub-0943131909791545~3866398254");
   runApp(App());
@@ -48,9 +49,8 @@ class App extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate
       ],
       supportedLocales: [const Locale('pt', 'BR')],
-      title: 'Gianini Manutenção',
+      title: 'Markup home',
       debugShowCheckedModeBanner: false,
-      // home: ProductList(),
       home: HomePageScreen(),
       onGenerateRoute: routes(),
     );
@@ -58,7 +58,7 @@ class App extends StatelessWidget {
 
   Widget somethingWrong() {
     return MaterialApp(
-      title: 'Gianini Manutenção',
+      title: 'Calcular preço de venda - Markup',
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(
