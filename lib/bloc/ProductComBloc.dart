@@ -31,7 +31,7 @@ class ProductCompleteBloc {
     return ret;
   }
 
-  Future<int> updateProduct(ProductCom product) async {
+  Future<dynamic> updateProduct(ProductCom product) async {
     var ret = await _productDAO.updateProduct(product);
     getAll();
     return ret;
