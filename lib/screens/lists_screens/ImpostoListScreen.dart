@@ -221,6 +221,7 @@ class _ImpostoListAdmState extends State<ImpostoListScreen> {
                       Navigator.of(context).pop();
                     }, () {
                       // Não
+                      _impostoBloc.getAll();
                       Navigator.of(context).pop();
                     });
                   },

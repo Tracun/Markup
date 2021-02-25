@@ -58,7 +58,9 @@ class _InsumoListAdmState extends State<InsumoListScreen> {
                 size: 28,
               ),
               onPressed: () {
-                Messages().showAlertDialog(context, "Insumo Direto", "Insumo em Economia designa um bem ou serviço utilizado na produção de um outro bem ou serviço. Aqui, utilizamos o conceito de insumos diretos, ou seja, as matérias primas utilizadas em nossos produtos.\nEx.:\nNome: Farinha (kilo)\nValor: R\$ 3,50", buttonText: "Entendi");
+                Messages().showAlertDialog(context, "Insumo Direto",
+                    "Insumo em Economia designa um bem ou serviço utilizado na produção de um outro bem ou serviço. Aqui, utilizamos o conceito de insumos diretos, ou seja, as matérias primas utilizadas em nossos produtos.\nEx.:\nNome: Farinha (kilo)\nValor: R\$ 3,50",
+                    buttonText: "Entendi");
               }),
           IconButton(
               icon: Icon(
@@ -219,6 +221,7 @@ class _InsumoListAdmState extends State<InsumoListScreen> {
                       Navigator.of(context).pop();
                     }, () {
                       // Não
+                      _insumoBloc.getAll();
                       Navigator.of(context).pop();
                     });
                   },

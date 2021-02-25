@@ -226,6 +226,7 @@ class _DespesaAdmListAdmState extends State<DespesaAdmListScreen> {
                       Navigator.of(context).pop();
                     }, () {
                       // Não
+                      _despesaAdmBloc.getAll();
                       Navigator.of(context).pop();
                     });
                   },

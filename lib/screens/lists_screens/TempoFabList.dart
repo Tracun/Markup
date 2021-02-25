@@ -95,7 +95,8 @@ class _TempoFabListAdmState extends State<TempoFabListScreen> {
     );
   }
 
-  Widget buildTempoFabList(BuildContext context, int index, List<dynamic> list) {
+  Widget buildTempoFabList(
+      BuildContext context, int index, List<dynamic> list) {
     TempoFab tempoFab = list[index];
 
     return Padding(
@@ -221,6 +222,7 @@ class _TempoFabListAdmState extends State<TempoFabListScreen> {
                       Navigator.of(context).pop();
                     }, () {
                       // Não
+                      _tempoFabBloc.getAll();
                       Navigator.of(context).pop();
                     });
                   },

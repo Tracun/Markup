@@ -124,9 +124,9 @@ class _RateioListAdmState extends State<RateioListScreen> {
                         width: 80,
                         height: 80,
                         child: Image.asset(
-                                "assets/noImage.gif",
-                                fit: BoxFit.contain,
-                              ),
+                          "assets/noImage.gif",
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
                   ),
@@ -223,6 +223,7 @@ class _RateioListAdmState extends State<RateioListScreen> {
                       Navigator.of(context).pop();
                     }, () {
                       // Não
+                      _rateioBloc.getAll();
                       Navigator.of(context).pop();
                     });
                   },
