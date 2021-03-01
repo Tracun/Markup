@@ -14,7 +14,7 @@ void main() async {
   // testDeviceIds: ["ca-app-pub-0943131909791545~3866398254"]
   Admob.initialize();
   await Admob.requestTrackingAuthorization();
-  await FirebaseAdMob.instance.initialize(appId: "ca-app-pub-0943131909791545~3866398254");
+  await FirebaseAdMob.instance.initialize(appId: "ca-app-pub-0943131909791545~3866398254", analyticsEnabled: true);
   runApp(App());
 }
 

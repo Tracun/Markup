@@ -4,7 +4,6 @@ import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/cupertino.dart';
 
 class AdmobWidget {
-
   String idBloco = "ca-app-pub-0943131909791545/6552931294";
 
   AdmobBanner getBottomBanner() {
