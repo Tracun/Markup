@@ -11,6 +11,10 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="calcular preço venda"
         android:icon="@mipmap/launcher_icon">
+        <meta-data
+          android:name="com.google.android.gms.ads.APPLICATION_ID"
+          android:value="ca-app-pub-0943131909791545~3866398254"
+        />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -26,13 +30,6 @@
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
               />
-            <meta-data
-              android:name="com.google.android.gms.ads.APPLICATION_ID"
-              android:value="ca-app-pub-0943131909791545~3866398254"/>
-
-              <!--android:name="com.google.android.gms.ads.APPLICATION_ID"
-              android:value="ca-app-pub-3940256099942544~3347511713"/>
-              -->
               
             <!-- Displays an Android View that continues showing the launch screen
                  Drawable until Flutter paints its first frame, then this splash
