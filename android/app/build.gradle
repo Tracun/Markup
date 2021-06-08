@@ -13,12 +13,12 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '13'
+    flutterVersionCode = '15'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '2.0.4'
+    flutterVersionName = '2.0.6'
 }
 
 apply plugin: 'com.android.application'
@@ -61,6 +61,21 @@ android {
            storePassword keystoreProperties['storePassword']
        }
    }
+
+   flavorDimensions "app"
+    productFlavors {
+ 
+        free {
+            dimension "app"
+        }
+ 
+        paid {
+            dimension "app"
+            applicationId "com.wb.tracun.paidmarkup"
+            versionCode 5
+            versionName "2.0.0"
+        }
+    }
 
     buildTypes {
         release {
