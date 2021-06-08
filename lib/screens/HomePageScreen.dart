@@ -1,4 +1,8 @@
 import 'dart:developer';
+import 'dart:io';
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:calcular_preco_venda/services/FirebaseRemoteConfig.dart';
+import 'package:calcular_preco_venda/utils/CheckForUpdate.dart';
 import 'package:calcular_preco_venda/utils/MyColors.dart';
 import 'package:calcular_preco_venda/utils/ScreenNavigator.dart';
 import 'package:calcular_preco_venda/widgets/AdmobWidget.dart';
@@ -6,6 +10,7 @@ import 'package:calcular_preco_venda/widgets/NavDrawer.dart';
 import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePageScreen extends StatefulWidget {
   createState() => _ProductListAdmState();
@@ -14,14 +19,34 @@ class HomePageScreen extends StatefulWidget {
 class _ProductListAdmState extends State<HomePageScreen>
     with SingleTickerProviderStateMixin {
   String loadingText;
-
+  AdmobReward rewardAd;
   final loginPageRoute = "/";
 
   Animation<double> _animation;
   AnimationController _animationController;
 
+  String myAdImage;
+  String myAdText;
+  String myAdUrl;
+
+  bool showMyAd = false;
+
+  getMyAdData() async {
+    myAdImage = await FirebaseRemoteConfig().getMyAdImage();
+    myAdText = await FirebaseRemoteConfig().getMyAdText();
+    myAdUrl = await FirebaseRemoteConfig().getMyLinkAd();
+    showMyAd = await FirebaseRemoteConfig().showMyAd();
+
+    setState(() {});
+    checkVersion();
+  }
+
+  checkVersion() async => await CheckForUpdate().hasNewVersion(context);
+
   @override
   void initState() {
+    
+    getMyAdData();
     _animationController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 260),
@@ -30,6 +55,9 @@ class _ProductListAdmState extends State<HomePageScreen>
     final curvedAnimation =
         CurvedAnimation(curve: Curves.easeInOut, parent: _animationController);
     _animation = Tween<double>(begin: 0, end: 1).animate(curvedAnimation);
+
+    rewardAd = AdmobWidget().getRewardBanner(rewardAd);
+    rewardAd.load();
 
     super.initState();
   }
@@ -65,14 +93,75 @@ class _ProductListAdmState extends State<HomePageScreen>
         // ],
       ),
       resizeToAvoidBottomPadding: false,
-      body: SafeArea(
-        child: Container(
-          color: Colors.white,
-          padding: const EdgeInsets.only(left: 2.0, right: 2.0, bottom: 2.0),
+      body: SingleChildScrollView(
+        child: SafeArea(
           child: Container(
-            alignment: Alignment.center,
-            child: 
-          AdmobWidget().getMediumBanner(),),
+            color: Colors.white,
+            padding: const EdgeInsets.only(left: 2.0, right: 2.0, bottom: 2.0),
+            child: Column(
+              children: [
+                FlatButton(
+                    height: 40,
+                    color: Colors.green[100],
+                    child: Center(
+                      child: Text(
+                        'Ajude a manter o aplicativo gratuito, assista a um vídeo :)\nClique aqui',
+                        style: TextStyle(color: Colors.black, fontSize: 12),
+                      ),
+                    ),
+                    onPressed: () async {
+                      if (await rewardAd.isLoaded) {
+                        log("SHOW");
+                        rewardAd.show();
+                      } else {
+                        log("Erro");
+                      }
+                    },
+                  ),
+                showMyAd
+                    ? Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Column(
+                            children: [
+                              FadeInImage.assetNetwork(
+                                placeholder: "assets/icons/loading.jpg",
+                                image: myAdImage,
+                                width: 180,
+                              ),
+                              SizedBox(height: 10,),
+                              Text(
+                                myAdText,
+                                style: TextStyle(
+                                    color: Colors.red, fontSize: 14.0),
+                              ),
+                              SizedBox(height: 10,),
+                              FlatButton(
+                                child: Text(
+                                  "$myAdUrl",
+                                  style: TextStyle(
+                                      color: Colors.red, fontSize: 16.0),
+                                ),
+                                onPressed: () {
+                                  launch(myAdUrl);
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    : Text(""),
+                SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  child: AdmobWidget().getMediumBanner(),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
