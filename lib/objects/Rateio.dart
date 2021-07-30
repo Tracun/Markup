@@ -3,10 +3,11 @@ class Rateio {
   String descricao;
   double valor;
 
-  Rateio(
-      {this.id,
-      this.descricao,
-      this.valor,});
+  Rateio({
+    this.id,
+    this.descricao,
+    this.valor,
+  });
 
   Rateio fromMap(Map<dynamic, dynamic> json) {
     return Rateio(
@@ -34,14 +35,15 @@ class Rateio {
 class RateioList {
   int id;
   double porcentagemRateio;
+  String descricao;
 
-  RateioList(this.id, this.porcentagemRateio);
+  RateioList(this.id, this.porcentagemRateio, this.descricao);
 
   RateioList fromMap(Map<dynamic, dynamic> json) {
     return RateioList(
-      
       this.id = json['id'],
       this.porcentagemRateio = json['porcentagemRateio'],
+      this.descricao = json['descricao'],
     );
   }
 
@@ -49,6 +51,7 @@ class RateioList {
     return {
       'id': this.id,
       'porcentagemRateio': this.porcentagemRateio,
+      'descricao': this.descricao,
     };
   }
 }

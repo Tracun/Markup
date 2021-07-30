@@ -274,6 +274,7 @@ class _InsumoListWidgetState extends State<InsumoListWidget> {
                         new InsumoList(
                           _insumoList[selectedItem].id,
                           Conversion().replaceCommaToDot(quantController.text),
+                          _insumoList[selectedItem].nome,
                         ),
                       );
                       quantController.clear();
@@ -306,7 +307,7 @@ class _InsumoListWidgetState extends State<InsumoListWidget> {
                     Messages().showYesNoDialog(
                         context,
                         "Exclusão",
-                        "Deseja excluir o insumo ${widget.selectedInsumoList[index].id}?",
+                        "Deseja excluir o insumo ${widget.selectedInsumoList[index].name == null ? widget.selectedInsumoList[index].id : widget.selectedInsumoList[index].name}?",
                         null, () {
                       // Sim
                       Navigator.of(context).pop();
@@ -350,7 +351,7 @@ class _InsumoListWidgetState extends State<InsumoListWidget> {
                             left: 4.0, right: 4.0, top: 0.5, bottom: 0.5),
                         child: Container(
                           child: Text(
-                            "ID: ${list[index].id} - Quant: ${list[index].quant}",
+                            "ID: ${list[index].name == null ? list[index].id : list[index].name} - Quant: ${list[index].quant}",
                             style: TextStyle(
                               fontSize: 2.0,
                               // fontWeight: FontWeight.bold,

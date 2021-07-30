@@ -36,14 +36,16 @@ class DespesaAdm {
 class DespesaAdmList {
   int id;
   double quant;
+  String descricao;
 
-  DespesaAdmList(this.id, this.quant);
+  DespesaAdmList(this.id, this.quant, this.descricao);
 
   DespesaAdmList fromMap(Map<dynamic, dynamic> json) {
     return DespesaAdmList(
       
       this.id = json['id'],
       this.quant = json['quant'],
+      this.descricao = json['descricao'],
     );
   }
 
@@ -51,6 +53,7 @@ class DespesaAdmList {
     return {
       'id': this.id,
       'quant': this.quant,
+      'descricao': this.descricao,
     };
   }
 }

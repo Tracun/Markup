@@ -32,14 +32,15 @@ class TempoFab {
 class TempoFabList {
   int id;
   double quant;
+  String descricao;
 
-  TempoFabList(this.id, this.quant);
+  TempoFabList(this.id, this.quant, this.descricao);
 
   TempoFabList fromMap(Map<dynamic, dynamic> json) {
     return TempoFabList(
-      
       this.id = json['id'],
       this.quant = json['quant'],
+      this.descricao = json['descricao'],
     );
   }
 
@@ -47,6 +48,7 @@ class TempoFabList {
     return {
       'id': this.id,
       'quant': this.quant,
+      'descricao': this.descricao,
     };
   }
 }

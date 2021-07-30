@@ -271,6 +271,7 @@ class _TempoFabListWidgetState extends State<TempoFabListWidget> {
                         new TempoFabList(
                           _tempoFabList[selectedItem].id,
                           Conversion().replaceCommaToDot(quantHorasController.text),
+                          _tempoFabList[selectedItem].descricao,
                         ),
                       );
                       quantHorasController.clear();
@@ -303,7 +304,7 @@ class _TempoFabListWidgetState extends State<TempoFabListWidget> {
                     Messages().showYesNoDialog(
                         context,
                         "Exclusão",
-                        "Deseja excluir o tempoFab ${widget.selectedTempoFabList[index].id}?",
+                        "Deseja excluir o tempoFab ${widget.selectedTempoFabList[index].descricao == null ? widget.selectedTempoFabList[index].id : widget.selectedTempoFabList[index].descricao}?",
                         null, () {
                       // Sim
                       Navigator.of(context).pop();
@@ -348,7 +349,7 @@ class _TempoFabListWidgetState extends State<TempoFabListWidget> {
                             left: 4.0, right: 4.0, top: 0.5, bottom: 0.5),
                         child: Container(
                           child: Text(
-                            "ID: ${list[index].id} - Quant: ${list[index].quant}",
+                            "ID: ${list[index].descricao == null ? list[index].id : list[index].descricao} - Quant: ${list[index].quant}",
                             style: TextStyle(
                               fontSize: 2.0,
                               // fontWeight: FontWeight.bold,

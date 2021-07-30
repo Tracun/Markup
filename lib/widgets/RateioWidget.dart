@@ -271,6 +271,7 @@ class _RateioListWidgetState extends State<RateioListWidget> {
                         new RateioList(
                           _rateioList[selectedItem].id,
                           Conversion().replaceCommaToDot(porcentagemController.text),
+                          _rateioList[selectedItem].descricao,
                         ),
                       );
                       porcentagemController.clear();
@@ -303,7 +304,7 @@ class _RateioListWidgetState extends State<RateioListWidget> {
                     Messages().showYesNoDialog(
                         context,
                         "Exclusão",
-                        "Deseja excluir o rateio ${widget.selectedRateioList[index].id}?",
+                        "Deseja excluir o rateio ${widget.selectedRateioList[index].descricao == null ? widget.selectedRateioList[index].id : widget.selectedRateioList[index].descricao}?",
                         null, () {
                       // Sim
                       Navigator.of(context).pop();
@@ -348,7 +349,7 @@ class _RateioListWidgetState extends State<RateioListWidget> {
                             left: 4.0, right: 4.0, top: 0.5, bottom: 0.5),
                         child: Container(
                           child: Text(
-                            "ID: ${list[index].id} - Quant: ${list[index].porcentagemRateio}",
+                            "ID: ${list[index].descricao == null ? list[index].id : list[index].descricao} - Quant: ${list[index].porcentagemRateio}",
                             style: TextStyle(
                               fontSize: 2.0,
                               // fontWeight: FontWeight.bold,

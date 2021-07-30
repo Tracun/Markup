@@ -50,28 +50,28 @@ class ProductCom {
     if (json["insumos"] != null) {
       insumosAux = new List<InsumoList>();
       json["insumos"].forEach((v) {
-        insumosAux.add(InsumoList(v['id'], v['quant']));
+        insumosAux.add(InsumoList(v['id'], v['quant'], v['name']));
       });
     }
 
     if (json["tempoFab"] != null) {
       tempoFabAux = new List<TempoFabList>();
       json["tempoFab"].forEach((v) {
-        tempoFabAux.add(TempoFabList(v['id'], v['quant']));
+        tempoFabAux.add(TempoFabList(v['id'], v['quant'], v['descricao']));
       });
     }
 
     if (json["despesaAdm"] != null) {
       despesaAdmAux = new List<DespesaAdmList>();
       json["despesaAdm"].forEach((v) {
-        despesaAdmAux.add(DespesaAdmList(v['id'], v['quant']));
+        despesaAdmAux.add(DespesaAdmList(v['id'], v['quant'], v['descricao']));
       });
     }
 
     if (json["rateio"] != null) {
       rateioAux = new List<RateioList>();
       json["rateio"].forEach((v) {
-        rateioAux.add(RateioList(v['id'], v['porcentagemRateio']));
+        rateioAux.add(RateioList(v['id'], v['porcentagemRateio'], v['descricao']));
       });
     }
 

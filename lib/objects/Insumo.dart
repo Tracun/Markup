@@ -40,14 +40,15 @@ class Insumo {
 class InsumoList {
   int id;
   double quant;
+  String name;
 
-  InsumoList(this.id, this.quant);
+  InsumoList(this.id, this.quant, this.name);
 
   InsumoList fromMap(Map<dynamic, dynamic> json) {
     return InsumoList(
-      
       this.id = json['id'],
       this.quant = json['quant'],
+      this.name = json['name'],
     );
   }
 
@@ -55,6 +56,7 @@ class InsumoList {
     return {
       'id': this.id,
       'quant': this.quant,
+      'name': this.name,
     };
   }
 }

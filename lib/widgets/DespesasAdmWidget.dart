@@ -271,6 +271,7 @@ class _DespesaAdmListWidgetState extends State<DespesaAdmListWidget> {
                         new DespesaAdmList(
                           _despesaAdmList[selectedItem].id,
                           Conversion().replaceCommaToDot(quantController.text),
+                          _despesaAdmList[selectedItem].descricao,
                         ),
                       );
                       quantController.clear();
@@ -305,7 +306,7 @@ class _DespesaAdmListWidgetState extends State<DespesaAdmListWidget> {
                     Messages().showYesNoDialog(
                         context,
                         "Exclusão",
-                        "Deseja excluir a despesaAdm ${widget.selectedDespesaAdmList[index].id}?",
+                        "Deseja excluir a despesaAdm ${widget.selectedDespesaAdmList[index].descricao == null ? widget.selectedDespesaAdmList[index].id : widget.selectedDespesaAdmList[index].descricao}?",
                         null, () {
                       // Sim
                       Navigator.of(context).pop();
@@ -349,7 +350,7 @@ class _DespesaAdmListWidgetState extends State<DespesaAdmListWidget> {
                             left: 4.0, right: 4.0, top: 0.5, bottom: 0.5),
                         child: Container(
                           child: Text(
-                            "ID: ${list[index].id} - Quant: ${list[index].quant}",
+                            "ID: ${list[index].descricao == null ? list[index].id : list[index].descricao} - Quant: ${list[index].quant}",
                             style: TextStyle(
                               fontSize: 2.0,
                               // fontWeight: FontWeight.bold,
