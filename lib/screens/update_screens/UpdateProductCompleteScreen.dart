@@ -262,7 +262,11 @@ class _UpdateProductCompleteScreenState
       onPressed: () {
         if (!riKeys1.currentState.validate()) {
         } else {
-          updateProduct();
+          createProduct();
+          Future.delayed(Duration(seconds: 1, milliseconds: 300), () {
+            log("DEPOIS");
+            updateProduct();
+          });
         }
       },
     );
@@ -460,6 +464,10 @@ class _UpdateProductCompleteScreenState
   }
 
   void createProduct() {
+    setState(() {
+      _isInAsyncCall = true;
+    });
+    
     _updatedProduct = new ProductCom(
         id: widget.product.id,
         despesaAdm: selectedDespesaAdmList,
@@ -470,7 +478,8 @@ class _UpdateProductCompleteScreenState
         nome: nameController.text,
         precoVendaMarkup:
             _conversion.replaceCommaToDot(precoVendaController.text),
-        custoTotalCalculado: _conversion.replaceCommaToDot(custoTotalController.text),
+        custoTotalCalculado:
+            _conversion.replaceCommaToDot(custoTotalController.text),
         custo: _conversion.replaceCommaToDot(custoController.text),
         lucro: _conversion.replaceCommaToDot(lucroController.text),
         custoIndireto: custoIndiretoController.text.isEmpty
@@ -491,6 +500,7 @@ class _UpdateProductCompleteScreenState
     var custoTotal = valores['custoTotal'];
 
     if (pv == -333) {
+      _isInAsyncCall = false;
       Messages().showAlertDialog(context, "Erro ao calcular preço",
           "A soma das porcentagens (imposto/lucro/custoIndireto/comissão) não pode exceder 100%");
     }
@@ -503,12 +513,11 @@ class _UpdateProductCompleteScreenState
       _updatedProduct.precoVendaMarkup = double.parse(pv.toStringAsFixed(2));
       _updatedProduct.custoTotalCalculado =
           double.parse(custoTotal.toStringAsFixed(2));
+      _isInAsyncCall = false;
     });
   }
 
   void updateProduct() async {
-    createProduct();
-
     setState(() {
       _isInAsyncCall = true;
     });
@@ -527,10 +536,12 @@ class _UpdateProductCompleteScreenState
           });
         });
       } else {
+        _isInAsyncCall = false;
         Messages().showAlertDialog(
             context, 'Erro', 'Ocorreu um erro ao tentar atualizar o produto.');
       }
     } catch (e) {
+      _isInAsyncCall = false;
       Messages().showAlertDialog(context, 'Erro',
           'Ocorreu um erro ao tentar atualizar o produto.\nErro: $e');
     }

@@ -403,7 +403,7 @@ class _NewProductCompleteScreenState extends State<NewProductCompleteScreen>
                 child: Container(
                   color: Colors.white,
                   child: Padding(
-                    padding: const EdgeInsets.all(36.0),
+                    padding: const EdgeInsets.all(24.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -504,6 +504,8 @@ class _NewProductCompleteScreenState extends State<NewProductCompleteScreen>
       lucroBrutoController.text = "R\$ ${(pv - custoTotal).toStringAsFixed(2)}";
       product.precoVendaMarkup = double.parse(pv.toStringAsFixed(2));
       product.custoTotalCalculado = double.parse(custoTotal.toStringAsFixed(2));
+
+      _isInAsyncCall = false;
     });
   }
 
@@ -522,10 +524,12 @@ class _NewProductCompleteScreenState extends State<NewProductCompleteScreen>
           emptyFields();
         });
       } else {
+        _isInAsyncCall = false;
         Messages().showAlertDialog(
             context, 'Erro', 'Ocorreu um erro ao tentar inserir o produto.');
       }
     } catch (e) {
+      _isInAsyncCall = false;
       Messages().showAlertDialog(context, 'Erro',
           'Ocorreu um erro ao tentar inserir o produto.\nErro: $e');
     }
