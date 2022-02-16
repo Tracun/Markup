@@ -48,15 +48,15 @@ class AdmobWidget {
   }
 
 
-  AdmobReward getRewardBanner(AdmobReward rewardAd) {
-    return AdmobReward(
-      adUnitId: idBlocoReward,
-      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
-        if (event == AdmobAdEvent.closed) rewardAd.load();
-        handleEvent(event, args, 'Reward');
-      },
-    );
-  }
+  // AdmobReward getRewardBanner(AdmobReward rewardAd) {
+  //   return AdmobReward(
+  //     adUnitId: idBlocoReward,
+  //     listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+  //       if (event == AdmobAdEvent.closed) rewardAd.load();
+  //       handleEvent(event, args, 'Reward');
+  //     },
+  //   );
+  // }
 
   void handleEvent(
       AdmobAdEvent event, Map<String, dynamic> args, String adType) {
