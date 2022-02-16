@@ -25,6 +25,7 @@ class _ProductListAdmState extends State<HomePageScreen>
   Animation<double> _animation;
   AnimationController _animationController;
 
+  int myAdNum;
   String myAdImage;
   String myAdText;
   String myAdUrl;
@@ -32,10 +33,16 @@ class _ProductListAdmState extends State<HomePageScreen>
   bool showMyAd = false;
 
   getMyAdData() async {
-    myAdImage = await FirebaseRemoteConfig().getMyAdImage();
-    myAdText = await FirebaseRemoteConfig().getMyAdText();
-    myAdUrl = await FirebaseRemoteConfig().getMyLinkAd();
+    myAdNum = await FirebaseRemoteConfig().getMyAdNum();
+
+    myAdImage = await FirebaseRemoteConfig().getMyAdImage(myAdNum);
+    myAdText = await FirebaseRemoteConfig().getMyAdText(myAdNum);
+    myAdUrl = await FirebaseRemoteConfig().getMyLinkAd(myAdNum);
     showMyAd = await FirebaseRemoteConfig().showMyAd();
+
+    print("showMyAd: $showMyAd");
+
+    showMyAd == null ? showMyAd = false : null;
 
     setState(() {});
     checkVersion();
@@ -45,7 +52,6 @@ class _ProductListAdmState extends State<HomePageScreen>
 
   @override
   void initState() {
-    
     getMyAdData();
     _animationController = AnimationController(
       vsync: this,
@@ -56,14 +62,17 @@ class _ProductListAdmState extends State<HomePageScreen>
         CurvedAnimation(curve: Curves.easeInOut, parent: _animationController);
     _animation = Tween<double>(begin: 0, end: 1).animate(curvedAnimation);
 
-    rewardAd = AdmobWidget().getRewardBanner(rewardAd);
-    rewardAd.load();
+    // rewardAd = AdmobWidget().getRewardBanner(rewardAd);
+    // rewardAd.load();
 
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    print("width: $width");
     return Scaffold(
       drawer: NavDrawer(),
       appBar: new AppBar(
@@ -100,56 +109,72 @@ class _ProductListAdmState extends State<HomePageScreen>
             padding: const EdgeInsets.only(left: 2.0, right: 2.0, bottom: 2.0),
             child: Column(
               children: [
-                FlatButton(
-                    height: 40,
-                    color: Colors.green[100],
-                    child: Center(
-                      child: Text(
-                        'Ajude a manter o aplicativo gratuito, assista a um vídeo :)\nClique aqui',
-                        style: TextStyle(color: Colors.black, fontSize: 12),
-                      ),
-                    ),
-                    onPressed: () async {
-                      if (await rewardAd.isLoaded) {
-                        log("SHOW");
-                        rewardAd.show();
-                      } else {
-                        log("Erro");
-                      }
-                    },
-                  ),
+                // FlatButton(
+                //     height: 40,
+                //     color: Colors.green[100],
+                //     child: Center(
+                //       child: Text(
+                //         'Ajude a manter o aplicativo gratuito, assista a um vídeo :)\nClique aqui',
+                //         style: TextStyle(color: Colors.black, fontSize: 12),
+                //       ),
+                //     ),
+                //     onPressed: () async {
+                //       if (await rewardAd.isLoaded) {
+                //         log("SHOW");
+                //         rewardAd.show();
+                //       } else {
+                //         log("Erro");
+                //       }
+                //     },
+                //   ),
                 showMyAd
-                    ? Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          alignment: Alignment.center,
-                          child: Column(
-                            children: [
-                              FadeInImage.assetNetwork(
-                                placeholder: "assets/icons/loading.jpg",
-                                image: myAdImage,
-                                width: 180,
+                    ? FlatButton(
+                        child: Card(
+                          shadowColor: Colors.red,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              width: width * 0.8,
+                              height: height * 0.5,
+                              alignment: Alignment.center,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  FadeInImage.assetNetwork(
+                                    placeholder: "assets/icons/loading.jpg",
+                                    image: myAdImage,
+                                    width: width*0.5,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    myAdText,
+                                    style: TextStyle(
+                                        color: Colors.red, fontSize: 18.0),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  FlatButton(
+                                    child: Text(
+                                      "$myAdUrl",
+                                      style: TextStyle(
+                                          color: Colors.red, fontSize: 20.0),
+                                    ),
+                                    onPressed: () {
+                                      launch(myAdUrl);
+                                    },
+                                  ),
+                                ],
                               ),
-                              SizedBox(height: 10,),
-                              Text(
-                                myAdText,
-                                style: TextStyle(
-                                    color: Colors.red, fontSize: 14.0),
-                              ),
-                              SizedBox(height: 10,),
-                              FlatButton(
-                                child: Text(
-                                  "$myAdUrl",
-                                  style: TextStyle(
-                                      color: Colors.red, fontSize: 16.0),
-                                ),
-                                onPressed: () {
-                                  launch(myAdUrl);
-                                },
-                              ),
-                            ],
+                            ),
                           ),
                         ),
+                        onPressed: () {
+                          launch(myAdUrl);
+                        },
                       )
                     : Text(""),
                 SizedBox(

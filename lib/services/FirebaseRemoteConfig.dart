@@ -4,7 +4,7 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 class FirebaseRemoteConfig {
 
-  Future<String> getMyAdImage() async {
+  Future<String> getMyAdImage(int adNum) async {
     //Get Latest version info from firebase config
     final RemoteConfig remoteConfig = await RemoteConfig.instance;
 
@@ -13,7 +13,7 @@ class FirebaseRemoteConfig {
       await remoteConfig.fetch(expiration: const Duration(seconds: 0));
       await remoteConfig.activateFetched();
 
-      return remoteConfig.getString('myAdImage');
+      return remoteConfig.getString('myAdImage$adNum');
     } on FetchThrottledException catch (exception) {
       // Fetch throttled.
       log("$exception");
@@ -25,7 +25,7 @@ class FirebaseRemoteConfig {
     }
   }
 
-  Future<String> getMyAdText() async {
+  Future<int> getMyAdNum() async {
     //Get Latest version info from firebase config
     final RemoteConfig remoteConfig = await RemoteConfig.instance;
 
@@ -34,7 +34,28 @@ class FirebaseRemoteConfig {
       await remoteConfig.fetch(expiration: const Duration(seconds: 0));
       await remoteConfig.activateFetched();
 
-      return remoteConfig.getString('myAdText');
+      return remoteConfig.getInt('myAdNum');
+    } on FetchThrottledException catch (exception) {
+      // Fetch throttled.
+      log("$exception");
+      return 0;
+    } catch (exception) {
+      log('Unable to fetch remote config. Cached or default values will be '
+          'used');
+      return 0;
+    }
+  }
+
+  Future<String> getMyAdText(int adNum) async {
+    //Get Latest version info from firebase config
+    final RemoteConfig remoteConfig = await RemoteConfig.instance;
+
+    try {
+      // Using default duration to force fetching from remote server.
+      await remoteConfig.fetch(expiration: const Duration(seconds: 0));
+      await remoteConfig.activateFetched();
+
+      return remoteConfig.getString('myAdText$adNum');
     } on FetchThrottledException catch (exception) {
       // Fetch throttled.
       log("$exception");
@@ -46,7 +67,7 @@ class FirebaseRemoteConfig {
     }
   }
 
-  Future<String> getMyLinkAd() async {
+  Future<String> getMyLinkAd(int adNum) async {
     //Get Latest version info from firebase config
     final RemoteConfig remoteConfig = await RemoteConfig.instance;
 
@@ -55,7 +76,7 @@ class FirebaseRemoteConfig {
       await remoteConfig.fetch(expiration: const Duration(seconds: 0));
       await remoteConfig.activateFetched();
 
-      return remoteConfig.getString('myAdLink');
+      return remoteConfig.getString('myAdLink$adNum');
     } on FetchThrottledException catch (exception) {
       // Fetch throttled.
       log("$exception");
