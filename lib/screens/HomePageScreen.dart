@@ -6,6 +6,7 @@ import 'package:calcular_preco_venda/utils/CheckForUpdate.dart';
 import 'package:calcular_preco_venda/utils/MyColors.dart';
 import 'package:calcular_preco_venda/utils/ScreenNavigator.dart';
 import 'package:calcular_preco_venda/widgets/AdmobWidget.dart';
+import 'package:calcular_preco_venda/widgets/MyAdWidget.dart';
 import 'package:calcular_preco_venda/widgets/NavDrawer.dart';
 import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
@@ -18,26 +19,26 @@ class HomePageScreen extends StatefulWidget {
 
 class _ProductListAdmState extends State<HomePageScreen>
     with SingleTickerProviderStateMixin {
-  String loadingText;
-  AdmobReward rewardAd;
+  String loadingText = "";
+  late AdmobReward rewardAd;
   final loginPageRoute = "/";
 
-  Animation<double> _animation;
-  AnimationController _animationController;
+  late Animation<double> _animation;
+  late AnimationController _animationController;
 
-  int myAdNum;
-  String myAdImage;
-  String myAdText;
-  String myAdUrl;
+  int? myAdNum;
+  String? myAdImage;
+  String? myAdText;
+  String? myAdUrl;
 
-  bool showMyAd = false;
+  bool? showMyAd = false;
 
   getMyAdData() async {
     myAdNum = await FirebaseRemoteConfig().getMyAdNum();
 
-    myAdImage = await FirebaseRemoteConfig().getMyAdImage(myAdNum);
-    myAdText = await FirebaseRemoteConfig().getMyAdText(myAdNum);
-    myAdUrl = await FirebaseRemoteConfig().getMyLinkAd(myAdNum);
+    // myAdImage = await FirebaseRemoteConfig().getMyAdImage(myAdNum!);
+    // myAdText = await FirebaseRemoteConfig().getMyAdText(myAdNum!);
+    // myAdUrl = await FirebaseRemoteConfig().getMyLinkAd(myAdNum!);
     showMyAd = await FirebaseRemoteConfig().showMyAd();
 
     print("showMyAd: $showMyAd");
@@ -101,7 +102,7 @@ class _ProductListAdmState extends State<HomePageScreen>
         //       }),
         // ],
       ),
-      resizeToAvoidBottomPadding: false,
+
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(
@@ -127,54 +128,9 @@ class _ProductListAdmState extends State<HomePageScreen>
                 //       }
                 //     },
                 //   ),
-                showMyAd
-                    ? FlatButton(
-                        child: Card(
-                          shadowColor: Colors.red,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              width: width * 0.8,
-                              height: height * 0.5,
-                              alignment: Alignment.center,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  FadeInImage.assetNetwork(
-                                    placeholder: "assets/icons/loading.jpg",
-                                    image: myAdImage,
-                                    width: width*0.5,
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    myAdText,
-                                    style: TextStyle(
-                                        color: Colors.red, fontSize: 18.0),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  FlatButton(
-                                    child: Text(
-                                      "$myAdUrl",
-                                      style: TextStyle(
-                                          color: Colors.red, fontSize: 20.0),
-                                    ),
-                                    onPressed: () {
-                                      launch(myAdUrl);
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        onPressed: () {
-                          launch(myAdUrl);
-                        },
+                showMyAd!
+                    ? MyAdWidget(
+                        AdSize: 4,
                       )
                     : Text(""),
                 SizedBox(
@@ -237,7 +193,7 @@ class _ProductListAdmState extends State<HomePageScreen>
             ? _animationController.reverse
             : _animationController.forward,
         // Floating Action button Icon color
-        iconColor: Colors.blue,
+        iconColor: Colors.white,
         // Flaoting Action button Icon
         animatedIconData: AnimatedIcons.menu_home,
       ),
