@@ -13,7 +13,7 @@ class TempoFabListScreen extends StatefulWidget {
 }
 
 class _TempoFabListAdmState extends State<TempoFabListScreen> {
-  String loadingText;
+  String loadingText = "";
 
   final TempoFabBloc _tempoFabBloc = TempoFabBloc();
 
@@ -73,7 +73,6 @@ class _TempoFabListAdmState extends State<TempoFabListScreen> {
               }),
         ],
       ),
-      resizeToAvoidBottomPadding: false,
       body: SafeArea(
         child: Container(
           color: Colors.white,
@@ -142,7 +141,7 @@ class _TempoFabListAdmState extends State<TempoFabListScreen> {
                           padding: const EdgeInsets.only(right: 8.0, left: 6.0),
                           child: Container(
                               child: Text(
-                            tempoFab.descricao,
+                            tempoFab.descricao!,
                             style: TextStyle(
                                 fontSize: 20.0, fontWeight: FontWeight.bold),
                           )),
@@ -193,9 +192,9 @@ class _TempoFabListAdmState extends State<TempoFabListScreen> {
       but returned returned 0 records of tempoFab from DB.
       If that the case show user that you have empty tempoFabs
       */
-      return snapshot.data.length != 0
+      return snapshot.data!.length != 0
           ? new ListView.builder(
-              itemCount: snapshot.data.length,
+              itemCount: snapshot.data!.length,
               itemBuilder: (BuildContext context, int index) {
                 return Dismissible(
                   background: Container(
@@ -215,10 +214,10 @@ class _TempoFabListAdmState extends State<TempoFabListScreen> {
                     Messages().showYesNoDialog(
                         context,
                         "Exclusão",
-                        "Deseja excluir o item ${snapshot.data[index].descricao}?",
+                        "Deseja excluir o item ${snapshot.data![index].descricao}?",
                         null, () async {
                       // Sim
-                      _tempoFabBloc.deleteById(snapshot.data[index].id);
+                      _tempoFabBloc.deleteById(snapshot.data![index].id!);
                       Navigator.of(context).pop();
                     }, () {
                       // Não
@@ -229,10 +228,10 @@ class _TempoFabListAdmState extends State<TempoFabListScreen> {
                   direction: _dismissDirection,
                   key: UniqueKey(),
                   child: GestureDetector(
-                    child: buildTempoFabList(context, index, snapshot.data),
+                    child: buildTempoFabList(context, index, snapshot.data!),
                     onTap: () {
                       ScreenNavigator().updateTempoFab(
-                          context, snapshot.data[index], _tempoFabBloc);
+                          context, snapshot.data![index], _tempoFabBloc);
                     },
                   ),
                 );

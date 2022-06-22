@@ -55,7 +55,7 @@ const editTempoFab = "/editTempoFab";
 
 RouteFactory routes() {
   return (settings) {
-    final Map<String, dynamic> arguments = settings.arguments;
+    final Object? arguments = settings.arguments;
     Widget screen;
 
     switch (settings.name) {
@@ -63,6 +63,7 @@ RouteFactory routes() {
         screen = HomePageScreen();
         break;
       case newProduct:
+        arguments as Map<String, dynamic>;
         screen = NewProductScreen(
           arguments['productBloc'],
         );
@@ -71,19 +72,24 @@ RouteFactory routes() {
         screen = ProductList();
         break;
       case editProduct:
+        arguments as Map<String, dynamic>;
         screen =
             UpdateProductScreen(arguments['product'], arguments['productBloc']);
         break;
       case newProductCom:
+        arguments as Map<String, dynamic>;
         screen = NewProductCompleteScreen(arguments['productCompleteBloc']);
         break;
       case productComList:
         screen = ProductListCompleto();
         break;
       case editProductCom:
-        screen = UpdateProductCompleteScreen(arguments['product'], arguments['productCompleteBloc']);
+        arguments as Map<String, dynamic>;
+        screen = UpdateProductCompleteScreen(
+            arguments['product'], arguments['productCompleteBloc']);
         break;
       case newInsumo:
+        arguments as Map<String, dynamic>;
         screen = NewInsumoScreen(
           arguments['insumoBloc'],
         );
@@ -92,10 +98,12 @@ RouteFactory routes() {
         screen = InsumoListScreen();
         break;
       case editInsumo:
+        arguments as Map<String, dynamic>;
         screen =
             UpdateInsumoScreen(arguments['insumo'], arguments['insumoBloc']);
         break;
       case newRateio:
+        arguments as Map<String, dynamic>;
         screen = NewRateioScreen(
           arguments['rateioBloc'],
         );
@@ -104,9 +112,11 @@ RouteFactory routes() {
         screen = RateioListScreen();
         break;
       case editRateio:
+        arguments as Map<String, dynamic>;
         screen = UpdateRateio(arguments['rateio'], arguments['rateioBloc']);
         break;
       case newImposto:
+        arguments as Map<String, dynamic>;
         screen = NewImpostoScreen(
           arguments['impostoBloc'],
         );
@@ -115,10 +125,12 @@ RouteFactory routes() {
         screen = ImpostoListScreen();
         break;
       case editImposto:
+        arguments as Map<String, dynamic>;
         screen =
             UpdateImpostoScreen(arguments['imposto'], arguments['impostoBloc']);
         break;
       case newDespesaAdm:
+        arguments as Map<String, dynamic>;
         screen = NewDespesaAdmScreen(
           arguments['despesaAdmBloc'],
         );
@@ -127,10 +139,12 @@ RouteFactory routes() {
         screen = DespesaAdmListScreen();
         break;
       case editDespesaAdm:
+        arguments as Map<String, dynamic>;
         screen = UpdateDespesaAdmScreen(
             arguments['despesaAdm'], arguments['despesaAdmBloc']);
         break;
       case newTempoFab:
+        arguments as Map<String, dynamic>;
         screen = NewTempoFabScreen(
           arguments['tempoFabBloc'],
         );
@@ -139,6 +153,7 @@ RouteFactory routes() {
         screen = TempoFabListScreen();
         break;
       case editTempoFab:
+        arguments as Map<String, dynamic>;
         screen = UpdateTempoFabScreen(
             arguments['tempoFab'], arguments['tempoFabBloc']);
         break;

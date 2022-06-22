@@ -42,7 +42,7 @@ class ImpostoBloc {
     return ret;
   }
 
-  Future<Imposto> getById(int id) async {
+  Future<Imposto?> getById(int id) async {
     var ret = await _impostoDAO.getById(id);
     return ret;
   }

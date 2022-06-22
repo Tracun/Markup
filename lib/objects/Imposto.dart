@@ -1,8 +1,8 @@
 class Imposto {
 
-    int id;
-    String descricao;
-    double porcentagem;
+    int? id;
+    String? descricao;
+    double? porcentagem;
 
     Imposto({
       this.id,

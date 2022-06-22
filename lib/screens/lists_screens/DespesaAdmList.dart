@@ -14,7 +14,7 @@ class DespesaAdmListScreen extends StatefulWidget {
 }
 
 class _DespesaAdmListAdmState extends State<DespesaAdmListScreen> {
-  String loadingText;
+  String loadingText = "";
 
   final DespesaAdmBloc _despesaAdmBloc = DespesaAdmBloc();
 
@@ -76,7 +76,6 @@ class _DespesaAdmListAdmState extends State<DespesaAdmListScreen> {
               }),
         ],
       ),
-      resizeToAvoidBottomPadding: false,
       body: SafeArea(
         child: Container(
           color: Colors.white,
@@ -145,7 +144,7 @@ class _DespesaAdmListAdmState extends State<DespesaAdmListScreen> {
                           padding: const EdgeInsets.only(right: 8.0, left: 6.0),
                           child: Container(
                               child: Text(
-                            despesaAdm.descricao,
+                            despesaAdm.descricao!,
                             style: TextStyle(
                                 fontSize: 20.0, fontWeight: FontWeight.bold),
                           )),
@@ -197,9 +196,9 @@ class _DespesaAdmListAdmState extends State<DespesaAdmListScreen> {
       but returned returned 0 records of despesaAdm from DB.
       If that the case show user that you have empty despesaAdms
       */
-      return snapshot.data.length != 0
+      return snapshot.data!.length != 0
           ? new ListView.builder(
-              itemCount: snapshot.data.length,
+              itemCount: snapshot.data!.length,
               itemBuilder: (BuildContext context, int index) {
                 return Dismissible(
                   background: Container(
@@ -219,10 +218,10 @@ class _DespesaAdmListAdmState extends State<DespesaAdmListScreen> {
                     Messages().showYesNoDialog(
                         context,
                         "Exclusão",
-                        "Deseja excluir o item ${snapshot.data[index].descricao}?",
+                        "Deseja excluir o item ${snapshot.data![index].descricao}?",
                         null, () async {
                       // Sim
-                      _despesaAdmBloc.deleteById(snapshot.data[index].id);
+                      _despesaAdmBloc.deleteById(snapshot.data![index].id!);
                       Navigator.of(context).pop();
                     }, () {
                       // Não
@@ -233,10 +232,10 @@ class _DespesaAdmListAdmState extends State<DespesaAdmListScreen> {
                   direction: _dismissDirection,
                   key: UniqueKey(),
                   child: GestureDetector(
-                    child: buildDespesaAdmList(context, index, snapshot.data),
+                    child: buildDespesaAdmList(context, index, snapshot.data!),
                     onTap: () {
                       ScreenNavigator().updateDespesaAdm(
-                          context, snapshot.data[index], _despesaAdmBloc);
+                          context, snapshot.data![index], _despesaAdmBloc);
                     },
                   ),
                 );

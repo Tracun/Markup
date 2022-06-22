@@ -14,6 +14,6 @@ class SharedPrefs{
 
       return false;
     }
-    return prefs.getBool('DBChanges');
+    return prefs.getBool('DBChanges')!;
   }
 }

@@ -3,15 +3,15 @@ import 'dart:developer';
 import 'package:calcular_preco_venda/objects/Product.dart';
 import 'package:calcular_preco_venda/services/DB/Database.dart';
 
-class ProductDAO{
+class ProductDAO {
+  final dbProvider = DBProvider.dbProvider;
 
-    final dbProvider = DBProvider.dbProvider;
-  
-    Future<dynamic> newProduct(Product newProduct) async {
+  Future<dynamic> newProduct(Product newProduct) async {
+    print("newProduct = ${newProduct.toMap()}");
     final db = await dbProvider.database;
     //get the biggest id in the table
     var table = await db.rawQuery("SELECT MAX(id)+1 as id FROM Product");
-    int id = table.first["id"];
+    int? id = table.first["id"] != null ? table.first["id"] as int : 1;
     //insert to the table using the new id
     var raw = await db.rawInsert(
         "INSERT Into Product (id, nome, custo, encargo, comissao, lucro, outros, imp1, imp2, custoIndireto, precoFora, precoDentro, uriImg)"
@@ -54,6 +54,9 @@ class ProductDAO{
     var res = await db.query("Product");
     List<Product> list =
         res.isNotEmpty ? res.map((c) => Product.fromMap(c)).toList() : [];
+
+    list.forEach((element) {print("ALL LIST PRODUCST = ${element.toMap()}");});
+    
     return list;
   }
 

@@ -33,7 +33,7 @@ class RateioDAO {
     return snapshots;
   }
 
-  Future<Rateio> getById(rateioId) async {
+  Future<Rateio?> getById(rateioId) async {
     return await _genericModel.getRateioById(rateioId);
   }
 }

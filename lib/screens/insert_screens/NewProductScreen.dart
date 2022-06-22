@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:calcular_preco_venda/objects/Product.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class NewProductScreen extends StatefulWidget {
   final ProductBloc productBloc;
@@ -49,16 +49,16 @@ class _NewProductScreenState extends State<NewProductScreen> {
 
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 16.0);
 
-  File _image;
-  String uriImg;
-  double valorVendaHosp;
-  double valorMargemLiqHosp;
-  double porcMargemLiqHosp;
+  File? _image;
+  String? uriImg;
+  late double valorVendaHosp;
+  late double valorMargemLiqHosp;
+  late double porcMargemLiqHosp;
 
-  double valorVendaRepr;
-  double valorMargemLiqRepr;
-  double porcMargemLiqRepr;
-  Product product;
+  late double valorVendaRepr;
+  late double valorMargemLiqRepr;
+  late double porcMargemLiqRepr;
+  late Product product;
   Conversion _conversion = new Conversion();
 
   static var riKeys1 = GlobalKey<FormState>();
@@ -75,7 +75,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
     final nameField = TextFormField(
       controller: nameController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha o nome do produto';
         }
         return null;
@@ -94,7 +94,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
     final custoField = TextFormField(
       controller: custoController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Custo do produto';
         }
         return null;
@@ -140,7 +140,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
     final lucroField = TextFormField(
       controller: lucroController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha o lucro';
         }
         return null;
@@ -244,7 +244,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
       splashColor: Colors.white,
       buttonText: "Cadastrar",
       onPressed: () {
-        if (!riKeys1.currentState.validate()) {
+        if (!riKeys1.currentState!.validate()) {
         } else {
           insertProduct();
         }
@@ -257,7 +257,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
       splashColor: Colors.white,
       buttonText: "Calcular",
       onPressed: () {
-        if (!riKeys1.currentState.validate()) {
+        if (!riKeys1.currentState!.validate()) {
         } else {
           createProduct();
         }
@@ -282,7 +282,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
                       height: 100.0,
                       child: (_image != null)
                           ? Image.file(
-                              _image,
+                              _image!,
                               fit: BoxFit.fill,
                             )
                           : Image.asset(
@@ -451,14 +451,14 @@ class _NewProductScreenState extends State<NewProductScreen> {
   }
 
   Future getImage() async {
-    PickedFile pickedFile =
+    PickedFile? pickedFile =
         await ImagePicker().getImage(source: ImageSource.gallery);
 
-    File image = pickedFile != null ? new File(pickedFile.path) : null;
+    File? image = pickedFile != null ? new File(pickedFile.path) : null;
 
     setState(() {
       image != null ? _image = image : _image = null;
-      _image != null ? uriImg = _image.path : null;
+      _image != null ? uriImg = _image!.path : null;
     });
   }
 
@@ -495,7 +495,7 @@ class _NewProductScreenState extends State<NewProductScreen> {
     createProduct();
 
     setState(() {
-      _isInAsyncCall = true;
+      // _isInAsyncCall = true;
     });
     try {
       var isCreate = await widget.productBloc.newProduct(product);

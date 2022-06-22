@@ -42,7 +42,7 @@ class DespesaAdmBloc {
     return ret;
   }
 
-  Future<DespesaAdm> getById(int id) async {
+  Future<DespesaAdm?> getById(int id) async {
     var ret = await _despesaAdmDAO.getById(id);
     return ret;
   }

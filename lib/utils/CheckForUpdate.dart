@@ -4,7 +4,7 @@ import 'package:calcular_preco_venda/services/FirebaseRemoteConfig.dart';
 import 'package:calcular_preco_venda/utils/Message.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class CheckForUpdate {
   final String APP_STORE_URL =

@@ -36,7 +36,7 @@ class ProductCompleteDAO implements ProductRepository {
     return snapshots;
   }
 
-  Future<ProductCom> getById(productId) async {
+  Future<ProductCom?> getById(productId) async {
     return await _genericModel.getProductById(productId);
   }
 }

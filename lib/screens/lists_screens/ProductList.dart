@@ -14,8 +14,8 @@ class ProductList extends StatefulWidget {
 }
 
 class _ProductListAdmState extends State<ProductList> {
-  List<Product> _list;
-  String loadingText;
+  List<Product> _list = <Product>[];
+  String loadingText = "";
   final String newProduct = "/newProduct";
   final String editProduct = "/editProduct";
 
@@ -53,8 +53,7 @@ class _ProductListAdmState extends State<ProductList> {
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-          ],
+          children: <Widget>[],
         ),
       ),
       shape: CircularNotchedRectangle(),
@@ -79,18 +78,20 @@ class _ProductListAdmState extends State<ProductList> {
                 size: 28,
               ),
               onPressed: () {
-                                Messages().showAlertDialog(context, "Produto Simples",
-                    "Crie o preço de venda e custo de seus produtos/serviços de forma mais simples e rápida que o modo completo.\nEx.:\n" + 
-                    "\nNome: Coxinha\n"+
-                    "Custo: R\$ 0,50\n"+
-                    "Lucro: 45 %\n"+
-                    "Custo indireto: 0 %\n"+
-                    "Comissão: 0 \n" + 
-                    "Imposto 1: 10 %\n" + 
-                    "Imposto 2: 0 %\n" + 
-                    "Encargo: 0 %\n" + 
-                    "Outros: 0 %\n" + 
-                    "Custo Indireto: 3 %",
+                Messages().showAlertDialog(
+                    context,
+                    "Produto Simples",
+                    "Crie o preço de venda e custo de seus produtos/serviços de forma mais simples e rápida que o modo completo.\nEx.:\n" +
+                        "\nNome: Coxinha\n" +
+                        "Custo: R\$ 0,50\n" +
+                        "Lucro: 45 %\n" +
+                        "Custo indireto: 0 %\n" +
+                        "Comissão: 0 \n" +
+                        "Imposto 1: 10 %\n" +
+                        "Imposto 2: 0 %\n" +
+                        "Encargo: 0 %\n" +
+                        "Outros: 0 %\n" +
+                        "Custo Indireto: 3 %",
                     buttonText: "Entendi");
               }),
           IconButton(
@@ -104,7 +105,6 @@ class _ProductListAdmState extends State<ProductList> {
               }),
         ],
       ),
-      resizeToAvoidBottomPadding: false,
       body: SafeArea(
         child: Container(
           color: Colors.white,
@@ -177,7 +177,7 @@ class _ProductListAdmState extends State<ProductList> {
                           padding: const EdgeInsets.only(right: 8.0, left: 6.0),
                           child: Container(
                               child: Text(
-                            product.nome,
+                            product.nome!,
                             style: TextStyle(
                                 fontSize: 20.0, fontWeight: FontWeight.bold),
                           )),
@@ -185,7 +185,7 @@ class _ProductListAdmState extends State<ProductList> {
                         // Prices
                         Container(
                           child: Text(
-                            "Preço dentro: R\$ ${product.precoDentro.toStringAsFixed(2)}",
+                            "Preço dentro: R\$ ${product.precoDentro?.toStringAsFixed(2)}",
                             style: TextStyle(
                                 color: Colors.black54,
                                 fontSize: 16.0,
@@ -194,7 +194,7 @@ class _ProductListAdmState extends State<ProductList> {
                         ),
                         Container(
                           child: Text(
-                            "Preço fora: R\$ ${product.precoFora.toStringAsFixed(2)}",
+                            "Preço fora: R\$ ${product.precoFora?.toStringAsFixed(2)}",
                             style: TextStyle(
                                 color: Colors.black54,
                                 fontSize: 16.0,
@@ -237,9 +237,9 @@ class _ProductListAdmState extends State<ProductList> {
       but returned returned 0 records of product from DB.
       If that the case show user that you have empty products
       */
-      return snapshot.data.length != 0
+      return snapshot.data!.length != 0
           ? new ListView.builder(
-              itemCount: snapshot.data.length,
+              itemCount: snapshot.data!.length,
               itemBuilder: (BuildContext context, int index) {
                 return Dismissible(
                   background: Container(
@@ -259,10 +259,10 @@ class _ProductListAdmState extends State<ProductList> {
                     Messages().showYesNoDialog(
                         context,
                         "Exclusão",
-                        "Deseja excluir o item ${snapshot.data[index].nome}?",
+                        "Deseja excluir o item ${snapshot.data![index].nome}?",
                         null, () async {
                       // Sim
-                      productBloc.deleteById(snapshot.data[index].id);
+                      productBloc.deleteById(snapshot.data![index].id!);
                       Navigator.of(context).pop();
                     }, () {
                       // Não
@@ -272,9 +272,10 @@ class _ProductListAdmState extends State<ProductList> {
                   direction: _dismissDirection,
                   key: UniqueKey(),
                   child: GestureDetector(
-                    child: buildProductList(context, index, snapshot.data),
+                    child: buildProductList(context, index, snapshot.data!),
                     onTap: () {
-                      ScreenNavigator().updateProduct(context, snapshot.data[index], productBloc);
+                      ScreenNavigator().updateProduct(
+                          context, snapshot.data![index], productBloc);
                     },
                   ),
                 );

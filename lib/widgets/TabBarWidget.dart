@@ -26,7 +26,7 @@ class TabWidget extends StatefulWidget {
 
 class _TabWidgetState extends State<TabWidget>
     with SingleTickerProviderStateMixin {
-  TabController _controller;
+  late TabController _controller;
 
   @override
   void initState() {

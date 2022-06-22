@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HeaderWidget extends StatelessWidget {
-  final String title;
+  final String? title;
   final double textSize;
 
   HeaderWidget({this.title, this.textSize = 18.0});
@@ -21,7 +21,7 @@ class HeaderWidget extends StatelessWidget {
         Align(
           alignment: Alignment.topLeft,
           child: Text(
-            title,
+            title!,
             style: TextStyle(
               fontSize: textSize,
               fontWeight: FontWeight.bold,

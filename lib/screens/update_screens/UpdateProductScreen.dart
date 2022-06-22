@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:calcular_preco_venda/objects/Product.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class UpdateProductScreen extends StatefulWidget {
   final Product product;
@@ -51,16 +51,16 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
 
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 16.0);
 
-  File _image;
-  String uriImg;
-  double valorVendaHosp;
-  double valorMargemLiqHosp;
-  double porcMargemLiqHosp;
+  File? _image;
+  late String? uriImg;
+  late double valorVendaHosp;
+  late double valorMargemLiqHosp;
+  late double porcMargemLiqHosp;
 
-  double valorVendaRepr;
-  double valorMargemLiqRepr;
-  double porcMargemLiqRepr;
-  Product _updatedProduct;
+  late double valorVendaRepr;
+  late double valorMargemLiqRepr;
+  late double porcMargemLiqRepr;
+  late Product _updatedProduct;
   Conversion _conversion = new Conversion();
 
   static var riKeys1 = GlobalKey<FormState>();
@@ -93,7 +93,7 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
     final nameField = TextFormField(
       controller: nameController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha o nome do produto';
         }
         return null;
@@ -112,7 +112,7 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
     final custoField = TextFormField(
       controller: custoController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Custo do produto';
         }
         return null;
@@ -158,7 +158,7 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
     final lucroField = TextFormField(
       controller: lucroController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha o lucro';
         }
         return null;
@@ -262,7 +262,7 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
       splashColor: Colors.white,
       buttonText: "Atualizar",
       onPressed: () {
-        if (!riKeys1.currentState.validate()) {
+        if (!riKeys1.currentState!.validate()) {
         } else {
           updateProduct();
         }
@@ -275,7 +275,7 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
       splashColor: Colors.white,
       buttonText: "Calcular",
       onPressed: () {
-        if (!riKeys1.currentState.validate()) {
+        if (!riKeys1.currentState!.validate()) {
         } else {
           createProduct();
         }
@@ -300,7 +300,7 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
                       height: 100.0,
                       child: (uriImg != null)
                           ? Image.file(
-                              new File(uriImg),
+                              new File(uriImg!),
                               fit: BoxFit.fill,
                             )
                           : Image.asset(
@@ -471,14 +471,14 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
   }
 
   Future getImage() async {
-    PickedFile pickedFile =
+    PickedFile? pickedFile =
         await ImagePicker().getImage(source: ImageSource.gallery);
 
-    File image = pickedFile != null ? new File(pickedFile.path) : null;
+    File? image = pickedFile != null ? new File(pickedFile.path) : null;
 
     setState(() {
       image != null ? _image = image : _image = null;
-      _image != null ? uriImg = _image.path : null;
+      _image != null ? uriImg = _image!.path : null;
     });
   }
 
@@ -601,14 +601,14 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
 
       custoIndiretoController.text = widget.product.custoIndireto == 0
           ? ""
-          : widget.product.custoIndireto.toStringAsFixed(2);
+          : widget.product.custoIndireto!.toStringAsFixed(2);
       precoForaController.text = widget.product.precoFora == 0
           ? ""
-          : widget.product.precoFora.toStringAsFixed(2);
+          : widget.product.precoFora!.toStringAsFixed(2);
 
       precoDentroController.text = widget.product.precoDentro == 0
           ? ""
-          : widget.product.precoDentro.toStringAsFixed(2);
+          : widget.product.precoDentro!.toStringAsFixed(2);
       uriImg = widget.product.uriImg;
     }
   }

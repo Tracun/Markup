@@ -3,25 +3,26 @@ import 'package:calcular_preco_venda/Router.dart';
 import 'package:calcular_preco_venda/screens/HomePageScreen.dart';
 import 'package:calcular_preco_venda/screens/LoadingScreen.dart';
 import 'package:calcular_preco_venda/services/nosql/Init.dart';
-import 'package:firebase_admob/firebase_admob.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 // Import the firebase_core plugin
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Initialize without device test ids. 
+  // Initialize without device test ids.
   // testDeviceIds: ["ca-app-pub-0943131909791545~3866398254"]
   Admob.initialize();
   await Admob.requestTrackingAuthorization();
-  await FirebaseAdMob.instance.initialize(appId: "ca-app-pub-0943131909791545~3866398254", analyticsEnabled: true);
+  Firebase.initializeApp();
+  // await FirebaseAdMob.instance.initialize(appId: "ca-app-pub-0943131909791545~3866398254", analyticsEnabled: true);
   runApp(App());
 }
 
-class App extends StatelessWidget { 
+class App extends StatelessWidget {
   // Create the initilization Future outside of `build`:
-  final Future _init =  Init.initialize();
-  
+  final Future _init = Init.initialize();
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(

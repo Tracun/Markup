@@ -26,7 +26,7 @@ class _ProductListAdmState extends State<HomePageScreen>
   late Animation<double> _animation;
   late AnimationController _animationController;
 
-  int? myAdNum;
+  int? myAdSize;
   String? myAdImage;
   String? myAdText;
   String? myAdUrl;
@@ -34,7 +34,7 @@ class _ProductListAdmState extends State<HomePageScreen>
   bool? showMyAd = false;
 
   getMyAdData() async {
-    myAdNum = await FirebaseRemoteConfig().getMyAdNum();
+    myAdSize = await FirebaseRemoteConfig().getMyAdNum();
 
     // myAdImage = await FirebaseRemoteConfig().getMyAdImage(myAdNum!);
     // myAdText = await FirebaseRemoteConfig().getMyAdText(myAdNum!);
@@ -130,7 +130,7 @@ class _ProductListAdmState extends State<HomePageScreen>
                 //   ),
                 showMyAd!
                     ? MyAdWidget(
-                        AdSize: 4,
+                        adSize: myAdSize,
                       )
                     : Text(""),
                 SizedBox(

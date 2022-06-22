@@ -9,7 +9,7 @@ import 'package:calcular_preco_venda/utils/SharedPrefs.dart';
 import 'package:calcular_preco_venda/widgets/AdmobWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:calcular_preco_venda/objects/Rateio.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class NewRateioScreen extends StatefulWidget {
   final RateioBloc rateioBloc;
@@ -28,7 +28,7 @@ class _NewRateioScreenState extends State<NewRateioScreen> {
   bool _isInAsyncCall = false;
 
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 16.0);
-  Rateio _rateio;
+  Rateio _rateio = Rateio();
   Conversion _conversion = new Conversion();
 
   static var riKeys5 = GlobalKey<FormState>();
@@ -45,7 +45,7 @@ class _NewRateioScreenState extends State<NewRateioScreen> {
     final descricaoField = TextFormField(
       controller: descricaoController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Descrição do rateio';
         }
         return null;
@@ -77,7 +77,7 @@ class _NewRateioScreenState extends State<NewRateioScreen> {
     // Valor unitário
     final valorUnitField = TextFormField(
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha o valor unitário';
         }
         return null;
@@ -99,7 +99,7 @@ class _NewRateioScreenState extends State<NewRateioScreen> {
       splashColor: Colors.white,
       buttonText: "Cadastrar",
       onPressed: () {
-        if (!riKeys5.currentState.validate()) {
+        if (!riKeys5.currentState!.validate()) {
         } else {
           insertRateio();
         }

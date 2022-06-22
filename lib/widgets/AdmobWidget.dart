@@ -11,8 +11,8 @@ class AdmobWidget {
     return AdmobBanner(
       adUnitId: idBloco,
       adSize: AdmobBannerSize.BANNER,
-      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
-        handleEvent(event, args, 'Banner');
+      listener: (AdmobAdEvent event, Map<String, dynamic>? args) {
+        handleEvent(event, args!, 'Banner');
       },
     );
   }
@@ -21,8 +21,8 @@ class AdmobWidget {
     return AdmobBanner(
       adUnitId: idBloco,
       adSize: size,
-      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
-        handleEvent(event, args, 'Banner');
+      listener: (AdmobAdEvent event, Map<String, dynamic>? args) {
+        handleEvent(event, args!, 'Banner');
       },
     );
   }
@@ -31,8 +31,8 @@ class AdmobWidget {
     return AdmobBanner(
       adUnitId: idBloco,
       adSize: AdmobBannerSize.SMART_BANNER(context),
-      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
-        handleEvent(event, args, 'Banner');
+      listener: (AdmobAdEvent event, Map<String, dynamic>? args) {
+        handleEvent(event, args!, 'Banner');
       },
     );
   }
@@ -41,8 +41,8 @@ class AdmobWidget {
     return AdmobBanner(
       adUnitId: idBloco,
       adSize: AdmobBannerSize.MEDIUM_RECTANGLE,
-      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
-        handleEvent(event, args, 'Banner');
+      listener: (AdmobAdEvent event, Map<String, dynamic>? args) {
+        handleEvent(event, args!, 'Banner');
       },
     );
   }

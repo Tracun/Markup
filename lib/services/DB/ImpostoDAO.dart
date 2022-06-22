@@ -33,7 +33,7 @@ class ImpostoDAO {
     return snapshots;
   }
 
-  Future<Imposto> getById(impostoId) async {
+  Future<Imposto?> getById(impostoId) async {
     return await _genericModel.getImpostoById(impostoId);
   }
 }

@@ -13,7 +13,7 @@ class ProductListCompleto extends StatefulWidget {
 }
 
 class _ProductListAdmState extends State<ProductListCompleto> {
-  String loadingText;
+  String loadingText = "";
   final String newProduct = "/newProduct";
   final String editProduct = "/editProduct";
 
@@ -72,7 +72,7 @@ class _ProductListAdmState extends State<ProductListCompleto> {
                         "\nInsumos:\n" +
                         "Farinha - 0,50 (supondo que o cadastro da farinha seja de 1kg, 0,50 equivale à 50g)\n" +
                         "\nLeite - 0,50 (supondo que o cadastro do leite seja de 1 litro, 0,50 equivale à 50ml)\n" +
-                        "\nFrango - 0,50 (supondo que o cadastro do frango seja de 1kg, 0,80 equivale à 80g)\n" +
+                        "\nFrango - 0,80 (supondo que o cadastro do frango seja de 1kg, 0,80 equivale à 80g)\n" +
                         "\nRateio:\n" +
                         "Oléo fritura - 1% (Pego 1% do valor do óleo de fritura cadastrado)\n" +
                         "\nTempo Fab:\n" +
@@ -90,7 +90,6 @@ class _ProductListAdmState extends State<ProductListCompleto> {
               }),
         ],
       ),
-      resizeToAvoidBottomPadding: false,
       body: SafeArea(
         child: Container(
           color: Colors.white,
@@ -139,7 +138,7 @@ class _ProductListAdmState extends State<ProductListCompleto> {
                         height: 120.0,
                         child: (product.uriImg != null)
                             ? Image.file(
-                                new File(product.uriImg),
+                                new File(product.uriImg!),
                                 fit: BoxFit.fill,
                               )
                             : Image.asset(
@@ -162,7 +161,7 @@ class _ProductListAdmState extends State<ProductListCompleto> {
                           padding: const EdgeInsets.only(right: 8.0, left: 6.0),
                           child: Container(
                               child: Text(
-                            product.nome,
+                            product.nome!,
                             style: TextStyle(
                                 fontSize: 20.0, fontWeight: FontWeight.bold),
                           )),
@@ -170,7 +169,7 @@ class _ProductListAdmState extends State<ProductListCompleto> {
                         // Prices
                         Container(
                           child: Text(
-                            "Preço venda: R\$ ${product.precoVendaMarkup.toStringAsFixed(2)}",
+                            "Preço venda: R\$ ${product.precoVendaMarkup?.toStringAsFixed(2)}",
                             style: TextStyle(
                                 color: Colors.black54,
                                 fontSize: 15.0,
@@ -179,7 +178,7 @@ class _ProductListAdmState extends State<ProductListCompleto> {
                         ),
                         Container(
                           child: Text(
-                            "Custo total: R\$ ${product.custoTotalCalculado.toStringAsFixed(2)}",
+                            "Custo total: R\$ ${product.custoTotalCalculado?.toStringAsFixed(2)}",
                             style: TextStyle(
                                 color: Colors.black54,
                                 fontSize: 15.0,
@@ -188,7 +187,7 @@ class _ProductListAdmState extends State<ProductListCompleto> {
                         ),
                         Container(
                           child: Text(
-                            "Lucro Bruto: R\$ ${(product.precoVendaMarkup - product.custoTotalCalculado).toStringAsFixed(2)}",
+                            "Lucro Bruto: R\$ ${(product.precoVendaMarkup !- product.custoTotalCalculado!).toStringAsFixed(2)}",
                             style: TextStyle(
                                 color: Colors.black54,
                                 fontSize: 15.0,
@@ -232,9 +231,9 @@ class _ProductListAdmState extends State<ProductListCompleto> {
       but returned returned 0 records of imposto from DB.
       If that the case show user that you have empty impostos
       */
-      return snapshot.data.length != 0
+      return snapshot.data!.length != 0
           ? new ListView.builder(
-              itemCount: snapshot.data.length,
+              itemCount: snapshot.data!.length,
               itemBuilder: (BuildContext context, int index) {
                 return Dismissible(
                   background: Container(
@@ -254,10 +253,10 @@ class _ProductListAdmState extends State<ProductListCompleto> {
                     Messages().showYesNoDialog(
                         context,
                         "Exclusão",
-                        "Deseja excluir o item ${snapshot.data[index].nome}?",
+                        "Deseja excluir o item ${snapshot.data![index].nome}?",
                         null, () async {
                       // Sim
-                      _deleteProducts(snapshot.data[index].id);
+                      _deleteProducts(snapshot.data![index].id!);
                       Navigator.of(context).pop();
                     }, () {
                       // Não
@@ -268,10 +267,10 @@ class _ProductListAdmState extends State<ProductListCompleto> {
                   direction: _dismissDirection,
                   key: UniqueKey(),
                   child: GestureDetector(
-                    child: buildProductList(context, index, snapshot.data),
+                    child: buildProductList(context, index, snapshot.data!),
                     onTap: () {
                       ScreenNavigator().updateproductComScreen(
-                          context, snapshot.data[index], _productCompleteBloc);
+                          context, snapshot.data![index], _productCompleteBloc);
                     },
                   ),
                 );

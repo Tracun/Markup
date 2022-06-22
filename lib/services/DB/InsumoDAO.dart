@@ -32,7 +32,7 @@ class InsumoDAO {
     return snapshots;
   }
 
-  Future<Insumo> getById(insumoId) async {
+  Future<Insumo?> getById(insumoId) async {
     return await _genericModel.getInsumoById(insumoId);
   }
 }

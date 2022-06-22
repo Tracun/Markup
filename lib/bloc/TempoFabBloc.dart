@@ -42,7 +42,7 @@ class TempoFabBloc {
     return ret;
   }
 
-    Future<TempoFab> getById(int id) async {
+    Future<TempoFab?> getById(int id) async {
     var ret = await _tempoFabDAO.getById(id);
     return ret;
   }

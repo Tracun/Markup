@@ -18,7 +18,7 @@ import 'package:calcular_preco_venda/widgets/TabBarWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class NewProductCompleteScreen extends StatefulWidget {
   final ProductCompleteBloc productBloc;
@@ -51,16 +51,16 @@ class _NewProductCompleteScreenState extends State<NewProductCompleteScreen>
 
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 16.0);
 
-  File _image;
-  String uriImg;
-  double valorVendaHosp;
-  double valorMargemLiqHosp;
-  double porcMargemLiqHosp;
+  File? _image;
+  String? uriImg;
+  late double valorVendaHosp;
+  late double valorMargemLiqHosp;
+  late double porcMargemLiqHosp;
 
-  double valorVendaRepr;
-  double valorMargemLiqRepr;
-  double porcMargemLiqRepr;
-  ProductCom product;
+  late double valorVendaRepr;
+  late double valorMargemLiqRepr;
+  late double porcMargemLiqRepr;
+  late ProductCom product;
   Conversion _conversion = new Conversion();
   Calculation calculation = new Calculation();
 
@@ -70,7 +70,7 @@ class _NewProductCompleteScreenState extends State<NewProductCompleteScreen>
   List<TempoFabList> selectedTempoFabList = [];
   List<RateioList> selectedRateioList = [];
 
-  TabController _controller;
+  late TabController _controller;
 
   static var riKeys1 = GlobalKey<FormState>();
 
@@ -87,7 +87,7 @@ class _NewProductCompleteScreenState extends State<NewProductCompleteScreen>
     final nameField = TextFormField(
       controller: nameController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha o nome do produto';
         }
         return null;
@@ -106,7 +106,7 @@ class _NewProductCompleteScreenState extends State<NewProductCompleteScreen>
     final custoField = TextFormField(
       controller: custoController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Custo do produto';
         }
         return null;
@@ -152,7 +152,7 @@ class _NewProductCompleteScreenState extends State<NewProductCompleteScreen>
     final lucroField = TextFormField(
       controller: lucroController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha o lucro';
         }
         return null;
@@ -257,7 +257,7 @@ class _NewProductCompleteScreenState extends State<NewProductCompleteScreen>
       splashColor: Colors.white,
       buttonText: "Cadastrar",
       onPressed: () {
-        if (!riKeys1.currentState.validate()) {
+        if (!riKeys1.currentState!.validate()) {
         } else {
           createProduct();
           Future.delayed(Duration(seconds: 1, milliseconds: 200), () {
@@ -274,7 +274,7 @@ class _NewProductCompleteScreenState extends State<NewProductCompleteScreen>
       splashColor: Colors.white,
       buttonText: "Calcular",
       onPressed: () {
-        if (!riKeys1.currentState.validate()) {
+        if (!riKeys1.currentState!.validate()) {
         } else {
           createProduct();
         }
@@ -299,7 +299,7 @@ class _NewProductCompleteScreenState extends State<NewProductCompleteScreen>
                       height: 100.0,
                       child: (_image != null)
                           ? Image.file(
-                              _image,
+                              _image!,
                               fit: BoxFit.fill,
                             )
                           : Image.asset(
@@ -449,14 +449,14 @@ class _NewProductCompleteScreenState extends State<NewProductCompleteScreen>
   }
 
   Future getImage() async {
-    PickedFile pickedFile =
+    PickedFile? pickedFile =
         await ImagePicker().getImage(source: ImageSource.gallery);
 
-    File image = pickedFile != null ? new File(pickedFile.path) : null;
+    File? image = pickedFile != null ? new File(pickedFile.path) : null;
 
     setState(() {
       image != null ? _image = image : _image = null;
-      _image != null ? uriImg = _image.path : null;
+      _image != null ? uriImg = _image!.path : null;
     });
   }
 
@@ -498,8 +498,8 @@ class _NewProductCompleteScreenState extends State<NewProductCompleteScreen>
     }
 
     setState(() {
-      custoTotalController.text = "R\$ ${custoTotal.toStringAsFixed(2)}";
-      precoVendaController.text = "R\$ ${pv.toStringAsFixed(2)}";
+      custoTotalController.text = "R\$ ${custoTotal!.toStringAsFixed(2)}";
+      precoVendaController.text = "R\$ ${pv!.toStringAsFixed(2)}";
 
       lucroBrutoController.text = "R\$ ${(pv - custoTotal).toStringAsFixed(2)}";
       product.precoVendaMarkup = double.parse(pv.toStringAsFixed(2));

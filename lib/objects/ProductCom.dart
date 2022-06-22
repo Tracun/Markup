@@ -4,23 +4,23 @@ import 'package:calcular_preco_venda/objects/Rateio.dart';
 import 'package:calcular_preco_venda/objects/TempoFab.dart';
 
 class ProductCom {
-  int id;
-  String nome;
-  double custo;
-  double lucro;
-  double precoVendaMarkup;
-  double custoTotalCalculado;
-  double precoVendaFora;
-  double precoVendaDentro;
-  double custoIndireto;
-  double comissao;
-  String uriImg;
+  int? id;
+  String? nome;
+  double? custo;
+  double? lucro;
+  double? precoVendaMarkup;
+  double? custoTotalCalculado;
+  double? precoVendaFora;
+  double? precoVendaDentro;
+  double? custoIndireto;
+  double? comissao;
+  String? uriImg;
 
-  List<InsumoList> insumos;
-  List<TempoFabList> tempoFab;
-  List<DespesaAdmList> despesaAdm;
-  List<RateioList> rateio;
-  List<int> impostos;
+  List<InsumoList>? insumos;
+  List<TempoFabList>? tempoFab;
+  List<DespesaAdmList>? despesaAdm;
+  List<RateioList>? rateio;
+  List<int>? impostos;
 
   ProductCom(
       {this.id,
@@ -40,7 +40,7 @@ class ProductCom {
       this.rateio,
       this.impostos});
 
-  ProductCom fromMap(int id, Map<dynamic, dynamic> json) {
+  ProductCom fromMap(int? id, Map<dynamic, dynamic> json) {
     var insumosAux;
     var tempoFabAux;
     var despesaAdmAux;
@@ -48,35 +48,35 @@ class ProductCom {
     var impostoAux;
 
     if (json["insumos"] != null) {
-      insumosAux = new List<InsumoList>();
+      insumosAux = <InsumoList>[];
       json["insumos"].forEach((v) {
         insumosAux.add(InsumoList(v['id'], v['quant'], v['name']));
       });
     }
 
     if (json["tempoFab"] != null) {
-      tempoFabAux = new List<TempoFabList>();
+      tempoFabAux = <TempoFabList>[];
       json["tempoFab"].forEach((v) {
         tempoFabAux.add(TempoFabList(v['id'], v['quant'], v['descricao']));
       });
     }
 
     if (json["despesaAdm"] != null) {
-      despesaAdmAux = new List<DespesaAdmList>();
+      despesaAdmAux = <DespesaAdmList>[];
       json["despesaAdm"].forEach((v) {
         despesaAdmAux.add(DespesaAdmList(v['id'], v['quant'], v['descricao']));
       });
     }
 
     if (json["rateio"] != null) {
-      rateioAux = new List<RateioList>();
+      rateioAux = <RateioList>[];
       json["rateio"].forEach((v) {
         rateioAux.add(RateioList(v['id'], v['porcentagemRateio'], v['descricao']));
       });
     }
 
     if (json["impostos"] != null) {
-      impostoAux = new List<int>();
+      impostoAux = <int>[];
       json["impostos"].forEach((v) {
         impostoAux.add(v['id']);
       });
@@ -131,18 +131,18 @@ class ProductCom {
       'precoVendaDentro': this.precoVendaDentro,
       'uriImg': this.uriImg,
       'insumos': this.insumos != null
-          ? this.insumos.map((v) => v.toMap()).toList()
+          ? this.insumos!.map((v) => v.toMap()).toList()
           : null,
       'tempoFab': this.tempoFab != null
-          ? this.tempoFab.map((v) => v.toMap()).toList()
+          ? this.tempoFab!.map((v) => v.toMap()).toList()
           : null,
       'despesaAdm': this.despesaAdm != null
-          ? this.despesaAdm.map((v) => v.toMap()).toList()
+          ? this.despesaAdm!.map((v) => v.toMap()).toList()
           : null,
       'rateio': this.rateio != null
-          ? this.rateio.map((v) => v.toMap()).toList()
+          ? this.rateio!.map((v) => v.toMap()).toList()
           : null,
-      'impostos': this.impostos != null ? listToMap(this.impostos) : null,
+      'impostos': this.impostos != null ? listToMap(this.impostos!) : null,
     };
   }
 

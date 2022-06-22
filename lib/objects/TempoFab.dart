@@ -1,7 +1,7 @@
 class TempoFab {
-  int id;
-  String descricao;
-  double valorHora;
+  int? id;
+  String? descricao;
+  double? valorHora;
 
   TempoFab({this.id, this.descricao, this.valorHora});
 

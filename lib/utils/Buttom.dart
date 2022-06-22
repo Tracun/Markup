@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class SimpleRoundButton extends StatelessWidget {
-  final Color backgroundColor;
-  final String buttonText;
-  final Color textColor;
-  final Color splashColor;
-  final Function onPressed;
+  final Color? backgroundColor;
+  final String? buttonText;
+  final Color? textColor;
+  final Color? splashColor;
+  final Function()? onPressed;
 
   SimpleRoundButton(
       {this.backgroundColor,
@@ -25,7 +25,7 @@ class SimpleRoundButton extends StatelessWidget {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: this.onPressed,
-        child: Text(this.buttonText,
+        child: Text(this.buttonText!,
             textAlign: TextAlign.center,
             style: style.copyWith(
                 color: this.textColor, fontWeight: FontWeight.bold)),
@@ -35,11 +35,11 @@ class SimpleRoundButton extends StatelessWidget {
 }
 
 class SimpleRoundButtonGrad extends StatelessWidget {
-  final List<Color> colors;
-  final String buttonText;
-  final Color textColor;
-  final Color splashColor;
-  final Function onPressed;
+  final List<Color>? colors;
+  final String? buttonText;
+  final Color? textColor;
+  final Color? splashColor;
+  final Function()? onPressed;
 
   SimpleRoundButtonGrad(
       {this.colors,
@@ -61,7 +61,7 @@ class SimpleRoundButtonGrad extends StatelessWidget {
         child: Ink(
           decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: colors,
+                colors: colors!,
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),
@@ -70,7 +70,7 @@ class SimpleRoundButtonGrad extends StatelessWidget {
             constraints: BoxConstraints(maxWidth: 350.0, minHeight: 50.0),
             alignment: Alignment.center,
             child: Text(
-              this.buttonText,
+              this.buttonText!,
               textAlign: TextAlign.center,
               style: style.copyWith(
                   color: this.textColor, fontWeight: FontWeight.bold),

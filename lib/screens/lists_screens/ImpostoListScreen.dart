@@ -13,7 +13,7 @@ class ImpostoListScreen extends StatefulWidget {
 }
 
 class _ImpostoListAdmState extends State<ImpostoListScreen> {
-  String loadingText;
+  String loadingText = "";
 
   final ImpostoBloc _impostoBloc = ImpostoBloc();
 
@@ -73,7 +73,6 @@ class _ImpostoListAdmState extends State<ImpostoListScreen> {
               }),
         ],
       ),
-      resizeToAvoidBottomPadding: false,
       body: SafeArea(
         child: Container(
           color: Colors.white,
@@ -116,7 +115,7 @@ class _ImpostoListAdmState extends State<ImpostoListScreen> {
                   height: 80,
                   child: CircleAvatar(
                     radius: 55,
-                    backgroundColor: Color.fromRGBO(37, 143, 98, 1),
+                    backgroundColor: Colors.white,
                     child: ClipOval(
                       child: new SizedBox(
                         width: 80,
@@ -141,7 +140,7 @@ class _ImpostoListAdmState extends State<ImpostoListScreen> {
                           padding: const EdgeInsets.only(right: 8.0, left: 6.0),
                           child: Container(
                               child: Text(
-                            imposto.descricao,
+                            imposto.descricao!,
                             style: TextStyle(
                                 fontSize: 20.0, fontWeight: FontWeight.bold),
                           )),
@@ -192,9 +191,9 @@ class _ImpostoListAdmState extends State<ImpostoListScreen> {
       but returned returned 0 records of imposto from DB.
       If that the case show user that you have empty impostos
       */
-      return snapshot.data.length != 0
+      return snapshot.data!.length != 0
           ? new ListView.builder(
-              itemCount: snapshot.data.length,
+              itemCount: snapshot.data!.length,
               itemBuilder: (BuildContext context, int index) {
                 return Dismissible(
                   background: Container(
@@ -214,10 +213,10 @@ class _ImpostoListAdmState extends State<ImpostoListScreen> {
                     Messages().showYesNoDialog(
                         context,
                         "Exclusão",
-                        "Deseja excluir o item ${snapshot.data[index].descricao}?",
+                        "Deseja excluir o item ${snapshot.data![index].descricao}?",
                         null, () async {
                       // Sim
-                      _impostoBloc.deleteById(snapshot.data[index].id);
+                      _impostoBloc.deleteById(snapshot.data![index].id!);
                       Navigator.of(context).pop();
                     }, () {
                       // Não
@@ -228,10 +227,10 @@ class _ImpostoListAdmState extends State<ImpostoListScreen> {
                   direction: _dismissDirection,
                   key: UniqueKey(),
                   child: GestureDetector(
-                    child: buildImpostoList(context, index, snapshot.data),
+                    child: buildImpostoList(context, index, snapshot.data!),
                     onTap: () {
                       ScreenNavigator().updateImposto(
-                          context, snapshot.data[index], _impostoBloc);
+                          context, snapshot.data![index], _impostoBloc);
                     },
                   ),
                 );

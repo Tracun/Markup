@@ -42,7 +42,7 @@ class InsumoBloc {
     return ret;
   }
 
-  Future<Insumo> getById(int id) async {
+  Future<Insumo?> getById(int id) async {
     var ret = await _insumoDAO.getById(id);
     return ret;
   }

@@ -42,7 +42,7 @@ class RateioBloc {
     return ret;
   }
 
-  Future<Rateio> getById(int id) async {
+  Future<Rateio?> getById(int id) async {
     var ret = await _rateioDAO.getById(id);
     return ret;
   }

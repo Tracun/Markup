@@ -9,7 +9,7 @@ import 'package:calcular_preco_venda/utils/SharedPrefs.dart';
 import 'package:calcular_preco_venda/widgets/AdmobWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:calcular_preco_venda/objects/Insumo.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class NewInsumoScreen extends StatefulWidget {
   final InsumoBloc insumoBloc;
@@ -28,7 +28,7 @@ class _NewInsumoScreenState extends State<NewInsumoScreen> {
   bool _isInAsyncCall = false;
 
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 16.0);
-  Insumo _insumo;
+  Insumo _insumo = Insumo();
   Conversion _conversion = new Conversion();
 
   static var riKeys4 = GlobalKey<FormState>();
@@ -45,7 +45,7 @@ class _NewInsumoScreenState extends State<NewInsumoScreen> {
     final nameField = TextFormField(
       controller: nameController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha o nome do insumo';
         }
         return null;
@@ -77,7 +77,7 @@ class _NewInsumoScreenState extends State<NewInsumoScreen> {
     // Valor unitário
     final valorUnitField = TextFormField(
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha o valor unitário';
         }
         return null;
@@ -99,7 +99,7 @@ class _NewInsumoScreenState extends State<NewInsumoScreen> {
       splashColor: Colors.white,
       buttonText: "Cadastrar",
       onPressed: () {
-        if (!riKeys4.currentState.validate()) {
+        if (!riKeys4.currentState!.validate()) {
         } else {
           insertInsumo();
         }

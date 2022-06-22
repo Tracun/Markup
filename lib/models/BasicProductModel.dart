@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:calcular_preco_venda/objects/Product.dart';
 import 'package:calcular_preco_venda/services/DB/ProductDAO.dart';
-import 'package:ext_storage/ext_storage.dart';
+import 'package:path_provider/path_provider.dart';
 
 class BasicProductDAO {
   Future<List<Product>> getAll() async {
@@ -11,6 +11,7 @@ class BasicProductDAO {
   }
 
   Future<int> insert(Product product) async {
+    print("insertBasicProduct");
     return await ProductDAO().newProduct(product);
   }
 
@@ -26,8 +27,7 @@ class BasicProductDAO {
     List<String> products;
 
     try {
-      var directory = await ExtStorage.getExternalStoragePublicDirectory(
-          ExtStorage.DIRECTORY_DOWNLOADS);
+      var directory = await getDownloadsDirectory();
       log("$directory");
       final File file = File('$directory/backup_markup/produtos.tr');
 
@@ -55,7 +55,7 @@ class BasicProductDAO {
           }
         });
 
-        await file.deleteSync();
+        file.deleteSync();
         log("$products");
       } else {
         log("Arquivo de backup não existe");

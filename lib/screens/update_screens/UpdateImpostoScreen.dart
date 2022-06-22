@@ -8,7 +8,7 @@ import 'package:calcular_preco_venda/utils/MyColors.dart';
 import 'package:calcular_preco_venda/widgets/AdmobWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:calcular_preco_venda/objects/Imposto.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class UpdateImpostoScreen extends StatefulWidget {
   final Imposto imposto;
@@ -28,7 +28,7 @@ class _UpdateImpostoScreenState extends State<UpdateImpostoScreen> {
   bool _isInAsyncCall = false;
 
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 16.0);
-  Imposto _updatedImposto;
+  Imposto _updatedImposto = Imposto();
   Conversion _conversion = new Conversion();
 
   static var riKeys8 = GlobalKey<FormState>();
@@ -46,7 +46,7 @@ class _UpdateImpostoScreenState extends State<UpdateImpostoScreen> {
     final descricaoField = TextFormField(
       controller: descricaoController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Descrição imposto';
         }
         return null;
@@ -65,7 +65,7 @@ class _UpdateImpostoScreenState extends State<UpdateImpostoScreen> {
     // Valor unitário
     final porcentagemField = TextFormField(
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Porcentagem imposto';
         }
         return null;
@@ -87,7 +87,7 @@ class _UpdateImpostoScreenState extends State<UpdateImpostoScreen> {
       splashColor: Colors.white,
       buttonText: "Atualizar",
       onPressed: () {
-        if (!riKeys8.currentState.validate()) {
+        if (!riKeys8.currentState!.validate()) {
         } else {
           updateImposto();
         }

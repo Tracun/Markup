@@ -1,8 +1,8 @@
 class Insumo {
-  int id;
-  String nome;
-  int idUnid;
-  double valorUnitario;
+  int? id;
+  String? nome;
+  int? idUnid;
+  double? valorUnitario;
 
   Insumo({
     this.id,

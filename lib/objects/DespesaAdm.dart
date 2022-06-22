@@ -1,8 +1,8 @@
 class DespesaAdm {
 
-    int id;
-    String descricao;
-    double valor; //Valor hora
+    int? id;
+    String? descricao;
+    double? valor; //Valor hora
 
     DespesaAdm({
       this.id,

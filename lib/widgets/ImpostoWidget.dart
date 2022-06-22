@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class ImpostoListWidget extends StatefulWidget {
-  final List<int> selectedImpostoList;
-  ImpostoListWidget({Key key, @required this.selectedImpostoList})
+  final List<int>? selectedImpostoList;
+  ImpostoListWidget({Key? key, @required this.selectedImpostoList})
       : super(key: key);
 
   @override
@@ -19,7 +19,7 @@ class ImpostoListWidget extends StatefulWidget {
 }
 
 class _ImpostoListWidgetState extends State<ImpostoListWidget> {
-  List<Imposto> _impostoList = new List<Imposto>();
+  List<Imposto> _impostoList = <Imposto>[];
 
   int selectedItem = 0;
   String impostoName = "Selecione ...";
@@ -35,12 +35,12 @@ class _ImpostoListWidgetState extends State<ImpostoListWidget> {
   }
 
   List<DropdownMenuItem<dynamic>> getDropDownMenuItems() {
-    List<DropdownMenuItem<dynamic>> items = new List();
+    List<DropdownMenuItem<dynamic>> items = [];
 
     _impostoList.isNotEmpty
         ? _impostoList
             .map((imposto) => items.add(DropdownMenuItem(
-                value: imposto, child: new Text(imposto.descricao))))
+                value: imposto, child: new Text(imposto.descricao!),),),)
             .toList()
         : null;
     return items;
@@ -52,7 +52,7 @@ class _ImpostoListWidgetState extends State<ImpostoListWidget> {
 
     return Container(
       height: theme.titleHeight,
-      decoration: BoxDecoration(color: theme.backgroundColor ?? Colors.white),
+      decoration: BoxDecoration(color: theme.backgroundColor),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -80,7 +80,7 @@ class _ImpostoListWidgetState extends State<ImpostoListWidget> {
               onPressed: () {
                 Navigator.pop(context);
                 setState(() {
-                  impostoName = _impostoList[selectedItem].descricao;
+                  impostoName = _impostoList[selectedItem].descricao!;
                 });
               },
             ),
@@ -102,9 +102,8 @@ class _ImpostoListWidgetState extends State<ImpostoListWidget> {
         },
         children: List<Widget>.generate(_impostoList.length, (index) {
           return Center(
-            child: Text(_impostoList[index].descricao,
-                style:
-                    TextStyle(color: Colors.black, fontSize: 14)),
+            child: Text("${_impostoList[index].descricao!} - ${_impostoList[index].porcentagem}%",
+                style: TextStyle(color: Colors.black, fontSize: 14)),
           );
         }),
       ),
@@ -237,19 +236,19 @@ class _ImpostoListWidgetState extends State<ImpostoListWidget> {
               splashColor: Colors.white,
               buttonText: "Adicionar",
               onPressed: () {
-                // if (riKeys12.currentState.validate()) {
-                  setState(() {
-                    if (selectedItem != null) {
-                      widget.selectedImpostoList.add(
-                        _impostoList[selectedItem].id,
-                      );
-                      impostoName = "Selecione ...";
-                      selectedItem = 0;
-                    } else {
-                      Messages().showAlertDialog(context,
-                          "Imposto não selecionado", "Selecione um imposto");
-                    }
-                  });
+                // if (riKeys12.currentState!.validate()) {
+                setState(() {
+                  if (selectedItem != null) {
+                    widget.selectedImpostoList!.add(
+                      _impostoList[selectedItem].id!,
+                    );
+                    impostoName = "Selecione ...";
+                    selectedItem = 0;
+                  } else {
+                    Messages().showAlertDialog(context,
+                        "Imposto não selecionado", "Selecione um imposto");
+                  }
+                });
                 // }
               },
             ),
@@ -258,25 +257,25 @@ class _ImpostoListWidgetState extends State<ImpostoListWidget> {
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             itemCount: widget.selectedImpostoList != null
-                ? widget.selectedImpostoList.length
+                ? widget.selectedImpostoList!.length
                 : 0,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
-                child: widget.selectedImpostoList.isEmpty
+                child: widget.selectedImpostoList!.isEmpty
                     ? Center(child: Text('Sem impostos'))
                     : buildImpostoList(
-                        context, index, widget.selectedImpostoList),
+                        context, index, widget.selectedImpostoList!),
                 onTap: () {
-                  if (widget.selectedImpostoList.isNotEmpty) {
+                  if (widget.selectedImpostoList!.isNotEmpty) {
                     Messages().showYesNoDialog(
                         context,
                         "Exclusão",
-                        "Deseja excluir o imposto ${widget.selectedImpostoList[index]}?",
+                        "Deseja excluir o imposto ${widget.selectedImpostoList![index]}?",
                         null, () {
                       // Sim
                       Navigator.of(context).pop();
                       setState(() {
-                        widget.selectedImpostoList.removeAt(index);
+                        widget.selectedImpostoList!.removeAt(index);
                       });
                     }, () {
                       // Não
@@ -293,8 +292,7 @@ class _ImpostoListWidgetState extends State<ImpostoListWidget> {
     );
   }
 
-  Widget buildImpostoList(
-      BuildContext context, int index, List<int> list) {
+  Widget buildImpostoList(BuildContext context, int index, List<int> list) {
     return Padding(
       padding: const EdgeInsets.only(left: 48, right: 48, top: 5, bottom: 5),
       child: Container(

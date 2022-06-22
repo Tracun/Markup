@@ -32,7 +32,7 @@ class TempoFabDAO {
     return snapshots;
   }
 
-  Future<TempoFab> getById(tempoFabId) async {
+  Future<TempoFab?> getById(tempoFabId) async {
     return await _genericModel.getTempoFabById(tempoFabId);
   }
 }

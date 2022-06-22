@@ -6,7 +6,7 @@ import 'package:calcular_preco_venda/utils/MyColors.dart';
 import 'package:calcular_preco_venda/widgets/AdmobWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:calcular_preco_venda/objects/TempoFab.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class UpdateTempoFabScreen extends StatefulWidget {
   final TempoFab tempoFab;
@@ -25,7 +25,7 @@ class _UpdateTempoFabScreenState extends State<UpdateTempoFabScreen> {
   bool _isInAsyncCall = false;
 
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 16.0);
-  TempoFab _updatedTempoFab;
+  TempoFab _updatedTempoFab = TempoFab();
   Conversion _conversion = new Conversion();
 
   static var riKeys11 = GlobalKey<FormState>();
@@ -43,7 +43,7 @@ class _UpdateTempoFabScreenState extends State<UpdateTempoFabScreen> {
     final descricaoField = TextFormField(
       controller: descricaoController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Descrição tempoFab';
         }
         return null;
@@ -62,7 +62,7 @@ class _UpdateTempoFabScreenState extends State<UpdateTempoFabScreen> {
     // Valor hora
     final valorHoraField = TextFormField(
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha o valor hora';
         }
         return null;
@@ -84,7 +84,7 @@ class _UpdateTempoFabScreenState extends State<UpdateTempoFabScreen> {
       splashColor: Colors.white,
       buttonText: "Atualizar",
       onPressed: () {
-        if (!riKeys11.currentState.validate()) {
+        if (!riKeys11.currentState!.validate()) {
         } else {
           updateTempoFab();
         }

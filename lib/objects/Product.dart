@@ -1,17 +1,17 @@
 class Product {
-  int id;
-  String nome;
-  double custo;
-  double encargo;
-  double comissao;
-  double lucro;
-  double outros;
-  double imp1;
-  double imp2;
-  double custoIndireto;
-  double precoFora;
-  double precoDentro;
-  String uriImg;
+  int? id;
+  String? nome;
+  double? custo;
+  double? encargo;
+  double? comissao;
+  double? lucro;
+  double? outros;
+  double? imp1;
+  double? imp2;
+  double? custoIndireto;
+  double? precoFora;
+  double? precoDentro;
+  String? uriImg;
 
   Product(
       {this.id,

@@ -1,7 +1,7 @@
 class Rateio {
-  int id;
-  String descricao;
-  double valor;
+  int? id;
+  String? descricao;
+  double? valor;
 
   Rateio({
     this.id,

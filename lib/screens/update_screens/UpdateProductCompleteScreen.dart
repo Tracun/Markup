@@ -18,7 +18,7 @@ import 'package:calcular_preco_venda/widgets/TabBarWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class UpdateProductCompleteScreen extends StatefulWidget {
   final ProductCom product;
@@ -53,16 +53,16 @@ class _UpdateProductCompleteScreenState
 
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 16.0);
 
-  File _image;
-  String uriImg;
-  double valorVendaHosp;
-  double valorMargemLiqHosp;
-  double porcMargemLiqHosp;
+  File? _image;
+  late String? uriImg;
+  late double valorVendaHosp;
+  late double valorMargemLiqHosp;
+  late double porcMargemLiqHosp;
 
-  double valorVendaRepr;
-  double valorMargemLiqRepr;
-  double porcMargemLiqRepr;
-  ProductCom _updatedProduct;
+  late double valorVendaRepr;
+  late double valorMargemLiqRepr;
+  late double porcMargemLiqRepr;
+  late ProductCom _updatedProduct;
   Conversion _conversion = new Conversion();
   Calculation calculation = new Calculation();
 
@@ -72,7 +72,7 @@ class _UpdateProductCompleteScreenState
   List<TempoFabList> selectedTempoFabList = [];
   List<RateioList> selectedRateioList = [];
 
-  TabController _controller;
+  late TabController _controller;
 
   static var riKeys1 = GlobalKey<FormState>();
 
@@ -90,7 +90,7 @@ class _UpdateProductCompleteScreenState
     final nameField = TextFormField(
       controller: nameController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha o nome do produto';
         }
         return null;
@@ -109,7 +109,7 @@ class _UpdateProductCompleteScreenState
     final custoField = TextFormField(
       controller: custoController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Custo do produto';
         }
         return null;
@@ -155,7 +155,7 @@ class _UpdateProductCompleteScreenState
     final lucroField = TextFormField(
       controller: lucroController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha o lucro';
         }
         return null;
@@ -260,7 +260,7 @@ class _UpdateProductCompleteScreenState
       splashColor: Colors.white,
       buttonText: "Atualizar",
       onPressed: () {
-        if (!riKeys1.currentState.validate()) {
+        if (!riKeys1.currentState!.validate()) {
         } else {
           createProduct();
           Future.delayed(Duration(seconds: 1, milliseconds: 300), () {
@@ -277,7 +277,7 @@ class _UpdateProductCompleteScreenState
       splashColor: Colors.white,
       buttonText: "Calcular",
       onPressed: () {
-        if (!riKeys1.currentState.validate()) {
+        if (!riKeys1.currentState!.validate()) {
         } else {
           createProduct();
         }
@@ -302,7 +302,7 @@ class _UpdateProductCompleteScreenState
                       height: 100.0,
                       child: (_image != null)
                           ? Image.file(
-                              _image,
+                              _image!,
                               fit: BoxFit.fill,
                             )
                           : Image.asset(
@@ -452,14 +452,14 @@ class _UpdateProductCompleteScreenState
   }
 
   Future getImage() async {
-    PickedFile pickedFile =
+    PickedFile? pickedFile =
         await ImagePicker().getImage(source: ImageSource.gallery);
 
-    File image = pickedFile != null ? new File(pickedFile.path) : null;
+    File? image = pickedFile != null ? new File(pickedFile.path) : null;
 
     setState(() {
       image != null ? _image = image : _image = null;
-      _image != null ? uriImg = _image.path : null;
+      _image != null ? uriImg = _image!.path : null;
     });
   }
 
@@ -467,7 +467,7 @@ class _UpdateProductCompleteScreenState
     setState(() {
       _isInAsyncCall = true;
     });
-    
+
     _updatedProduct = new ProductCom(
         id: widget.product.id,
         despesaAdm: selectedDespesaAdmList,
@@ -506,10 +506,11 @@ class _UpdateProductCompleteScreenState
     }
 
     setState(() {
-      custoTotalController.text = "R\$ ${custoTotal.toStringAsFixed(2)}";
-      precoVendaController.text = "R\$ ${pv.toStringAsFixed(2)}";
+      custoTotalController.text = "R\$ ${custoTotal?.toStringAsFixed(2)}";
+      precoVendaController.text = "R\$ ${pv?.toStringAsFixed(2)}";
 
-      lucroBrutoController.text = "R\$ ${(pv - custoTotal).toStringAsFixed(2)}";
+      lucroBrutoController.text =
+          "R\$ ${(pv! - custoTotal!).toStringAsFixed(2)}";
       _updatedProduct.precoVendaMarkup = double.parse(pv.toStringAsFixed(2));
       _updatedProduct.custoTotalCalculado =
           double.parse(custoTotal.toStringAsFixed(2));
@@ -583,23 +584,23 @@ class _UpdateProductCompleteScreenState
 
       custoIndiretoController.text = widget.product.custoIndireto == 0
           ? ""
-          : widget.product.custoIndireto.toStringAsFixed(2);
+          : widget.product.custoIndireto!.toStringAsFixed(2);
       precoVendaController.text = widget.product.precoVendaMarkup == 0
           ? ""
-          : "R\$ ${widget.product.precoVendaMarkup.toStringAsFixed(2)}";
+          : "R\$ ${widget.product.precoVendaMarkup!.toStringAsFixed(2)}";
       custoTotalController.text = widget.product.custoTotalCalculado == 0
           ? ""
-          : "R\$ ${widget.product.custoTotalCalculado.toStringAsFixed(2)}";
+          : "R\$ ${widget.product.custoTotalCalculado!.toStringAsFixed(2)}";
 
       lucroBrutoController.text =
-          "R\$ ${(widget.product.precoVendaMarkup - widget.product.custoTotalCalculado).toStringAsFixed(2)}";
+          "R\$ ${(widget.product.precoVendaMarkup! - widget.product.custoTotalCalculado!).toStringAsFixed(2)}";
       uriImg = widget.product.uriImg;
 
-      selectedDespesaAdmList = widget.product.despesaAdm;
-      selectedImpostoList = widget.product.impostos;
-      selectedInsumoList = widget.product.insumos;
-      selectedRateioList = widget.product.rateio;
-      selectedTempoFabList = widget.product.tempoFab;
+      selectedDespesaAdmList = widget.product.despesaAdm!;
+      selectedImpostoList = widget.product.impostos!;
+      selectedInsumoList = widget.product.insumos!;
+      selectedRateioList = widget.product.rateio!;
+      selectedTempoFabList = widget.product.tempoFab!;
     }
   }
 }

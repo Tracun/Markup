@@ -9,7 +9,7 @@ import 'package:calcular_preco_venda/utils/SharedPrefs.dart';
 import 'package:calcular_preco_venda/widgets/AdmobWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:calcular_preco_venda/objects/DespesaAdm.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class NewDespesaAdmScreen extends StatefulWidget {
   final DespesaAdmBloc despesaAdmBloc;
@@ -27,7 +27,7 @@ class _NewDespesaAdmScreenState extends State<NewDespesaAdmScreen> {
   bool _isInAsyncCall = false;
 
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 16.0);
-  DespesaAdm _despesaAdm;
+  DespesaAdm _despesaAdm = DespesaAdm();
   Conversion _conversion = new Conversion();
 
   static var riKeys2 = GlobalKey<FormState>();
@@ -44,7 +44,7 @@ class _NewDespesaAdmScreenState extends State<NewDespesaAdmScreen> {
     final descricaoField = TextFormField(
       controller: descricaoController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Descrição despesaAdm';
         }
         return null;
@@ -63,7 +63,7 @@ class _NewDespesaAdmScreenState extends State<NewDespesaAdmScreen> {
     // Valor unitário
     final valorField = TextFormField(
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'valor';
         }
         return null;
@@ -86,7 +86,7 @@ class _NewDespesaAdmScreenState extends State<NewDespesaAdmScreen> {
       splashColor: Colors.white,
       buttonText: "Cadastrar",
       onPressed: () {
-        if (!riKeys2.currentState.validate()) {
+        if (!riKeys2.currentState!.validate()) {
         } else {
           insertDespesaAdm();
         }

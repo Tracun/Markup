@@ -9,7 +9,7 @@ import 'package:calcular_preco_venda/utils/SharedPrefs.dart';
 import 'package:calcular_preco_venda/widgets/AdmobWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:calcular_preco_venda/objects/Rateio.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class UpdateRateio extends StatefulWidget {
   final Rateio rateio;
@@ -29,7 +29,7 @@ class _UpdateRateioState extends State<UpdateRateio> {
   bool _isInAsyncCall = false;
 
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 16.0);
-  Rateio _rateio;
+  Rateio _rateio = Rateio();
   Conversion _conversion = new Conversion();
 
   static var riKeys10 = GlobalKey<FormState>();
@@ -47,7 +47,7 @@ class _UpdateRateioState extends State<UpdateRateio> {
     final descricaoField = TextFormField(
       controller: descricaoController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Descrição do rateio';
         }
         return null;
@@ -79,7 +79,7 @@ class _UpdateRateioState extends State<UpdateRateio> {
     // Valor unitário
     final valorUnitField = TextFormField(
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha o valor';
         }
         return null;
@@ -101,7 +101,7 @@ class _UpdateRateioState extends State<UpdateRateio> {
       splashColor: Colors.white,
       buttonText: "Atualizar",
       onPressed: () {
-        if (!riKeys10.currentState.validate()) {
+        if (!riKeys10.currentState!.validate()) {
         } else {
           updateRateio();
         }

@@ -13,7 +13,7 @@ class InsumoListScreen extends StatefulWidget {
 }
 
 class _InsumoListAdmState extends State<InsumoListScreen> {
-  String loadingText;
+  String loadingText = "";
 
   final InsumoBloc _insumoBloc = InsumoBloc();
 
@@ -73,7 +73,6 @@ class _InsumoListAdmState extends State<InsumoListScreen> {
               }),
         ],
       ),
-      resizeToAvoidBottomPadding: false,
       body: SafeArea(
         child: Container(
           color: Colors.white,
@@ -141,7 +140,7 @@ class _InsumoListAdmState extends State<InsumoListScreen> {
                           padding: const EdgeInsets.only(right: 8.0, left: 6.0),
                           child: Container(
                               child: Text(
-                            insumo.nome,
+                            insumo.nome!,
                             style: TextStyle(
                                 fontSize: 20.0, fontWeight: FontWeight.bold),
                           )),
@@ -192,9 +191,9 @@ class _InsumoListAdmState extends State<InsumoListScreen> {
       but returned returned 0 records of insumo from DB.
       If that the case show user that you have empty insumos
       */
-      return snapshot.data.length != 0
+      return snapshot.data!.length != 0
           ? new ListView.builder(
-              itemCount: snapshot.data.length,
+              itemCount: snapshot.data!.length,
               itemBuilder: (BuildContext context, int index) {
                 return Dismissible(
                   background: Container(
@@ -214,10 +213,10 @@ class _InsumoListAdmState extends State<InsumoListScreen> {
                     Messages().showYesNoDialog(
                         context,
                         "Exclusão",
-                        "Deseja excluir o item ${snapshot.data[index].nome}?",
+                        "Deseja excluir o item ${snapshot.data![index].nome}?",
                         null, () async {
                       // Sim
-                      _insumoBloc.deleteById(snapshot.data[index].id);
+                      _insumoBloc.deleteById(snapshot.data![index].id!);
                       Navigator.of(context).pop();
                     }, () {
                       // Não
@@ -228,10 +227,10 @@ class _InsumoListAdmState extends State<InsumoListScreen> {
                   direction: _dismissDirection,
                   key: UniqueKey(),
                   child: GestureDetector(
-                    child: buildInsumoList(context, index, snapshot.data),
+                    child: buildInsumoList(context, index, snapshot.data!),
                     onTap: () {
                       ScreenNavigator().updateInsumo(
-                          context, snapshot.data[index], _insumoBloc);
+                          context, snapshot.data![index], _insumoBloc);
                     },
                   ),
                 );

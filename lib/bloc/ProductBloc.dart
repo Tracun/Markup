@@ -26,6 +26,7 @@ class ProductBloc {
   }
 
   Future<int> newProduct(Product product) async {
+    print("newProductBLOC");
     var ret = await _productModel.insert(product);
     getAll();
     return ret;

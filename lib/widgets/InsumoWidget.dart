@@ -11,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class InsumoListWidget extends StatefulWidget {
-  final List<InsumoList> selectedInsumoList;
-  InsumoListWidget({Key key, @required this.selectedInsumoList})
+  final List<InsumoList>? selectedInsumoList;
+  InsumoListWidget({Key? key, @required this.selectedInsumoList})
       : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class InsumoListWidget extends StatefulWidget {
 
 class _InsumoListWidgetState extends State<InsumoListWidget> {
   final quantController = new TextEditingController();
-  List<Insumo> _insumoList = new List<Insumo>();
+  List<Insumo> _insumoList = <Insumo>[];
 
   int selectedItem = 0;
   String insumoName = "Selecione ...";
@@ -33,7 +33,7 @@ class _InsumoListWidgetState extends State<InsumoListWidget> {
   Widget quantField() {
     return TextFormField(
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha a quantidade';
         }
         return null;
@@ -58,12 +58,12 @@ class _InsumoListWidgetState extends State<InsumoListWidget> {
   }
 
   List<DropdownMenuItem<dynamic>> getDropDownMenuItems() {
-    List<DropdownMenuItem<dynamic>> items = new List();
+    List<DropdownMenuItem<dynamic>> items = [];
 
     _insumoList.isNotEmpty
         ? _insumoList
             .map((insumo) => items.add(
-                DropdownMenuItem(value: insumo, child: new Text(insumo.nome))))
+                DropdownMenuItem(value: insumo, child: new Text(insumo.nome!))))
             .toList()
         : null;
     return items;
@@ -75,7 +75,7 @@ class _InsumoListWidgetState extends State<InsumoListWidget> {
 
     return Container(
       height: theme.titleHeight,
-      decoration: BoxDecoration(color: theme.backgroundColor ?? Colors.white),
+      decoration: BoxDecoration(color: theme.backgroundColor),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -103,7 +103,7 @@ class _InsumoListWidgetState extends State<InsumoListWidget> {
               onPressed: () {
                 Navigator.pop(context);
                 setState(() {
-                  insumoName = _insumoList[selectedItem].nome;
+                  insumoName = _insumoList[selectedItem].nome!;
                   quantController.selection;
                 });
               },
@@ -126,7 +126,7 @@ class _InsumoListWidgetState extends State<InsumoListWidget> {
         },
         children: List<Widget>.generate(_insumoList.length, (index) {
           return Center(
-            child: Text(_insumoList[index].nome,
+            child: Text("${_insumoList[index].nome!} - R\$ ${_insumoList[index].valorUnitario}",
                 style: TextStyle(color: Colors.black, fontSize: 14)),
           );
         }),
@@ -264,17 +264,17 @@ class _InsumoListWidgetState extends State<InsumoListWidget> {
               splashColor: Colors.white,
               buttonText: "Adicionar",
               onPressed: () {
-                if (riKeys12.currentState.validate()) {
+                if (riKeys12.currentState!.validate()) {
                   setState(() {
                     if (quantController.text.toString().contains(",")) {
                       quantController.text.toString().replaceAll(",", ".");
                     }
                     if (selectedItem != null) {
-                      widget.selectedInsumoList.add(
+                      widget.selectedInsumoList!.add(
                         new InsumoList(
-                          _insumoList[selectedItem].id,
+                          _insumoList[selectedItem].id!,
                           Conversion().replaceCommaToDot(quantController.text),
-                          _insumoList[selectedItem].nome,
+                          _insumoList[selectedItem].nome!,
                         ),
                       );
                       quantController.clear();
@@ -294,25 +294,25 @@ class _InsumoListWidgetState extends State<InsumoListWidget> {
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             itemCount: widget.selectedInsumoList != null
-                ? widget.selectedInsumoList.length
+                ? widget.selectedInsumoList!.length
                 : 0,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
-                child: widget.selectedInsumoList.isEmpty
+                child: widget.selectedInsumoList!.isEmpty
                     ? Center(child: Text('Sem insumos'))
                     : buildInsumoList(
-                        context, index, widget.selectedInsumoList),
+                        context, index, widget.selectedInsumoList!),
                 onTap: () {
-                  if (widget.selectedInsumoList.isNotEmpty) {
+                  if (widget.selectedInsumoList!.isNotEmpty) {
                     Messages().showYesNoDialog(
                         context,
                         "Exclusão",
-                        "Deseja excluir o insumo ${widget.selectedInsumoList[index].name == null ? widget.selectedInsumoList[index].id : widget.selectedInsumoList[index].name}?",
+                        "Deseja excluir o insumo ${widget.selectedInsumoList![index].name == null ? widget.selectedInsumoList![index].id : widget.selectedInsumoList![index].name}?",
                         null, () {
                       // Sim
                       Navigator.of(context).pop();
                       setState(() {
-                        widget.selectedInsumoList.removeAt(index);
+                        widget.selectedInsumoList!.removeAt(index);
                       });
                     }, () {
                       // Não

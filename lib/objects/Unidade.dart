@@ -1,6 +1,6 @@
 class Unidade {
-  int id;
-  String descricao;
+  int? id;
+  String? descricao;
 
   Unidade({this.id, this.descricao});
 

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:calcular_preco_venda/Router.dart';
 import 'package:calcular_preco_venda/bloc/InsumoBloc.dart';
 import 'package:calcular_preco_venda/utils/Buttom.dart';
 import 'package:calcular_preco_venda/utils/Conversion.dart';
@@ -9,7 +10,7 @@ import 'package:calcular_preco_venda/utils/SharedPrefs.dart';
 import 'package:calcular_preco_venda/widgets/AdmobWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:calcular_preco_venda/objects/Insumo.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class UpdateInsumoScreen extends StatefulWidget {
   final Insumo insumo;
@@ -29,7 +30,7 @@ class _UpdateInsumoScreenState extends State<UpdateInsumoScreen> {
   bool _isInAsyncCall = false;
 
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 16.0);
-  Insumo _updatedInsumo;
+  Insumo _updatedInsumo = Insumo();
   Conversion _conversion = new Conversion();
 
   static var riKeys9 = GlobalKey<FormState>();
@@ -47,7 +48,7 @@ class _UpdateInsumoScreenState extends State<UpdateInsumoScreen> {
     final nameField = TextFormField(
       controller: nameController,
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha o nome do insumo';
         }
         return null;
@@ -79,7 +80,7 @@ class _UpdateInsumoScreenState extends State<UpdateInsumoScreen> {
     // Valor unitário
     final valorUnitField = TextFormField(
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha o valor unitário';
         }
         return null;
@@ -101,7 +102,7 @@ class _UpdateInsumoScreenState extends State<UpdateInsumoScreen> {
       splashColor: Colors.white,
       buttonText: "Atualizar",
       onPressed: () {
-        if (!riKeys9.currentState.validate()) {
+        if (!riKeys9.currentState!.validate()) {
         } else {
           updateInsumo();
         }
@@ -189,7 +190,9 @@ class _UpdateInsumoScreenState extends State<UpdateInsumoScreen> {
       _isInAsyncCall = true;
     });
     try {
+      print(_updatedInsumo.toMap());
       var isUpdated = await widget.insumoBloc.updateInsumo(_updatedInsumo);
+
       if (isUpdated != null) {
         setState(() {
           _isInAsyncCall = false;

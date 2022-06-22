@@ -19,8 +19,8 @@ class GenericModel implements GenericRepository {
     init();
   }
 
-  Database _database;
-  StoreRef _store;
+  late Database _database;
+  late StoreRef _store;
 
   @override
   init() {
@@ -33,7 +33,7 @@ class GenericModel implements GenericRepository {
     var key = await _store.add(_database, objectMap);
     // Insere o id do produto criado e atualiza
     objectMap['id'] = key;
-    update(objectMap);
+    await update(objectMap);
     return key;
   }
 
@@ -106,49 +106,49 @@ class GenericModel implements GenericRepository {
   }
 
   @override
-  Future<ProductCom> getProductById(int productId) async {
+  Future<ProductCom?> getProductById(int productId) async {
     var product = await _store.record(productId).get(_database);
 
     return product != null ? ProductCom().fromMap(null, product) : null;
   }
 
   @override
-  Future<Insumo> getInsumoById(int insumoId) async {
+  Future<Insumo?> getInsumoById(int insumoId) async {
     var insumo = await _store.record(insumoId).get(_database);
 
     return insumo != null ? Insumo().fromMap(insumo) : null;
   }
 
   @override
-  Future<Rateio> getRateioById(int rateioId) async {
+  Future<Rateio?> getRateioById(int rateioId) async {
     var rateio = await _store.record(rateioId).get(_database);
 
     return rateio != null ? Rateio().fromMap(rateio) : null;
   }
 
   @override
-  Future<TempoFab> getTempoFabById(int tempoFabId) async {
+  Future<TempoFab?> getTempoFabById(int tempoFabId) async {
     var tempoFab = await _store.record(tempoFabId).get(_database);
 
     return tempoFab != null ? TempoFab().fromMap(tempoFab) : null;
   }
 
   @override
-  Future<Unidade> getUnidadeById(int unidadeId) async {
+  Future<Unidade?> getUnidadeById(int unidadeId) async {
     var unidade = await _store.record(unidadeId).get(_database);
 
     return unidade != null ? Unidade().fromMap(unidade) : null;
   }
 
   @override
-  Future<Imposto> getImpostoById(int impostoId) async {
+  Future<Imposto?> getImpostoById(int impostoId) async {
     var imposto = await _store.record(impostoId).get(_database);
 
     return imposto != null ? Imposto().fromMap(imposto) : null;
   }
 
   @override
-  Future<DespesaAdm> getDespesaAdmById(int impostoId) async {
+  Future<DespesaAdm?> getDespesaAdmById(int impostoId) async {
     var imposto = await _store.record(impostoId).get(_database);
 
     return imposto != null ? DespesaAdm().fromMap(imposto) : null;

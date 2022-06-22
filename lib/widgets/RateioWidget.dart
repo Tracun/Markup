@@ -11,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class RateioListWidget extends StatefulWidget {
-  final List<RateioList> selectedRateioList;
-  RateioListWidget({Key key, @required this.selectedRateioList})
+  final List<RateioList>? selectedRateioList;
+  RateioListWidget({Key? key, @required this.selectedRateioList})
       : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class RateioListWidget extends StatefulWidget {
 
 class _RateioListWidgetState extends State<RateioListWidget> {
   final porcentagemController = new TextEditingController();
-  List<Rateio> _rateioList = new List<Rateio>();
+  List<Rateio> _rateioList = <Rateio>[];
 
   int selectedItem = 0;
   String rateioName = "Selecione ...";
@@ -33,7 +33,7 @@ class _RateioListWidgetState extends State<RateioListWidget> {
   Widget porcentagemField() {
     return TextFormField(
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha a porcentagem';
         }
         return null;
@@ -58,12 +58,12 @@ class _RateioListWidgetState extends State<RateioListWidget> {
   }
 
   List<DropdownMenuItem<dynamic>> getDropDownMenuItems() {
-    List<DropdownMenuItem<dynamic>> items = new List();
+    List<DropdownMenuItem<dynamic>> items = [];
 
     _rateioList.isNotEmpty
         ? _rateioList
-            .map((rateio) => items.add(
-                DropdownMenuItem(value: rateio, child: new Text(rateio.descricao))))
+            .map((rateio) => items.add(DropdownMenuItem(
+                value: rateio, child: new Text(rateio.descricao!),),),)
             .toList()
         : null;
     return items;
@@ -75,7 +75,7 @@ class _RateioListWidgetState extends State<RateioListWidget> {
 
     return Container(
       height: theme.titleHeight,
-      decoration: BoxDecoration(color: theme.backgroundColor ?? Colors.white),
+      decoration: BoxDecoration(color: theme.backgroundColor),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -103,7 +103,7 @@ class _RateioListWidgetState extends State<RateioListWidget> {
               onPressed: () {
                 Navigator.pop(context);
                 setState(() {
-                  rateioName = _rateioList[selectedItem].descricao;
+                  rateioName = _rateioList[selectedItem].descricao!;
                   porcentagemController.selection;
                 });
               },
@@ -126,7 +126,7 @@ class _RateioListWidgetState extends State<RateioListWidget> {
         },
         children: List<Widget>.generate(_rateioList.length, (index) {
           return Center(
-            child: Text(_rateioList[index].descricao,
+            child: Text("${_rateioList[index].descricao!} - R\$ ${_rateioList[index].valor}",
                 style: TextStyle(color: Colors.black, fontSize: 14)),
           );
         }),
@@ -264,14 +264,15 @@ class _RateioListWidgetState extends State<RateioListWidget> {
               splashColor: Colors.white,
               buttonText: "Adicionar",
               onPressed: () {
-                if (riKeys12.currentState.validate()) {
+                if (riKeys12.currentState!.validate()) {
                   setState(() {
                     if (selectedItem != null) {
-                      widget.selectedRateioList.add(
+                      widget.selectedRateioList!.add(
                         new RateioList(
-                          _rateioList[selectedItem].id,
-                          Conversion().replaceCommaToDot(porcentagemController.text),
-                          _rateioList[selectedItem].descricao,
+                          _rateioList[selectedItem].id!,
+                          Conversion()
+                              .replaceCommaToDot(porcentagemController.text),
+                          _rateioList[selectedItem].descricao!,
                         ),
                       );
                       porcentagemController.clear();
@@ -291,25 +292,25 @@ class _RateioListWidgetState extends State<RateioListWidget> {
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             itemCount: widget.selectedRateioList != null
-                ? widget.selectedRateioList.length
+                ? widget.selectedRateioList!.length
                 : 0,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
-                child: widget.selectedRateioList.isEmpty
+                child: widget.selectedRateioList!.isEmpty
                     ? Center(child: Text('Sem rateios'))
                     : buildRateioList(
-                        context, index, widget.selectedRateioList),
+                        context, index, widget.selectedRateioList!),
                 onTap: () {
-                  if (widget.selectedRateioList.isNotEmpty) {
+                  if (widget.selectedRateioList!.isNotEmpty) {
                     Messages().showYesNoDialog(
                         context,
                         "Exclusão",
-                        "Deseja excluir o rateio ${widget.selectedRateioList[index].descricao == null ? widget.selectedRateioList[index].id : widget.selectedRateioList[index].descricao}?",
+                        "Deseja excluir o rateio ${widget.selectedRateioList![index].descricao == null ? widget.selectedRateioList![index].id : widget.selectedRateioList![index].descricao}?",
                         null, () {
                       // Sim
                       Navigator.of(context).pop();
                       setState(() {
-                        widget.selectedRateioList.removeAt(index);
+                        widget.selectedRateioList!.removeAt(index);
                       });
                     }, () {
                       // Não
@@ -328,8 +329,7 @@ class _RateioListWidgetState extends State<RateioListWidget> {
 
   Widget buildRateioList(
       BuildContext context, int index, List<RateioList> list) {
-    return 
-    Padding(
+    return Padding(
       padding: const EdgeInsets.only(left: 48, right: 48, top: 5, bottom: 5),
       child: Container(
         child: FittedBox(

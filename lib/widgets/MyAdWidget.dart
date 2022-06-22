@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MyAdWidget extends StatefulWidget {
-  final int? AdSize;
-  MyAdWidget({this.AdSize, Key? key}) : super(key: key);
+  final int? adSize;
+  MyAdWidget({this.adSize = 0, Key? key}) : super(key: key);
 
   @override
   State<MyAdWidget> createState() => _MyAdWidgetState();
 }
 
 class _MyAdWidgetState extends State<MyAdWidget> {
-  List<MyAd> AdList = [];
+  List<MyAd> adList = [];
 
   @override
   void initState() {
@@ -23,7 +23,7 @@ class _MyAdWidgetState extends State<MyAdWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> imageSliders = AdList.map((item) => TextButton(
+    final List<Widget> imageSliders = adList.map((item) => TextButton(
           // Link para o anuncio
           onPressed: () => launchUrl(Uri.tryParse(item.url!)!),
           child: Container(
@@ -76,7 +76,7 @@ class _MyAdWidgetState extends State<MyAdWidget> {
 
 // Obtem a lista de anuncios
   getAdList() async {
-    for (var i = 0; i < widget.AdSize!; i++) {
+    for (var i = 0; i < widget.adSize!; i++) {
       var myAdImage = await FirebaseRemoteConfig().getMyAdImage(i);
       var myAdText = await FirebaseRemoteConfig().getMyAdText(i);
       var myAdUrl = await FirebaseRemoteConfig().getMyLinkAd(i);
@@ -84,7 +84,7 @@ class _MyAdWidgetState extends State<MyAdWidget> {
       if ((myAdImage != null && myAdImage.isNotEmpty) &&
           (myAdText != null && myAdText.isNotEmpty) &&
           (myAdUrl != null && myAdUrl.isNotEmpty)) {
-        AdList.add(MyAd(imageUrl: myAdImage, text: myAdText, url: myAdUrl));
+        adList.add(MyAd(imageUrl: myAdImage, text: myAdText, url: myAdUrl));
       }
     }
     setState(() {});

@@ -11,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class DespesaAdmListWidget extends StatefulWidget {
-  final List<DespesaAdmList> selectedDespesaAdmList;
-  DespesaAdmListWidget({Key key, @required this.selectedDespesaAdmList})
+  final List<DespesaAdmList>? selectedDespesaAdmList;
+  DespesaAdmListWidget({Key? key, @required this.selectedDespesaAdmList})
       : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class DespesaAdmListWidget extends StatefulWidget {
 
 class _DespesaAdmListWidgetState extends State<DespesaAdmListWidget> {
   final quantController = new TextEditingController();
-  List<DespesaAdm> _despesaAdmList = new List<DespesaAdm>();
+  List<DespesaAdm> _despesaAdmList = <DespesaAdm>[];
 
   int selectedItem = 0;
   String despesaAdmName = "Selecione ...";
@@ -33,7 +33,7 @@ class _DespesaAdmListWidgetState extends State<DespesaAdmListWidget> {
   Widget quantField() {
     return TextFormField(
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha a quantidade';
         }
         return null;
@@ -58,12 +58,12 @@ class _DespesaAdmListWidgetState extends State<DespesaAdmListWidget> {
   }
 
   List<DropdownMenuItem<dynamic>> getDropDownMenuItems() {
-    List<DropdownMenuItem<dynamic>> items = new List();
+    List<DropdownMenuItem<dynamic>> items = [];
 
     _despesaAdmList.isNotEmpty
         ? _despesaAdmList
             .map((despesaAdm) => items.add(DropdownMenuItem(
-                value: despesaAdm, child: new Text(despesaAdm.descricao))))
+                value: despesaAdm, child: new Text(despesaAdm.descricao!))))
             .toList()
         : null;
     return items;
@@ -75,7 +75,7 @@ class _DespesaAdmListWidgetState extends State<DespesaAdmListWidget> {
 
     return Container(
       height: theme.titleHeight,
-      decoration: BoxDecoration(color: theme.backgroundColor ?? Colors.white),
+      decoration: BoxDecoration(color: theme.backgroundColor),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -103,7 +103,7 @@ class _DespesaAdmListWidgetState extends State<DespesaAdmListWidget> {
               onPressed: () {
                 Navigator.pop(context);
                 setState(() {
-                  despesaAdmName = _despesaAdmList[selectedItem].descricao;
+                  despesaAdmName = _despesaAdmList[selectedItem].descricao!;
                   quantController.selection;
                 });
               },
@@ -126,7 +126,7 @@ class _DespesaAdmListWidgetState extends State<DespesaAdmListWidget> {
         },
         children: List<Widget>.generate(_despesaAdmList.length, (index) {
           return Center(
-            child: Text(_despesaAdmList[index].descricao,
+            child: Text("${_despesaAdmList[index].descricao!} - R\$ ${_despesaAdmList[index].valor}/hora",
                 style: TextStyle(color: Colors.black, fontSize: 14)),
           );
         }),
@@ -264,14 +264,14 @@ class _DespesaAdmListWidgetState extends State<DespesaAdmListWidget> {
               splashColor: Colors.white,
               buttonText: "Adicionar",
               onPressed: () {
-                if (riKeys12.currentState.validate()) {
+                if (riKeys12.currentState!.validate()) {
                   setState(() {
                     if (selectedItem != null) {
-                      widget.selectedDespesaAdmList.add(
+                      widget.selectedDespesaAdmList!.add(
                         new DespesaAdmList(
-                          _despesaAdmList[selectedItem].id,
+                          _despesaAdmList[selectedItem].id!,
                           Conversion().replaceCommaToDot(quantController.text),
-                          _despesaAdmList[selectedItem].descricao,
+                          _despesaAdmList[selectedItem].descricao!,
                         ),
                       );
                       quantController.clear();
@@ -293,25 +293,25 @@ class _DespesaAdmListWidgetState extends State<DespesaAdmListWidget> {
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             itemCount: widget.selectedDespesaAdmList != null
-                ? widget.selectedDespesaAdmList.length
+                ? widget.selectedDespesaAdmList!.length
                 : 0,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
-                child: widget.selectedDespesaAdmList.isEmpty
+                child: widget.selectedDespesaAdmList!.isEmpty
                     ? Center(child: Text('Sem despesas Adm'))
                     : buildDespesaAdmList(
-                        context, index, widget.selectedDespesaAdmList),
+                        context, index, widget.selectedDespesaAdmList!),
                 onTap: () {
-                  if (widget.selectedDespesaAdmList.isNotEmpty) {
+                  if (widget.selectedDespesaAdmList!.isNotEmpty) {
                     Messages().showYesNoDialog(
                         context,
                         "Exclusão",
-                        "Deseja excluir a despesaAdm ${widget.selectedDespesaAdmList[index].descricao == null ? widget.selectedDespesaAdmList[index].id : widget.selectedDespesaAdmList[index].descricao}?",
+                        "Deseja excluir a despesaAdm ${widget.selectedDespesaAdmList![index].descricao == null ? widget.selectedDespesaAdmList![index].id : widget.selectedDespesaAdmList![index].descricao}?",
                         null, () {
                       // Sim
                       Navigator.of(context).pop();
                       setState(() {
-                        widget.selectedDespesaAdmList.removeAt(index);
+                        widget.selectedDespesaAdmList!.removeAt(index);
                       });
                     }, () {
                       // Não

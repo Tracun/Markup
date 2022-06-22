@@ -28,7 +28,7 @@ class Messages {
     );
   }
 
-  showOkDialog(BuildContext context, String title, String msg, Function onPressed) {
+  showOkDialog(BuildContext context, String title, String msg, Function() onPressed) {
     // configura o button
     Widget okButton = FlatButton(
       child: Text("OK"),
@@ -54,7 +54,7 @@ class Messages {
   }
 
   void showYesNoDialog(BuildContext context, String title, String message,
-      dynamic object, Function onPressedSim, Function onPressedNao, {String yesButtonText = "Sim", String noButtonText = "Não"}) {
+      dynamic object, Function() onPressedSim, Function() onPressedNao, {String yesButtonText = "Sim", String noButtonText = "Não"}) {
     // configura o button
     Widget noButton = FlatButton(
       child: Text(yesButtonText),

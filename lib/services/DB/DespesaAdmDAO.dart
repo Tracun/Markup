@@ -33,7 +33,7 @@ class DespesaAdmDAO {
     return snapshots;
   }
 
-  Future<DespesaAdm> getById(despesaAdmId) async {
+  Future<DespesaAdm?> getById(despesaAdmId) async {
     return await _genericModel.getDespesaAdmById(despesaAdmId);
   }
 }

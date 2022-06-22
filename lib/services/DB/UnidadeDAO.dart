@@ -32,7 +32,7 @@ class UnidadeDAO {
     return snapshots;
   }
 
-  Future<Unidade> getById(unidadeId) async {
+  Future<Unidade?> getById(unidadeId) async {
     return await _genericModel.getUnidadeById(unidadeId);
   }
 }

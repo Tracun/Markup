@@ -11,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class TempoFabListWidget extends StatefulWidget {
-  final List<TempoFabList> selectedTempoFabList;
-  TempoFabListWidget({Key key, @required this.selectedTempoFabList})
+  final List<TempoFabList>? selectedTempoFabList;
+  TempoFabListWidget({Key? key, @required this.selectedTempoFabList})
       : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class TempoFabListWidget extends StatefulWidget {
 
 class _TempoFabListWidgetState extends State<TempoFabListWidget> {
   final quantHorasController = new TextEditingController();
-  List<TempoFab> _tempoFabList = new List<TempoFab>();
+  List<TempoFab> _tempoFabList = <TempoFab>[];
 
   int selectedItem = 0;
   String tempoFabName = "Selecione ...";
@@ -33,7 +33,7 @@ class _TempoFabListWidgetState extends State<TempoFabListWidget> {
   Widget quantField() {
     return TextFormField(
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           return 'Preencha a quantidade';
         }
         return null;
@@ -58,12 +58,12 @@ class _TempoFabListWidgetState extends State<TempoFabListWidget> {
   }
 
   List<DropdownMenuItem<dynamic>> getDropDownMenuItems() {
-    List<DropdownMenuItem<dynamic>> items = new List();
+    List<DropdownMenuItem<dynamic>> items = [];
 
     _tempoFabList.isNotEmpty
         ? _tempoFabList
-            .map((tempoFab) => items.add(
-                DropdownMenuItem(value: tempoFab, child: new Text(tempoFab.descricao))))
+            .map((tempoFab) => items.add(DropdownMenuItem(
+                value: tempoFab, child: new Text(tempoFab.descricao!),),),)
             .toList()
         : null;
     return items;
@@ -75,7 +75,7 @@ class _TempoFabListWidgetState extends State<TempoFabListWidget> {
 
     return Container(
       height: theme.titleHeight,
-      decoration: BoxDecoration(color: theme.backgroundColor ?? Colors.white),
+      decoration: BoxDecoration(color: theme.backgroundColor),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -103,7 +103,7 @@ class _TempoFabListWidgetState extends State<TempoFabListWidget> {
               onPressed: () {
                 Navigator.pop(context);
                 setState(() {
-                  tempoFabName = _tempoFabList[selectedItem].descricao;
+                  tempoFabName = _tempoFabList[selectedItem].descricao!;
                   quantHorasController.selection;
                 });
               },
@@ -126,7 +126,7 @@ class _TempoFabListWidgetState extends State<TempoFabListWidget> {
         },
         children: List<Widget>.generate(_tempoFabList.length, (index) {
           return Center(
-            child: Text(_tempoFabList[index].descricao,
+            child: Text("${_tempoFabList[index].descricao!} - R\$ ${_tempoFabList[index].valorHora}/hora",
                 style: TextStyle(color: Colors.black, fontSize: 14)),
           );
         }),
@@ -264,14 +264,15 @@ class _TempoFabListWidgetState extends State<TempoFabListWidget> {
               splashColor: Colors.white,
               buttonText: "Adicionar",
               onPressed: () {
-                if (riKeys12.currentState.validate()) {
+                if (riKeys12.currentState!.validate()) {
                   setState(() {
                     if (selectedItem != null) {
-                      widget.selectedTempoFabList.add(
+                      widget.selectedTempoFabList!.add(
                         new TempoFabList(
-                          _tempoFabList[selectedItem].id,
-                          Conversion().replaceCommaToDot(quantHorasController.text),
-                          _tempoFabList[selectedItem].descricao,
+                          _tempoFabList[selectedItem].id!,
+                          Conversion()
+                              .replaceCommaToDot(quantHorasController.text),
+                          _tempoFabList[selectedItem].descricao!,
                         ),
                       );
                       quantHorasController.clear();
@@ -291,25 +292,25 @@ class _TempoFabListWidgetState extends State<TempoFabListWidget> {
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             itemCount: widget.selectedTempoFabList != null
-                ? widget.selectedTempoFabList.length
+                ? widget.selectedTempoFabList!.length
                 : 0,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
-                child: widget.selectedTempoFabList.isEmpty
+                child: widget.selectedTempoFabList!.isEmpty
                     ? Center(child: Text('Sem tempoFabs'))
                     : buildTempoFabList(
-                        context, index, widget.selectedTempoFabList),
+                        context, index, widget.selectedTempoFabList!),
                 onTap: () {
-                  if (widget.selectedTempoFabList.isNotEmpty) {
+                  if (widget.selectedTempoFabList!.isNotEmpty) {
                     Messages().showYesNoDialog(
                         context,
                         "Exclusão",
-                        "Deseja excluir o tempoFab ${widget.selectedTempoFabList[index].descricao == null ? widget.selectedTempoFabList[index].id : widget.selectedTempoFabList[index].descricao}?",
+                        "Deseja excluir o tempoFab ${widget.selectedTempoFabList![index].descricao == null ? widget.selectedTempoFabList![index].id : widget.selectedTempoFabList![index].descricao}?",
                         null, () {
                       // Sim
                       Navigator.of(context).pop();
                       setState(() {
-                        widget.selectedTempoFabList.removeAt(index);
+                        widget.selectedTempoFabList!.removeAt(index);
                       });
                     }, () {
                       // Não
@@ -328,8 +329,7 @@ class _TempoFabListWidgetState extends State<TempoFabListWidget> {
 
   Widget buildTempoFabList(
       BuildContext context, int index, List<TempoFabList> list) {
-    return 
-    Padding(
+    return Padding(
       padding: const EdgeInsets.only(left: 48, right: 48, top: 5, bottom: 5),
       child: Container(
         child: FittedBox(
