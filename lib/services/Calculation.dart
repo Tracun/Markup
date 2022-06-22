@@ -22,23 +22,23 @@ class Calculation {
 
   //Verifica se a soma dos impostos/lucro não excede 100%
   static bool isMoreThanOneHundred(Product produto) {
-    return (produto.imp1 +
-            produto.imp2 +
-            produto.encargo +
-            produto.comissao +
-            produto.outros +
-            produto.lucro) >
+    return (produto.imp1 !+
+            produto.imp2! +
+            produto.encargo! +
+            produto.comissao! +
+            produto.outros! +
+            produto.lucro!) >
         100;
   }
 
   double calcularMarkupFora(Product produto) {
     double markupFora;
 
-    double impostos = produto.imp1 + produto.imp2;
+    double impostos = produto.imp1 !+ produto.imp2!;
 
     // Soma dos impostos, encargos, neste caso, não somamos a porcentagem do lucro
     markupFora =
-        100 - (impostos + produto.encargo + produto.comissao + produto.outros);
+        100 - (impostos + produto.encargo! + produto.comissao! + produto.outros!);
 
     return markupFora;
   }
@@ -46,15 +46,15 @@ class Calculation {
   double calcularMarkupDentro(Product produto) {
     double markupDentro;
 
-    double impostos = produto.imp1 + produto.imp2;
+    double impostos = produto.imp1 !+ produto.imp2!;
 
     // Soma dos impostos, encargos, *neste caso, somamos a porcentagem do lucro.
     markupDentro = 100 -
         (impostos +
-            produto.encargo +
-            produto.comissao +
-            produto.outros +
-            produto.lucro);
+            produto.encargo! +
+            produto.comissao! +
+            produto.outros! +
+            produto.lucro!);
 
     return markupDentro;
   }
@@ -65,9 +65,9 @@ class Calculation {
 
     double preco;
 
-    preco = ((produto.custo + (produto.custo * produto.custoIndireto / 100)) +
-            (produto.custo + (produto.custo * produto.custoIndireto / 100)) *
-                produto.lucro /
+    preco = ((produto.custo !+ (produto.custo !* produto.custoIndireto! / 100)) +
+            (produto.custo !+ (produto.custo !* produto.custoIndireto! / 100)) *
+                produto.lucro! /
                 100) /
         calcularMarkupFora(produto) *
         100;
@@ -81,7 +81,7 @@ class Calculation {
 
     double preco;
 
-    preco = (produto.custo + (produto.custo * produto.custoIndireto / 100)) /
+    preco = (produto.custo !+ (produto.custo !* produto.custoIndireto! / 100)) /
         calcularMarkupDentro(produto) *
         100;
 
@@ -90,16 +90,17 @@ class Calculation {
 
   Future<Map<String, double>> calcularPrecoVendaMarkup(
       ProductCom productCom) async {
+
+    // Custo do produto total
+    var custoTotal = await calcularCustoTotal(productCom);
+
     // 100 / [ 100 – ( DV + DF + LP ) ].
-    var dv = _valorTotalImposto + productCom.comissao;
+    var dv = _valorTotalImposto + productCom.comissao!;
     var df = productCom.custoIndireto;
     var lp = productCom.lucro;
 
     //Verifica se a soma das porcentagens não excede 100%
-    if (dv + df + lp > 100) return {'pv': -333, 'custoTotal': -333};
-
-    // Custo do produto total
-    var custoTotal = await calcularCustoTotal(productCom);
+    if (dv + df! + lp! > 100) return {'pv': -333, 'custoTotal': -333};
 
     log("CUSTO TOTAL: $custoTotal");
     var markup = 100 / (100 - (dv + df + lp));
@@ -120,13 +121,13 @@ class Calculation {
   }
 
   Future<double> calcularCustoTotal(ProductCom productCom) async {
-    await calcularValorDespesas(productCom.despesaAdm);
-    await calcularValorImposto(productCom.impostos);
-    await calcularValorInsumo(productCom.insumos);
-    await calcularValorRateio(productCom.rateio);
-    await calcularValorTempFab(productCom.tempoFab);
+    await calcularValorDespesas(productCom.despesaAdm!);
+    await calcularValorImposto(productCom.impostos!);
+    await calcularValorInsumo(productCom.insumos!);
+    await calcularValorRateio(productCom.rateio!);
+    await calcularValorTempFab(productCom.tempoFab!);
 
-    return productCom.custo +
+    return productCom.custo !+
         _valorTotalRateio +
         _valorTotalTempFab +
         _valorTotalInsumo +
@@ -136,56 +137,56 @@ class Calculation {
   Future<void> calcularValorDespesas(
       List<DespesaAdmList> despesaAdmList) async {
     DespesaAdmBloc despesaAdmBloc = new DespesaAdmBloc();
-    DespesaAdm despesa;
+    DespesaAdm? despesa;
 
     for (DespesaAdmList d in despesaAdmList) {
       despesa = await despesaAdmBloc.getById(d.id);
-      despesa != null ? _valorTotalDespesa += despesa.valor * d.quant : 0.0;
+      despesa != null ? _valorTotalDespesa += despesa.valor !* d.quant : 0.0;
     }
   }
 
   Future<void> calcularValorImposto(List<int> impostoList) async {
     ImpostoBloc impostoBloc = new ImpostoBloc();
-    Imposto imposto;
+    Imposto? imposto;
 
     for (int impID in impostoList) {
       imposto = await impostoBloc.getById(impID);
-      imposto != null ? _valorTotalImposto += imposto.porcentagem : 0.0;
+      imposto != null ? _valorTotalImposto += imposto.porcentagem! : 0.0;
     }
   }
 
   Future<void> calcularValorInsumo(List<InsumoList> insumoList) async {
     InsumoBloc insumoBloc = new InsumoBloc();
-    Insumo insumo;
+    Insumo? insumo;
 
     for (InsumoList i in insumoList) {
       insumo = await insumoBloc.getById(i.id);
       insumo != null
-          ? _valorTotalInsumo += insumo.valorUnitario * i.quant
+          ? _valorTotalInsumo += insumo.valorUnitario !* i.quant
           : 0.0;
     }
   }
 
   Future<void> calcularValorRateio(List<RateioList> rateioList) async {
     RateioBloc rateioBloc = new RateioBloc();
-    Rateio rateio;
+    Rateio? rateio;
 
     for (RateioList rat in rateioList) {
       rateio = await rateioBloc.getById(rat.id);
       rateio != null
-          ? _valorTotalRateio += rateio.valor * (rat.porcentagemRateio / 100)
+          ? _valorTotalRateio += rateio.valor !* (rat.porcentagemRateio / 100)
           : 0.0;
     }
   }
 
   Future<void> calcularValorTempFab(List<TempoFabList> tempFabList) async {
     TempoFabBloc tempFabBloc = new TempoFabBloc();
-    TempoFab tempFab;
+    TempoFab? tempFab;
 
     for (TempoFabList temp in tempFabList) {
       tempFab = await tempFabBloc.getById(temp.id);
       tempFab != null
-          ? _valorTotalTempFab += tempFab.valorHora * temp.quant
+          ? _valorTotalTempFab += tempFab.valorHora !* temp.quant
           : 0.0;
     }
   }
